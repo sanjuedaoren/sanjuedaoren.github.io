@@ -899,6 +899,7 @@ html, body {
     <div class="nav-right">
       <button class="btn" id="customBtn">自定义</button>
       <button class="btn" id="randomBtn">随机探索</button>
+      <button class="btn" id="saveBtn" title="保存人物位置和自定义人物数据">保存</button>
       <button class="btn btn-primary" id="shareBtn">分享</button>
     </div>
   </nav>
@@ -1120,6 +1121,10 @@ let currentHis = hisData.map(p => p.id);
 let currentPath = [];
 let isScrolling = false;
 let zoom = 1;
+let globalPositions = {};       // 当前所有节点的位置 { id: { x, y } }
+let savedCustomPersons = [];   // 保存过的自定义人物数据
+const SAVE_KEY = 'history_chain_save';
+const CUSTOM_KEY = 'history_chain_custom';
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 5;
 const BASE_WIDTH = 10000;
@@ -1393,7 +1398,8 @@ function renderTimeline(hisIds) {
     }
     return { left, right };
   };
-  const positions = {};
+  globalPositions = {};
+  const positions = globalPositions;
   const NODE_RADIUS = 15;
   const usableTop = contentHeight * 0.1 + 16;
   const usableBottom = contentHeight - 24;
@@ -2022,18 +2028,109 @@ customSubmitBtn.addEventListener('click', () => {
   currentPath = [];
   renderLegends();
   renderTimeline(currentHis);
+  loadSavedPositions();
+  refreshNodePositions();
   closeCustomModal();
 });
 
+// ===== Save / Load =====
+function loadSavedData() {
+  // 加载保存的自定义人物
+  try {
+    const custom = localStorage.getItem(CUSTOM_KEY);
+    if (custom) {
+      const customList = JSON.parse(custom);
+      customList.forEach(cp => {
+        // 避免重复添加（通过 id 判断）
+        if (!hisData.find(p => p.id === cp.id)) {
+          hisData.push(cp);
+        }
+      });
+      savedCustomPersons = customList;
+    }
+  } catch (e) { console.warn('加载自定义人物数据失败', e); }
+  // 重新设置当前路径
+  currentHis = hisData.map(p => p.id);
+}
+
+function loadSavedPositions() {
+  // 加载保存的位置数据，覆盖自动计算的位置
+  try {
+    const posStr = localStorage.getItem(SAVE_KEY);
+    if (posStr) {
+      const savedPos = JSON.parse(posStr);
+      Object.keys(savedPos).forEach(id => {
+        if (globalPositions[id]) {
+          globalPositions[id].x = savedPos[id].x;
+          globalPositions[id].y = savedPos[id].y;
+        }
+      });
+    }
+  } catch (e) { console.warn('加载位置数据失败', e); }
+}
+
+function saveAll() {
+  // 从 DOM 收集最新位置（比 globalPositions 更准确，因为拖拽后 DOM 和变量都同步更新）
+  const allNodes = document.querySelectorAll('.person-node[data-id]');
+  const posData = {};
+  allNodes.forEach(node => {
+    const id = node.dataset.id;
+    const baseLeft = parseFloat(node.dataset.baseLeft);
+    const baseTop = parseFloat(node.dataset.baseTop);
+    if (!isNaN(baseLeft) && !isNaN(baseTop)) {
+      posData[id] = { x: baseLeft, y: baseTop };
+    }
+  });
+  // 保存自定义人物数据（hisData 中 id 以 'custom_' 开头的）
+  const customList = hisData.filter(p => p.id.startsWith('custom_'));
+  localStorage.setItem(SAVE_KEY, JSON.stringify(posData));
+  localStorage.setItem(CUSTOM_KEY, JSON.stringify(customList));
+  showToast('已保存所有人物位置和自定义数据');
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('saveToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'saveToast';
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(160deg,#D24C52,#A52F35);color:#fff;padding:0.5rem 1.5rem;border-radius:6px;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;font-family:var(--serif);box-shadow:0 4px 16px rgba(0,0,0,0.5);';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+}
+
+document.getElementById('saveBtn').addEventListener('click', saveAll);
+
 // ===== Initialization =====
 function init() {
+  loadSavedData();
   renderLegends();
   renderTimeline(currentHis);
+  loadSavedPositions();
+  // 位置恢复后需要重新渲染节点 DOM
+  refreshNodePositions();
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { renderTimeline(currentHis); if (currentPath.length > 0) highlightPath(currentPath); }, 250);
+    resizeTimer = setTimeout(() => { renderTimeline(currentHis); loadSavedPositions(); refreshNodePositions(); if (currentPath.length > 0) highlightPath(currentPath); }, 250);
   });
+}
+
+function refreshNodePositions() {
+  const nodes = document.querySelectorAll('.person-node[data-id]');
+  nodes.forEach(node => {
+    const id = node.dataset.id;
+    const pos = globalPositions[id];
+    if (!pos) return;
+    const R = 15;
+    node.style.left = (pos.x - R) + 'px';
+    node.style.top = (pos.y - R) + 'px';
+    node.dataset.baseLeft = pos.x;
+    node.dataset.baseTop = pos.y;
+  });
+  updateConnections();
 }
 if (document.readyState === 'complete') {
   init();
