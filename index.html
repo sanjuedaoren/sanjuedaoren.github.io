@@ -899,7 +899,8 @@ html, body {
     <div class="nav-right">
       <button class="btn" id="customBtn">自定义</button>
       <button class="btn" id="randomBtn">随机探索</button>
-      <button class="btn" id="exportBtn" title="导出人物位置和自定义人物到 JSON 文件">导出</button>
+      <button class="btn" id="importBtn" title="从 lifedata.js 文件导入数据">导入</button>
+      <button class="btn" id="exportBtn" title="导出人物位置和自定义人物到 lifedata.js 文件">导出</button>
       <button class="btn btn-primary" id="shareBtn">分享</button>
     </div>
   </nav>
@@ -1033,8 +1034,8 @@ html, body {
   </footer>
 </div>
 
-<!-- 人物数据（hisData、predefinedHis）外置，方便持续新增人物；必须在主脚本之前加载 -->
-<script src="history-his-data.js"></script>
+<!-- 人物数据、预设链、位置数据合并文件（lifedata.js）；必须在主脚本之前加载 -->
+<script src="lifedata.js"></script>
 <script>
 // ===== Data =====
 // 朝代颜色（低饱和度 · 古朴沉稳）
@@ -1114,7 +1115,7 @@ const dynasties = [
   { name: "民国", start: 1912, end: 1949 }
 ];
 
-// hisData 与 predefinedHis 已移至 history-his-data.js（在本脚本之前加载），此处直接使用其全局变量。
+// hisData、predefinedHis、historyChainSave 已移至 lifedata.js（在本脚本之前加载），此处直接使用其全局变量。
 
 // ===== App State =====
 let currentHis = hisData.map(p => p.id);
@@ -2029,8 +2030,8 @@ customSubmitBtn.addEventListener('click', () => {
   closeCustomModal();
 });
 
-// ===== 导出 / 自动加载位置 =====
-const SAVE_JSON = 'history-chain-save.json';
+// ===== 导出 / 导入 / 自动加载位置 =====
+const SAVE_JSON = 'lifedata.js';
 let loadedPositions = null;
 
 function collectCurrentState() {
@@ -2050,18 +2051,21 @@ function collectCurrentState() {
 
 function exportData() {
   const state = collectCurrentState();
-  // 导出为 .js 文件（变量赋值格式），方便 <script> 标签直接加载
-  const jsContent = 'var historyChainSave = ' + JSON.stringify(state, null, 2) + ';';
+  // 导出为 lifedata.js（完整合并格式），方便 <script> 标签直接加载
+  const jsContent = '/* lifedata.js — 合并数据文件 */\n'
+    + 'const hisData = ' + JSON.stringify(hisData, null, 2) + ';\n\n'
+    + 'const predefinedHis = ' + JSON.stringify(predefinedHis, null, 2) + ';\n\n'
+    + 'var historyChainSave = ' + JSON.stringify(state, null, 2) + ';\n';
   const blob = new Blob([jsContent], { type: 'application/javascript' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'history-chain-save.js';
+  a.download = 'lifedata.js';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  // 导出后立即在内存中更新，确保当前会话无需刷新即可生效
+  // 导出后立即在内存中更新
   window.historyChainSave = state;
   loadedPositions = state.positions;
   if (state.customPersons && state.customPersons.length > 0) {
@@ -2071,32 +2075,96 @@ function exportData() {
     savedCustomPersons = state.customPersons;
     currentHis = hisData.map(p => p.id);
   }
-  showToast('已导出并应用 history-chain-save.js（' + Object.keys(state.positions).length + ' 个位置）');
+  showToast('已导出 lifedata.js（' + Object.keys(state.positions).length + ' 个位置）');
+}
+
+function applyImportedData(data) {
+  // data 为 lifedata.js 解析后的内容 { hisData?, predefinedHis?, historyChainSave? }
+  if (data.hisData && Array.isArray(data.hisData)) {
+    // 用导入的人物数据替换内存中的
+    hisData.length = 0;
+    data.hisData.forEach(p => hisData.push(p));
+  }
+  if (data.predefinedHis && Array.isArray(data.predefinedHis)) {
+    predefinedHis.length = 0;
+    data.predefinedHis.forEach(chain => predefinedHis.push(chain));
+  }
+  const savePart = data.historyChainSave || data;
+  if (savePart.positions) {
+    loadedPositions = savePart.positions;
+  }
+  if (savePart.customPersons && savePart.customPersons.length > 0) {
+    savePart.customPersons.forEach(cp => {
+      if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
+    });
+    savedCustomPersons = savePart.customPersons;
+  }
+  currentHis = hisData.map(p => p.id);
+  // 重新渲染
+  renderLegends();
+  renderTimeline(currentHis);
+  applyLoadedPositions();
+  if (currentPath.length > 0) highlightPath(currentPath);
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.js,.json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      let text = ev.target.result;
+      try {
+        // 用 iframe 沙盒安全解析 lifedata.js，避免全局 const 冲突
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        const win = iframe.contentWindow;
+        try {
+          win.eval(text);
+          const data = {
+            hisData: win.hisData || null,
+            predefinedHis: win.predefinedHis || null,
+            historyChainSave: win.historyChainSave || null
+          };
+          applyImportedData(data);
+          showToast('已导入 ' + file.name + '（' + hisData.length + ' 个人物）');
+        } finally {
+          document.body.removeChild(iframe);
+        }
+      } catch (err) {
+        try {
+          // 回退：尝试纯 JSON 格式
+          const json = JSON.parse(text);
+          applyImportedData(json);
+          showToast('已导入 ' + file.name + '（JSON 格式）');
+        } catch(e2) {
+          showToast('导入失败：文件格式不正确');
+        }
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
 }
 
 async function loadPositionsFromJSON() {
-  // 直接加载 .js 文件（兼容 file:// 和 http://）
-  return new Promise((resolve) => {
-    const script = document.createElement('script');
-    script.src = 'history-chain-save.js?t=' + Date.now();
-    script.onload = () => {
-      if (typeof historyChainSave !== 'undefined' && historyChainSave) {
-        if (historyChainSave.positions) {
-          loadedPositions = historyChainSave.positions;
-        }
-        if (historyChainSave.customPersons && historyChainSave.customPersons.length > 0) {
-          historyChainSave.customPersons.forEach(cp => {
-            if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
-          });
-          savedCustomPersons = historyChainSave.customPersons;
-          currentHis = hisData.map(p => p.id);
-        }
-      }
-      resolve();
-    };
-    script.onerror = () => resolve(); // 文件不存在，静默忽略
-    document.head.appendChild(script);
-  });
+  // lifedata.js 已通过 <script> 标签加载（在页面头部），直接使用全局变量
+  if (typeof historyChainSave !== 'undefined' && historyChainSave) {
+    if (historyChainSave.positions) {
+      loadedPositions = historyChainSave.positions;
+    }
+    if (historyChainSave.customPersons && historyChainSave.customPersons.length > 0) {
+      historyChainSave.customPersons.forEach(cp => {
+        if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
+      });
+      savedCustomPersons = historyChainSave.customPersons;
+      currentHis = hisData.map(p => p.id);
+    }
+  }
 }
 
 function applyLoadedPositions() {
@@ -2123,6 +2191,7 @@ function showToast(msg) {
   setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
+document.getElementById('importBtn').addEventListener('click', importData);
 document.getElementById('exportBtn').addEventListener('click', exportData);
 
 // ===== Initialization =====
