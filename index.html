@@ -6,14 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>千秋万代 LifeToLine</title>
 <style>
-/* ===== 自定义字体：Huiwen Regular ===== */
-@font-face {
-  font-family: "Huiwen";
-  src: url("Huiwen Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ===== CSS Variables (传统中国色) ===== */
 :root {
@@ -26,7 +18,7 @@
   --accent2: #C53D43;  /* 朱砂红 */
   --card-bg: #F5F0E6;
   --shadow: rgba(0,0,0,0.5);
-  --serif: "Huiwen", "STKaiti", "KaiTi", "Noto Serif SC", "SimSun", serif;
+  --serif: "STKaiti", "KaiTi", "Noto Serif SC", "SimSun", serif;
   --radius: 6px;
   --zoom: 1;
 }
@@ -36,7 +28,7 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  font-family: "Huiwen", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
   background:
     radial-gradient(ellipse at 50% -20%, rgba(242, 190, 69, 0.06), transparent 60%),
     radial-gradient(ellipse at 85% 115%, rgba(197, 61, 67, 0.05), transparent 55%),
@@ -383,7 +375,7 @@ html, body {
   white-space: nowrap;
 }
 .dynasty-bar-year {
-  font-family: "Huiwen", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 0.75rem;
   color: rgba(242, 190, 69, 0.85);
   letter-spacing: 0.04em;
@@ -480,7 +472,7 @@ html, body {
   cursor: pointer;
   z-index: 30;
   line-height: 1;
-  font-family: "Huiwen", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   opacity: 0;
   transition: opacity 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.4);
@@ -645,7 +637,7 @@ html, body {
   writing-mode: vertical-rl; text-orientation: upright;
   border: 2px solid currentColor;
   background: #FFFFFF;
-  font-family: "Huiwen", "STKaiti", "KaiTi", serif;
+  font-family: "STKaiti", "KaiTi", serif;
   letter-spacing: 0.05em;
   line-height: 1.05;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -656,7 +648,7 @@ html, body {
 .connection-type-tag {
   font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px;
   background: var(--bg); color: #8B6D3F; white-space: nowrap;
-  font-family: "Huiwen", "STKaiti", "KaiTi", serif;
+  font-family: "STKaiti", "KaiTi", serif;
 }
 
 /* ===== Custom Person Modal ===== */
