@@ -271,7 +271,7 @@ html, body {
 .timeline-scroll-area {
   flex: 1;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   position: relative;
   scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
@@ -299,7 +299,6 @@ html, body {
 }
 .timeline-content {
   position: relative;
-  height: 300%;
   min-width: max-content;
   transform-origin: left center;
 }
@@ -316,8 +315,7 @@ html, body {
 .dynasty-bg-segment {
     position: absolute;
     top: 0;
-    /* 高度足够大，保证在最小缩放(0.2x)下经 transform 缩小后仍能铺满视口高度 */
-    height: 600vh;
+    height: 100%;
     transition: filter 0.3s;
     background-image:
       linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 22%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, 0.4) 100%);
@@ -326,7 +324,7 @@ html, body {
     position: absolute;
     top: 0;
     width: 2px;
-    height: 600vh;
+    height: 100%;
     background: linear-gradient(180deg, rgba(242, 190, 69, 0.85), rgba(242, 190, 69, 0.25) 45%, rgba(242, 190, 69, 0.25) 55%, rgba(242, 190, 69, 0.7));
     box-shadow: 0 0 6px rgba(242, 190, 69, 0.45);
     pointer-events: none;
@@ -944,14 +942,18 @@ html, body {
         <div class="form-group">
           <label>身份</label>
           <select id="customClass">
+            <option value="皇帝">皇帝</option>
+            <option value="贵族">贵族</option>
             <option value="文人">文人</option>
-            <option value="帝王">帝王</option>
             <option value="武将">武将</option>
             <option value="士">士</option>
-            <option value="僧道">僧道</option>
             <option value="农">农</option>
             <option value="工">工</option>
             <option value="商">商</option>
+            <option value="道士">道士</option>
+            <option value="僧侣">僧侣</option>
+            <option value="郎中">郎中</option>
+            <option value="其它">其它</option>
           </select>
         </div>
       </div>
@@ -1058,14 +1060,18 @@ const dynastyColors = {
 
 // 职业颜色（传统中国色 · 纯色）
 const classColors = {
-  "帝王": "#8C4356",  // 绛紫
-  "文人": "#1685A9",  // 石青
-  "武将": "#000000",  // 黑
-  "士":   "#FF4C00",  // 朱红
-  "僧道": "#F0C239",  // 缃色
-  "农":   "#789262",  // 竹青
-  "工":   "#CA6924",  // 琥珀
-  "商":   "#F2BE45"   // 赤金
+  "皇帝": "#6A0DAD",
+  "贵族": "#8C4356",
+  "文人": "#1685A9",
+  "武将": "#B87333",
+  "士":   "#FF4C00",
+  "农":   "#789262",
+  "工":   "#CA6924",
+  "商":   "#F2BE45",
+  "道士": "#2E8B57",
+  "僧侣": "#F0C239",
+  "郎中": "#C25160",
+  "其它": "#75878A"
 };
 
 // 关系颜色（鲜明传统色 · 纯色）
@@ -1116,10 +1122,11 @@ let isScrolling = false;
 let zoom = 1;
 let globalPositions = {};       // 当前所有节点的位置 { id: { x, y } }
 let savedCustomPersons = [];   // 已保存的自定义人物数据
-const MIN_ZOOM = 1;
+const MIN_ZOOM = 0.9;
 const MAX_ZOOM = 5;
 const BASE_WIDTH = 10000;
-let verticalContentBase = 0;  // 节点实际分布区域高度（未缩放），用于限制垂直拖动范围
+let verticalContentBase = 0;  // 节点区域底部边界
+let verticalContentTop = 30;    // 节点区域顶部边界
 
 // ===== DOM Elements =====
 const timelineScroll = document.getElementById('timelineScroll');
@@ -1356,15 +1363,16 @@ function renderTimeline(hisIds) {
   const timelineMin = -2150;
   const timelineMax = 2000;
   const totalWidth = getTotalWidth();
-  let contentHeight = timelineScroll.clientHeight || timelineScroll.getBoundingClientRect().height;
-  if (!contentHeight || contentHeight < 200) contentHeight = Math.max(500, (window.innerHeight || 800) - 180);
+  let viewHeight = timelineScroll.clientHeight || timelineScroll.getBoundingClientRect().height;
+  if (!viewHeight || viewHeight < 200) viewHeight = Math.max(500, (window.innerHeight || 800) - 180);
+  const contentHeight = viewHeight;
   timelineContent.style.width = totalWidth + 'px';
-  const fullHeight = timelineScroll.clientHeight * 3;
-  timelineContent.style.height = fullHeight + 'px';
+  timelineContent.style.height = contentHeight + 'px';
+  timelineContent.dataset.baseHeight = contentHeight;
   connectionsSvg.setAttribute('width', totalWidth);
-  connectionsSvg.setAttribute('height', fullHeight);
+  connectionsSvg.setAttribute('height', contentHeight);
   connectionsSvg.style.width = totalWidth + 'px';
-  connectionsSvg.style.height = fullHeight + 'px';
+  connectionsSvg.style.height = contentHeight + 'px';
   connectionsSvg.innerHTML = '';
   nodesContainer.innerHTML = '';
   renderDynastyBackgrounds(totalWidth, timelineMin, timelineMax);
@@ -1392,15 +1400,16 @@ function renderTimeline(hisIds) {
   globalPositions = {};
   const positions = globalPositions;
   const NODE_RADIUS = 15;
-  const usableTop = contentHeight * 0.1 + 16;
-  const usableBottom = contentHeight - 24;
-  // 节点区域实际底部（含半径与一点内边距），作为垂直拖动上限基准
+  const usableTop = 30;
+  const usableBottom = contentHeight - 30;
+  // 全局变量，供拖拽函数使用
+  verticalContentTop = usableTop;
   verticalContentBase = usableBottom + NODE_RADIUS + 10;
   // 初始位置规则：
   //   水平 x：由出生年份决定（左→右 = 早→晚）
   //   垂直 y：由职业等级决定（帝王最上 → 文人 → 武将 → 僧道最下）
   //         同职业内按出生年顺序在职业带内垂直分布（避免重叠）
-  const CLASS_RANK = { "帝王": 0, "文人": 1, "武将": 2, "僧道": 3, "士": 4, "农": 5, "工": 6, "商": 7 };
+  const CLASS_RANK = { "皇帝": 0, "贵族": 1, "文人": 2, "武将": 3, "士": 4, "农": 5, "工": 6, "商": 7, "道士": 8, "僧侣": 9, "郎中": 10, "其它": 11 };
   const rankList = [...new Set(persons.map(p => CLASS_RANK[p.class] ?? 99))].sort((a, b) => a - b);
   const numBands = rankList.length;
   const bandH = (usableBottom - usableTop) / Math.max(1, numBands);
@@ -1536,7 +1545,7 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
     let newX = startBaseLeft + dx;
     let newY = startBaseTop + dy;
     newX = Math.max(bounds.left + RADIUS, Math.min(bounds.right - RADIUS, newX));
-    newY = Math.max(88 + RADIUS, Math.min(timelineScroll.clientHeight - 24 - RADIUS, newY));
+    newY = Math.max(verticalContentTop + RADIUS, Math.min(verticalContentBase - RADIUS, newY));
     // Internal coords (CSS zoom handles visual scaling)
     node.style.left = (newX - RADIUS) + 'px';
     node.style.top = (newY - RADIUS) + 'px';
@@ -1572,10 +1581,9 @@ function updateConnections() {
 // ===== Drag Scroll (with momentum) =====
 let isDragScrolling = false;
 
-// 垂直拖动上限：仅允许滚动到节点区域底部，避免露出背景层之下的空白
-// 节点区域可视高度 = verticalContentBase * zoom；小于视口时不允许垂直滚动
+// 垂直滚动上限：直接使用浏览器实际的 scrollHeight
 function getMaxScrollTop() {
-  return Math.max(0, Math.round(verticalContentBase * zoom - timelineScroll.clientHeight));
+  return Math.max(0, timelineScroll.scrollHeight - timelineScroll.clientHeight);
 }
 function clampVerticalScroll() {
   const maxTop = getMaxScrollTop();
@@ -1697,20 +1705,19 @@ timelineScroll.addEventListener('touchend', () => {
   if (isDragScrolling) { isDragScrolling = false; startMomentum(); }
 });
 
-// ===== Apply Zoom (transform scale on timelineContent) =====
+// ===== Apply Zoom (CSS zoom) =====
 function applyZoom(newZoom, pivotX) {
   const oldZoom = zoom;
   zoom = newZoom;
   zoomLevel.textContent = Math.round(zoom * 100) + '%';
-  // Clear any leftover CSS zoom, use transform: scale instead
-  timelineContent.style.zoom = '';
-  // transform: scale affects visual size; width set for scroll range
-  timelineContent.style.transform = `scale(${zoom})`;
-  timelineContent.style.transformOrigin = 'left top';
+  // 使用 CSS zoom：同时改变布局尺寸和视觉尺寸，scrollHeight/scrollWidth 自动更新
+  timelineContent.style.transform = '';
+  timelineContent.style.transformOrigin = '';
+  timelineContent.style.zoom = zoom;
   timelineContent.style.width = BASE_WIDTH + 'px';
-  // transform:scale 不改变布局宽度：zoom<1 时布局盒仍为 BASE_WIDTH，造成右侧大片空白滚动区。
-  // 用负 margin-right 抵消多余宽度，使 scrollWidth 等于实际可见宽度(BASE_WIDTH*zoom)；zoom>=1 时依靠自然溢出。
-  timelineContent.style.marginRight = zoom < 1 ? -(BASE_WIDTH * (1 - zoom)) + 'px' : '0px';
+  // 还原高度到初始值（CSS zoom 会自动将布局高度变为 contentHeight * zoom）
+  const contentH = parseFloat(timelineContent.dataset.baseHeight) || viewHeight;
+  timelineContent.style.height = contentH + 'px';
   // Dynasty bar: independent layer, update width and item positions to align with scaled background
   dynastyBar.style.width = (BASE_WIDTH * zoom) + 'px';
   dynastyBar.querySelectorAll('.dynasty-bar-item').forEach(item => {
@@ -1722,7 +1729,6 @@ function applyZoom(newZoom, pivotX) {
   // Keep pivot stable
   const newScroll = (pivotX + timelineScroll.scrollLeft) * (zoom / oldZoom) - pivotX;
   timelineScroll.scrollLeft = Math.max(0, newScroll);
-  // 缩小后垂直上限变小，需回拉以免露出背景之下
   clampVerticalScroll();
   updateScrollUI();
 }
