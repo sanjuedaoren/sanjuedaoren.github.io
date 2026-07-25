@@ -899,7 +899,7 @@ html, body {
     <div class="nav-right">
       <button class="btn" id="customBtn">自定义</button>
       <button class="btn" id="randomBtn">随机探索</button>
-      <button class="btn" id="saveBtn" title="保存人物位置和自定义人物数据">保存</button>
+      <button class="btn" id="exportBtn" title="导出人物位置和自定义人物到 JSON 文件">导出</button>
       <button class="btn btn-primary" id="shareBtn">分享</button>
     </div>
   </nav>
@@ -1122,9 +1122,7 @@ let currentPath = [];
 let isScrolling = false;
 let zoom = 1;
 let globalPositions = {};       // 当前所有节点的位置 { id: { x, y } }
-let savedCustomPersons = [];   // 保存过的自定义人物数据
-const SAVE_KEY = 'history_chain_save';
-const CUSTOM_KEY = 'history_chain_custom';
+let savedCustomPersons = [];   // 已保存的自定义人物数据
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 5;
 const BASE_WIDTH = 10000;
@@ -2028,49 +2026,14 @@ customSubmitBtn.addEventListener('click', () => {
   currentPath = [];
   renderLegends();
   renderTimeline(currentHis);
-  loadSavedPositions();
-  refreshNodePositions();
   closeCustomModal();
 });
 
-// ===== Save / Load =====
-function loadSavedData() {
-  // 加载保存的自定义人物
-  try {
-    const custom = localStorage.getItem(CUSTOM_KEY);
-    if (custom) {
-      const customList = JSON.parse(custom);
-      customList.forEach(cp => {
-        // 避免重复添加（通过 id 判断）
-        if (!hisData.find(p => p.id === cp.id)) {
-          hisData.push(cp);
-        }
-      });
-      savedCustomPersons = customList;
-    }
-  } catch (e) { console.warn('加载自定义人物数据失败', e); }
-  // 重新设置当前路径
-  currentHis = hisData.map(p => p.id);
-}
+// ===== 导出 / 自动加载位置 =====
+const SAVE_JSON = 'history-chain-save.json';
+let loadedPositions = null;
 
-function loadSavedPositions() {
-  // 加载保存的位置数据，覆盖自动计算的位置
-  try {
-    const posStr = localStorage.getItem(SAVE_KEY);
-    if (posStr) {
-      const savedPos = JSON.parse(posStr);
-      Object.keys(savedPos).forEach(id => {
-        if (globalPositions[id]) {
-          globalPositions[id].x = savedPos[id].x;
-          globalPositions[id].y = savedPos[id].y;
-        }
-      });
-    }
-  } catch (e) { console.warn('加载位置数据失败', e); }
-}
-
-function saveAll() {
-  // 从 DOM 收集最新位置（比 globalPositions 更准确，因为拖拽后 DOM 和变量都同步更新）
+function collectCurrentState() {
   const allNodes = document.querySelectorAll('.person-node[data-id]');
   const posData = {};
   allNodes.forEach(node => {
@@ -2081,11 +2044,70 @@ function saveAll() {
       posData[id] = { x: baseLeft, y: baseTop };
     }
   });
-  // 保存自定义人物数据（hisData 中 id 以 'custom_' 开头的）
   const customList = hisData.filter(p => p.id.startsWith('custom_'));
-  localStorage.setItem(SAVE_KEY, JSON.stringify(posData));
-  localStorage.setItem(CUSTOM_KEY, JSON.stringify(customList));
-  showToast('已保存所有人物位置和自定义数据');
+  return { positions: posData, customPersons: customList };
+}
+
+function exportData() {
+  const state = collectCurrentState();
+  // 导出为 .js 文件（变量赋值格式），方便 <script> 标签直接加载
+  const jsContent = 'var historyChainSave = ' + JSON.stringify(state, null, 2) + ';';
+  const blob = new Blob([jsContent], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'history-chain-save.js';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  // 导出后立即在内存中更新，确保当前会话无需刷新即可生效
+  window.historyChainSave = state;
+  loadedPositions = state.positions;
+  if (state.customPersons && state.customPersons.length > 0) {
+    state.customPersons.forEach(cp => {
+      if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
+    });
+    savedCustomPersons = state.customPersons;
+    currentHis = hisData.map(p => p.id);
+  }
+  showToast('已导出并应用 history-chain-save.js（' + Object.keys(state.positions).length + ' 个位置）');
+}
+
+async function loadPositionsFromJSON() {
+  // 直接加载 .js 文件（兼容 file:// 和 http://）
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'history-chain-save.js?t=' + Date.now();
+    script.onload = () => {
+      if (typeof historyChainSave !== 'undefined' && historyChainSave) {
+        if (historyChainSave.positions) {
+          loadedPositions = historyChainSave.positions;
+        }
+        if (historyChainSave.customPersons && historyChainSave.customPersons.length > 0) {
+          historyChainSave.customPersons.forEach(cp => {
+            if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
+          });
+          savedCustomPersons = historyChainSave.customPersons;
+          currentHis = hisData.map(p => p.id);
+        }
+      }
+      resolve();
+    };
+    script.onerror = () => resolve(); // 文件不存在，静默忽略
+    document.head.appendChild(script);
+  });
+}
+
+function applyLoadedPositions() {
+  if (!loadedPositions) return;
+  Object.keys(loadedPositions).forEach(id => {
+    if (globalPositions[id]) {
+      globalPositions[id].x = loadedPositions[id].x;
+      globalPositions[id].y = loadedPositions[id].y;
+    }
+  });
+  refreshNodePositions();
 }
 
 function showToast(msg) {
@@ -2093,28 +2115,30 @@ function showToast(msg) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'saveToast';
-    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(160deg,#D24C52,#A52F35);color:#fff;padding:0.5rem 1.5rem;border-radius:6px;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;font-family:var(--serif);box-shadow:0 4px 16px rgba(0,0,0,0.5);';
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(160deg,#D24C52,#A52F35);color:#fff;padding:0.5rem 1.5rem;border-radius:6px;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;font-family:var(--serif);box-shadow:0 4px 16px rgba(0,0,0,0.5);white-space:nowrap;max-width:90vw;text-align:center;';
     document.body.appendChild(toast);
   }
   toast.textContent = msg;
   toast.style.opacity = '1';
-  setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
-document.getElementById('saveBtn').addEventListener('click', saveAll);
+document.getElementById('exportBtn').addEventListener('click', exportData);
 
 // ===== Initialization =====
-function init() {
-  loadSavedData();
+async function init() {
+  await loadPositionsFromJSON();
   renderLegends();
   renderTimeline(currentHis);
-  loadSavedPositions();
-  // 位置恢复后需要重新渲染节点 DOM
-  refreshNodePositions();
+  applyLoadedPositions();
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { renderTimeline(currentHis); loadSavedPositions(); refreshNodePositions(); if (currentPath.length > 0) highlightPath(currentPath); }, 250);
+    resizeTimer = setTimeout(() => {
+      renderTimeline(currentHis);
+      applyLoadedPositions();
+      if (currentPath.length > 0) highlightPath(currentPath);
+    }, 250);
   });
 }
 
