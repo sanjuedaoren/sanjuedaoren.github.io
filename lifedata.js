@@ -814,9 +814,33 @@ const hisData = [
         "description": "同窗荀子，助秦统一。"
       },
       "next": {
+        "id": "qinshihuang",
+        "type": "君臣",
+        "description": "助秦统一六国，辅秦始皇建立帝制。"
+      }
+    }
+  },
+  {
+    "id": "qinshihuang",
+    "name": "秦始皇",
+    "birthYear": -259,
+    "deathYear": -210,
+    "dynasty": "秦",
+    "class": "皇帝",
+    "classColor": "#8C4356",
+    "quote": "天下共苦战斗不休，以有侯王。",
+    "quoteSource": "《史记·秦始皇本纪》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "lisi",
+        "type": "君臣",
+        "description": "李斯为相，助其统一六国，建立皇帝制度。"
+      },
+      "next": {
         "id": "zhaogao",
         "type": "对手",
-        "description": "沙丘之谋后为赵高所害。"
+        "description": "沙丘之谋，赵高伪造遗诏，致使帝国崩塌。"
       }
     }
   },
@@ -833,7 +857,7 @@ const hisData = [
     "isKeyFigure": false,
     "relationships": {
       "previous": {
-        "id": "lisi",
+        "id": "qinshihuang",
         "type": "对手",
         "description": "沙丘合谋，后反噬之。"
       },
@@ -2051,6 +2075,10 @@ var historyChainSave = {
     "lisi": {
       "x": 4506.024096385542,
       "y": 93.70125
+    },
+    "qinshihuang": {
+      "x": 4532.530120481928,
+      "y": 97
     },
     "zhaogao": {
       "x": 4559.036144578314,
