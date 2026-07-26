@@ -1514,24 +1514,42 @@ function renderTimeline(hisIds) {
     let dragMoved = false;
     let startX, startY;
     node.addEventListener('mousedown', (e) => { dragMoved = false; startX = e.clientX; startY = e.clientY; });
-    node.addEventListener('touchstart', (e) => { dragMoved = false; const t = e.touches[0]; startX = t.clientX; startY = t.clientY; }, { passive: true });
+    node.addEventListener('touchstart', (e) => {
+      dragMoved = false;
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      node._longPressTimer = setTimeout(() => {
+        node._longPressTimer = null;
+        document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
+        node.classList.add('show-delete');
+        openDetail(p);
+      }, 500);
+    }, { passive: true });
+    node.addEventListener('touchmove', (e) => {
+      if (node._longPressTimer) {
+        const t = e.touches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+        if (Math.sqrt(dx * dx + dy * dy) > 10) {
+          clearTimeout(node._longPressTimer);
+          node._longPressTimer = null;
+        }
+      }
+    });
+    node.addEventListener('touchend', (e) => {
+      if (node._longPressTimer) {
+        clearTimeout(node._longPressTimer);
+        node._longPressTimer = null;
+      }
+    });
     node.addEventListener('click', (e) => {
       if (dragMoved) return;
       document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
       node.classList.add('show-delete');
       openDetail(p);
     });
-    node.addEventListener('touchend', (e) => {
-      if (dragMoved) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-      if (Math.sqrt(dx * dx + dy * dy) < 10) {
-        document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
-        node.classList.add('show-delete');
-        openDetail(p);
-      }
-    });
+    node.addEventListener('contextmenu', (e) => e.preventDefault());
     makeNodeDraggable(node, p, positions, dragBoundsFor(p), () => { dragMoved = true; node.classList.add('show-delete'); });
     nodesContainer.appendChild(node);
   });
