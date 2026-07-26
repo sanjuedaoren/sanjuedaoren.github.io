@@ -1102,9 +1102,33 @@ const hisData = [
         "description": "科学之外，华佗以医术济世。"
       },
       "next": {
-        "id": "caiwenji",
+        "id": "liubei",
         "type": "其他",
-        "description": "汉末乱世，华佗行医，蔡文姬以才女名世。"
+        "description": "汉末乱世，华佗行医，刘备以仁德兴蜀汉。"
+      }
+    }
+  },
+  {
+    "id": "liubei",
+    "name": "刘备",
+    "birthYear": 161,
+    "deathYear": 223,
+    "dynasty": "三国",
+    "class": "贵族",
+    "classColor": "#8C4356",
+    "quote": "勿以恶小而为之，勿以善小而不为。",
+    "quoteSource": "《遗诏敕后主》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "huatuo",
+        "type": "其他",
+        "description": "汉末乱世，华佗行医，刘备以仁德兴蜀汉。"
+      },
+      "next": {
+        "id": "zhuge",
+        "type": "君臣",
+        "description": "三顾茅庐，请诸葛亮出山，奠定蜀汉基业。"
       }
     }
   },
@@ -1121,9 +1145,9 @@ const hisData = [
     "isKeyFigure": true,
     "relationships": {
       "previous": {
-        "id": "huatuo",
-        "type": "其他",
-        "description": "汉末乱世，华佗行医，周瑜用兵。"
+        "id": "liubei",
+        "type": "对手",
+        "description": "孙刘争霸，瑜亮之争，赤壁奠定三分天下。"
       },
       "next": {
         "id": "luxun_sanguo",
@@ -1802,7 +1826,8 @@ const hisData = [
 ];
 
 const predefinedHis = [
-  [
+   [
+    "liubei",
     "zhuge",
     "sima",
     "jikang",
@@ -1830,6 +1855,7 @@ const predefinedHis = [
     "luxun"
   ],
   [
+    "liubei",
     "zhuge",
     "sima",
     "jikang",
@@ -2073,6 +2099,10 @@ var historyChainSave = {
     "huatuo": {
       "x": 5413.120481927711,
       "y": 365.12666666666667
+    },
+    "liubei": {
+      "x": 5455,
+      "y": 390
     },
     "zhouyu": {
       "x": 5496.409638554216,
