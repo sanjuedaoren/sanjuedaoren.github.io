@@ -1532,7 +1532,7 @@ function renderTimeline(hisIds) {
         openDetail(p);
       }
     });
-    makeNodeDraggable(node, p, positions, dragBoundsFor(p), () => { dragMoved = true; });
+    makeNodeDraggable(node, p, positions, dragBoundsFor(p), () => { dragMoved = true; node.classList.add('show-delete'); });
     nodesContainer.appendChild(node);
   });
   const activeMin = Math.min(...persons.map(p => p.birthYear));
