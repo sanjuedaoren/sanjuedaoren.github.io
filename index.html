@@ -456,29 +456,29 @@ html, body {
 }
 .node-delete-btn {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 20px;
-  height: 20px;
+  top: -5px;
+  right: -5px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: var(--accent2);
   color: #FFF;
-  border: 2px solid #FFF;
-  font-size: 0.75rem;
-  display: flex;
+  border: 1.5px solid #FFF;
+  font-size: 0.6rem;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 30;
   line-height: 1;
   font-family: Arial, sans-serif;
-  opacity: 0.9;
-  transition: opacity 0.2s, transform 0.2s, background 0.2s;
+  opacity: 0;
+  transition: opacity 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
-.person-node:hover .node-delete-btn {
+.person-node.show-delete .node-delete-btn {
+  display: flex;
   opacity: 1;
-  transform: scale(1.15);
 }
 .node-delete-btn:hover {
   background: #A52F35;
@@ -1515,13 +1515,22 @@ function renderTimeline(hisIds) {
     let startX, startY;
     node.addEventListener('mousedown', (e) => { dragMoved = false; startX = e.clientX; startY = e.clientY; });
     node.addEventListener('touchstart', (e) => { dragMoved = false; const t = e.touches[0]; startX = t.clientX; startY = t.clientY; }, { passive: true });
-    node.addEventListener('click', (e) => { if (!dragMoved) openDetail(p); });
+    node.addEventListener('click', (e) => {
+      if (dragMoved) return;
+      document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
+      node.classList.add('show-delete');
+      openDetail(p);
+    });
     node.addEventListener('touchend', (e) => {
       if (dragMoved) return;
       const t = e.changedTouches[0];
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
-      if (Math.sqrt(dx * dx + dy * dy) < 10) openDetail(p);
+      if (Math.sqrt(dx * dx + dy * dy) < 10) {
+        document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
+        node.classList.add('show-delete');
+        openDetail(p);
+      }
     });
     makeNodeDraggable(node, p, positions, dragBoundsFor(p), () => { dragMoved = true; });
     nodesContainer.appendChild(node);
@@ -1826,6 +1835,11 @@ function closeDetail() { detailOverlay.classList.remove('active'); detailCard.cl
 detailOverlay.addEventListener('click', closeDetail);
 detailClose.addEventListener('click', closeDetail);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeDetail(); closeCustomModal(); } });
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.person-node')) {
+    document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
+  }
+});
 
 // ===== Delete Person =====
 function deletePerson(id) {
