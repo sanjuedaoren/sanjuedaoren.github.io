@@ -790,9 +790,57 @@ const hisData = [
         "description": "荀子弟子，集法家大成。"
       },
       "next": {
+        "id": "jingke",
+        "type": "其他",
+        "description": "法家集大成之后，荆轲刺秦，以血肉之躯刺向暴政。"
+      }
+    }
+  },
+  {
+    "id": "jingke",
+    "name": "荆轲",
+    "birthYear": -275,
+    "deathYear": -227,
+    "dynasty": "战国",
+    "class": "士",
+    "classColor": "#1685A9",
+    "quote": "风萧萧兮易水寒，壮士一去兮不复还。",
+    "quoteSource": "《易水歌》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "hanfeizi",
+        "type": "其他",
+        "description": "战国末路，韩非法家之论与荆轲刺秦之举，同为时代绝响。"
+      },
+      "next": {
+        "id": "gaojianli",
+        "type": "亲友",
+        "description": "与高渐离为挚友，同刺秦，共赴死。"
+      }
+    }
+  },
+  {
+    "id": "gaojianli",
+    "name": "高渐离",
+    "birthYear": -275,
+    "deathYear": -221,
+    "dynasty": "战国",
+    "class": "士",
+    "classColor": "#1685A9",
+    "quote": "击筑悲歌，慷慨赴义。",
+    "quoteSource": "《史记·刺客列传》",
+    "isKeyFigure": false,
+    "relationships": {
+      "previous": {
+        "id": "jingke",
+        "type": "亲友",
+        "description": "与荆轲为挚友，荆轲刺秦后，图谋复仇，为秦王所害。"
+      },
+      "next": {
         "id": "lisi",
-        "type": "同僚",
-        "description": "与李斯同窗荀子门下，后遭其忌。"
+        "type": "其他",
+        "description": "秦并天下，李斯为相，高渐离之后，秦制大兴。"
       }
     }
   },
@@ -809,9 +857,9 @@ const hisData = [
     "isKeyFigure": true,
     "relationships": {
       "previous": {
-        "id": "hanfeizi",
-        "type": "同僚",
-        "description": "同窗荀子，助秦统一。"
+        "id": "gaojianli",
+        "type": "其他",
+        "description": "秦并天下，李斯为相，承高渐离之后。"
       },
       "next": {
         "id": "qinshihuang",
@@ -1030,9 +1078,57 @@ const hisData = [
         "description": "史家绝笔与辞赋大家，并称西汉双璧。"
       },
       "next": {
+        "id": "hanxuandi",
+        "type": "其他",
+        "description": "西汉辞赋之盛，汉宣帝以霸王道杂之，中兴汉室。"
+      }
+    }
+  },
+  {
+    "id": "hanxuandi",
+    "name": "汉宣帝",
+    "birthYear": -91,
+    "deathYear": -49,
+    "dynasty": "西汉",
+    "class": "皇帝",
+    "classColor": "#8C4356",
+    "quote": "汉家自有制度，本以霸王道杂之。",
+    "quoteSource": "《汉书·元帝纪》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "simaxiangru",
+        "type": "其他",
+        "description": "西汉辞赋之盛，汉宣帝中兴，以史为鉴。"
+      },
+      "next": {
+        "id": "hanchengdi",
+        "type": "其他",
+        "description": "宣帝中兴，成帝承业，西汉渐衰。"
+      }
+    }
+  },
+  {
+    "id": "hanchengdi",
+    "name": "汉成帝",
+    "birthYear": -51,
+    "deathYear": 8,
+    "dynasty": "西汉",
+    "class": "皇帝",
+    "classColor": "#8C4356",
+    "quote": "汉道行于天下，后世其有以见我。",
+    "quoteSource": "《汉书·成帝纪》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "hanxuandi",
+        "type": "其他",
+        "description": "宣帝中兴，成帝继统，西汉由盛转衰。"
+      },
+      "next": {
         "id": "wangmang",
         "type": "其他",
-        "description": "西汉辞赋之后，王莽托古改制，改朝换代。"
+        "description": "成帝之后，王莽托古改制，新朝代汉。"
       }
     }
   },
@@ -1049,9 +1145,9 @@ const hisData = [
     "isKeyFigure": true,
     "relationships": {
       "previous": {
-        "id": "simaxiangru",
+        "id": "hanchengdi",
         "type": "其他",
-        "description": "西汉辞赋之盛，王莽托古改制，改天换地。"
+        "description": "成帝之后，王莽托古改制，改天换地。"
       },
       "next": {
         "id": "banggu",
@@ -2096,6 +2192,14 @@ var historyChainSave = {
       "x": 4465.024096385542,
       "y": 415.9195454545454
     },
+    "jingke": {
+      "x": 4480,
+      "y": 340
+    },
+    "gaojianli": {
+      "x": 4495,
+      "y": 260
+    },
     "lisi": {
       "x": 4506.024096385542,
       "y": 93.70125
@@ -2135,6 +2239,14 @@ var historyChainSave = {
     "simaxiangru": {
       "x": 5029.397590361446,
       "y": 165.5940909090909
+    },
+    "hanxuandi": {
+      "x": 5090,
+      "y": 168
+    },
+    "hanchengdi": {
+      "x": 5120,
+      "y": 170
     },
     "wangmang": {
       "x": 5150,
