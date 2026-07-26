@@ -1030,9 +1030,33 @@ const hisData = [
         "description": "史家绝笔与辞赋大家，并称西汉双璧。"
       },
       "next": {
+        "id": "wangmang",
+        "type": "其他",
+        "description": "西汉辞赋之后，王莽托古改制，改朝换代。"
+      }
+    }
+  },
+  {
+    "id": "wangmang",
+    "name": "王莽",
+    "birthYear": -45,
+    "deathYear": 23,
+    "dynasty": "新朝",
+    "class": "皇帝",
+    "classColor": "#8C4356",
+    "quote": "予本无言，诸生其无妄言。",
+    "quoteSource": "《汉书·王莽传》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "simaxiangru",
+        "type": "其他",
+        "description": "西汉辞赋之盛，王莽托古改制，改天换地。"
+      },
+      "next": {
         "id": "banggu",
         "type": "其他",
-        "description": "西汉辞赋之后，东汉班固继之以史。"
+        "description": "新朝昙花一现，班固修汉书，记其兴亡。"
       }
     }
   },
@@ -1049,9 +1073,9 @@ const hisData = [
     "isKeyFigure": false,
     "relationships": {
       "previous": {
-        "id": "simaxiangru",
+        "id": "wangmang",
         "type": "其他",
-        "description": "西汉辞赋之后，东汉班固继之以史。"
+        "description": "新朝昙花一现，东汉班固修汉书，记其兴亡。"
       },
       "next": {
         "id": "cailun",
@@ -2111,6 +2135,10 @@ var historyChainSave = {
     "simaxiangru": {
       "x": 5029.397590361446,
       "y": 165.5940909090909
+    },
+    "wangmang": {
+      "x": 5150,
+      "y": 172
     },
     "banggu": {
       "x": 5277.831325301205,
