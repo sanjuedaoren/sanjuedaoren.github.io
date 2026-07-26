@@ -838,9 +838,57 @@ const hisData = [
         "description": "与荆轲为挚友，荆轲刺秦后，图谋复仇，为秦王所害。"
       },
       "next": {
+        "id": "wangjian",
+        "type": "其他",
+        "description": "秦并天下，李斯为相，王翦率大军灭六国，奠定秦基。"
+      }
+    }
+  },
+  {
+    "id": "wangjian",
+    "name": "王翦",
+    "birthYear": -220,
+    "deathYear": -180,
+    "dynasty": "秦",
+    "class": "武将",
+    "classColor": "#000000",
+    "quote": "非六十万不可。",
+    "quoteSource": "《史记·王翦列传》",
+    "isKeyFigure": true,
+    "relationships": {
+      "previous": {
+        "id": "gaojianli",
+        "type": "其他",
+        "description": "秦并天下，高渐离之后，王翦为秦灭六国。"
+      },
+      "next": {
+        "id": "lixin",
+        "type": "同僚",
+        "description": "与李信同为秦将，王翦老谋深算，李信锐意进取。"
+      }
+    }
+  },
+  {
+    "id": "lixin",
+    "name": "李信",
+    "birthYear": -230,
+    "deathYear": -200,
+    "dynasty": "秦",
+    "class": "武将",
+    "classColor": "#000000",
+    "quote": "不过二十万。",
+    "quoteSource": "《史记·王翦列传》",
+    "isKeyFigure": false,
+    "relationships": {
+      "previous": {
+        "id": "wangjian",
+        "type": "同僚",
+        "description": "王翦之后，李信继为秦将。"
+      },
+      "next": {
         "id": "lisi",
         "type": "其他",
-        "description": "秦并天下，李斯为相，高渐离之后，秦制大兴。"
+        "description": "秦并天下，李信为将，李斯为相，共佐秦皇。"
       }
     }
   },
@@ -857,9 +905,9 @@ const hisData = [
     "isKeyFigure": true,
     "relationships": {
       "previous": {
-        "id": "gaojianli",
+        "id": "lixin",
         "type": "其他",
-        "description": "秦并天下，李斯为相，承高渐离之后。"
+        "description": "秦并天下，李信为将，李斯为相，共佐秦皇。"
       },
       "next": {
         "id": "qinshihuang",
@@ -934,9 +982,33 @@ const hisData = [
         "description": "秦亡之后，张良辅汉开新朝。"
       },
       "next": {
+        "id": "libi",
+        "type": "同僚",
+        "description": "与李必同为汉初谋士，运筹帷幄，佐汉定天下。"
+      }
+    }
+  },
+  {
+    "id": "libi",
+    "name": "李必",
+    "birthYear": -250,
+    "deathYear": -190,
+    "dynasty": "西汉",
+    "class": "贵族",
+    "classColor": "#8C4356",
+    "quote": "臣请借箸为大王筹之。",
+    "quoteSource": "《史记·留侯世家》",
+    "isKeyFigure": false,
+    "relationships": {
+      "previous": {
+        "id": "zhangliang",
+        "type": "同僚",
+        "description": "张良谋圣，李必辅之，同为汉初三杰之属。"
+      },
+      "next": {
         "id": "hanxin",
         "type": "同僚",
-        "description": "与韩信并列为汉初开国功臣。"
+        "description": "李必与韩信同为汉初功臣，一文一武，定天下基业。"
       }
     }
   },
@@ -953,9 +1025,9 @@ const hisData = [
     "isKeyFigure": true,
     "relationships": {
       "previous": {
-        "id": "zhangliang",
+        "id": "libi",
         "type": "同僚",
-        "description": "与张良同为开国功臣。"
+        "description": "与李必同为汉初功臣，一文一武，定天下基业。"
       },
       "next": {
         "id": "weiqing",
@@ -2200,6 +2272,14 @@ var historyChainSave = {
       "x": 4495,
       "y": 260
     },
+    "wangjian": {
+      "x": 4500,
+      "y": 340
+    },
+    "lixin": {
+      "x": 4510,
+      "y": 340
+    },
     "lisi": {
       "x": 4506.024096385542,
       "y": 93.70125
@@ -2215,6 +2295,10 @@ var historyChainSave = {
     "zhangliang": {
       "x": 4570.313253012048,
       "y": 210.30625
+    },
+    "libi": {
+      "x": 4595,
+      "y": 210
     },
     "hanxin": {
       "x": 4624.096385542169,
