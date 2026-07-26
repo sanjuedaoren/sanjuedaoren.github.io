@@ -410,6 +410,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   cursor: grab;
+  touch-action: none;
   z-index: 10;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
@@ -1536,6 +1537,16 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
     startBaseTop = parseFloat(node.dataset.baseTop) || 0;
     node.classList.add('dragging');
   }
+  function onTouchStart(e) {
+    e.stopPropagation(); e.preventDefault();
+    isDragging = true; hasMoved = false;
+    const t = e.touches[0];
+    startClientX = t.clientX;
+    startClientY = t.clientY;
+    startBaseLeft = parseFloat(node.dataset.baseLeft) || 0;
+    startBaseTop = parseFloat(node.dataset.baseTop) || 0;
+    node.classList.add('dragging');
+  }
   function onMouseMove(e) {
     if (!isDragging) return;
     if (!hasMoved) { hasMoved = true; if (onDragStart) onDragStart(); }
@@ -1554,10 +1565,32 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
     positions[person.id] = { x: newX, y: newY };
     updateConnections();
   }
+  function onTouchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    if (!hasMoved) { hasMoved = true; if (onDragStart) onDragStart(); }
+    const t = e.touches[0];
+    const dx = (t.clientX - startClientX) / zoom;
+    const dy = (t.clientY - startClientY) / zoom;
+    let newX = startBaseLeft + dx;
+    let newY = startBaseTop + dy;
+    newX = Math.max(bounds.left + RADIUS, Math.min(bounds.right - RADIUS, newX));
+    newY = Math.max(verticalContentTop + RADIUS, Math.min(verticalContentBase - RADIUS, newY));
+    node.style.left = (newX - RADIUS) + 'px';
+    node.style.top = (newY - RADIUS) + 'px';
+    node.dataset.baseLeft = newX;
+    node.dataset.baseTop = newY;
+    positions[person.id] = { x: newX, y: newY };
+    updateConnections();
+  }
   function onMouseUp() { if (isDragging) { isDragging = false; node.classList.remove('dragging'); } }
+  function onTouchEnd(e) { if (isDragging) { isDragging = false; node.classList.remove('dragging'); } }
   node.addEventListener('mousedown', onMouseDown);
+  node.addEventListener('touchstart', onTouchStart, { passive: false });
   document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('touchmove', onTouchMove, { passive: false });
   document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('touchend', onTouchEnd);
 }
 
 function updateConnections() {
