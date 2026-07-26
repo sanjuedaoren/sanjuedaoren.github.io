@@ -465,20 +465,20 @@ html, body {
   color: #FFF;
   border: 1.5px solid #FFF;
   font-size: 0.6rem;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 30;
   line-height: 1;
   font-family: Arial, sans-serif;
-  opacity: 0;
-  transition: opacity 0.2s;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s, background 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 .person-node:hover .node-delete-btn {
-  display: flex;
   opacity: 1;
+  transform: scale(1.15);
 }
 .node-delete-btn:hover {
   background: #A52F35;
