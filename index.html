@@ -204,8 +204,8 @@ html, body {
 .legend-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+  justify-content: flex-start;
+  gap: 0.8rem;
   padding: 0.45rem 1rem;
   background: rgba(18, 11, 7, 0.92);
   border-bottom: 1px solid rgba(139, 109, 63, 0.5);
@@ -304,13 +304,12 @@ html, body {
   pointer-events: none;
   z-index: 1;
 }
-.dynasty-bg-segment {
+  .dynasty-bg-segment {
     position: absolute;
     top: 0;
     height: 100%;
     transition: filter 0.3s;
-    background-image:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 22%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, 0.4) 100%);
+    background-image: none;
   }
   .dynasty-separator {
     position: absolute;
@@ -385,39 +384,40 @@ html, body {
 }
 .dynasty-bar-parent {
   position: absolute;
-  left: 4px;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  left: 0;
+  right: 0;
+  top: 2px;
+  text-align: center;
   font-family: var(--serif);
   font-weight: bold;
   font-size: 13px;
   color: rgba(255, 252, 244, 0.98);
-  letter-spacing: 0;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   pointer-events: none;
 }
 .dynasty-bar-child {
   position: absolute;
+  top: 18px;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   line-height: 1.05;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   pointer-events: none;
   overflow: hidden;
 }
-.dynasty-bar-child[data-group="南"] { top: 5px; }
-.dynasty-bar-child[data-group="北"] { top: 33px; }
 .dynasty-bar-child .cb-name {
   font-family: var(--serif);
   font-weight: bold;
   color: #FFFFFF;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   white-space: nowrap;
 }
 .dynasty-bar-child .cb-year {
@@ -425,6 +425,7 @@ html, body {
   color: rgba(242, 190, 69, 0.9);
   letter-spacing: 0.01em;
   white-space: nowrap;
+  font-size: 7px;
 }
 
 /* ===== Connection Lines SVG ===== */
@@ -1095,14 +1096,14 @@ const dynastyColors = {
   "西周":   "#56504A",  // 灰褐
   "春秋":   "#4A5D4E",  // 苍绿
   "战国":   "#5C4A3A",  // 沙棕
-  "秦":     "#6B3A3A",  // 暗红褐
+  "秦":     "#3e2b22",  // 暗红褐
   "新莽":   "#5A5E54",  // 灰绿褐
-  "西汉":   "#705040",  // 赭褐
-  "东汉":   "#5A6060",  // 苍褐
-  "三国":   "#7A4A3A",  // 暗赭红
-  "西晋":   "#6A6040",  // 暗缃褐
-  "东晋":   "#3A6A72",  // 暗石青
-  "南北朝": "#6A5A4A",  // 暗茶褐
+  "西汉":   "#4e2c22",  // 赭褐
+  "东汉":   "#5e281f",  // 苍褐
+  "三国":   "#2c3b2e",  // 暗赭红
+  "西晋":   "#3a382c",  // 暗缃褐
+  "东晋":   "#2e383e",  // 暗石青
+  "南北朝": "#382e3e",  // 暗茶褐
   "刘宋":   "#8C6A3F",  // 南北朝·南·刘宋（暖褐）
   "南齐":   "#A07B47",  // 南北朝·南·南齐（亮褐）
   "南梁":   "#7A5A34",  // 南北朝·南·南梁（深褐）
@@ -1112,7 +1113,7 @@ const dynastyColors = {
   "西魏":   "#6B8A7A",  // 南北朝·北·西魏（浅青灰）
   "北齐":   "#456B5E",  // 南北朝·北·北齐（暗青）
   "北周":   "#5E8A78",  // 南北朝·北·北周（青绿）
-  "隋":     "#6A4A38",  // 暗棕
+  "隋":     "#4a3e2a",  // 暗棕
   "唐":     "#7A6A3A",  // 暗金褐
   "五代十国":"#5E5248",  // 暗檀褐
   "北宋":   "#3A5A6A",  // 暗靛青
@@ -1251,7 +1252,7 @@ function getColor(person) { return classColors[person.class] || person.classColo
 
 // ===== 年份格式化 =====
 function formatYear(y) {
-  if (y < 0) return `公元前${Math.abs(y)}年`;
+  if (y < 0) return `前${Math.abs(y)}年`;
   if (y > 0) return `${y}年`;
   return '公元1年';
 }
@@ -1315,7 +1316,8 @@ function computeDynastySegments(totalWidth, timelineMin, timelineMax) {
   // NARROW：每个被压缩朝代“减少的像素量”。
   //   夏/商：用户要求减到当前宽度的约 1/3（当前=原始−450，故再减 455/590 → 共减 905/1040）
   //   西周/春秋：保持上一轮宽度（原始−450）
-  const NARROW = { "夏": 905, "商": 1040, "西周": 450, "春秋": 450 };
+  const NARROW = { "夏": 905, "商": 1040, "西周": 450, "春秋": 450, "战国": 306 };
+  //   战国：用户要求减到当前宽度的 1/2（原始≈612px，减 306 ⇒ 约 306px）
   const isAdjusted = n => WIDEN_EXTRA[n] != null || NARROW[n] != null;
   const visibleDynasties = dynasties.filter(d => {
     const segEnd = Math.min(d.end, timelineMax);
@@ -1375,38 +1377,7 @@ function makeYearToXFromSegments(segments) {
   };
 }
 
-// 子朝代（南北朝的南/北细分）在父带内的横向布局：
-// 按时间顺序排布，重叠时避免碰撞；若整体超出父带则按比例压缩以适配。
-function packChildren(children, bandLeft, bandWidth, yearStart, yearEnd) {
-  if (!children || !children.length) return [];
-  const scale = bandWidth / Math.max(1, (yearEnd - yearStart));
-  const minW = 50;   // 子名称+年份最小宽度（基础坐标 px）
-  const gap = 3;
-  const sorted = children.slice().sort((a, b) => a.start - b.start);
-  let prevRight = bandLeft - gap;
-  const laid = sorted.map(c => {
-    const natural = bandLeft + (c.start - yearStart) * scale;
-    let left = Math.max(bandLeft, prevRight + gap, natural);
-    let width = Math.max(minW, (c.end - c.start) * scale);
-    if (left + width > bandLeft + bandWidth) width = Math.max(minW, (bandLeft + bandWidth) - left);
-    prevRight = left + width;
-    return { c, left, width };
-  });
-  // 整体超出父带右边界 → 压缩各段宽度（保留间距）以适配
-  const overflow = prevRight - (bandLeft + bandWidth);
-  if (overflow > 0) {
-    const target = bandWidth - gap * (laid.length - 1);
-    const totalNatural = laid.reduce((s, it) => s + it.width, 0);
-    const factor = totalNatural > 0 ? target / totalNatural : 1;
-    let cursor = bandLeft;
-    laid.forEach(it => {
-      it.width = Math.max(minW * 0.4, it.width * factor);
-      it.left = cursor;
-      cursor += it.width + gap;
-    });
-  }
-  return laid;
-}
+// (packChildren 已移除：南北朝 背景改为单色，仅保留朝代条上的小名称竖排标注)
 
 function renderDynastyBackgrounds(totalWidth, timelineMin, timelineMax) {
   dynastyBackgrounds.innerHTML = '';
@@ -1430,26 +1401,7 @@ function renderDynastyBackgrounds(totalWidth, timelineMin, timelineMax) {
     sep.style.left = (segRight - 1) + 'px';
     dynastyBackgrounds.appendChild(sep);
   }
-  // 有子朝代（如 南北朝→刘宋…北周）时，在父带内叠加细分小带 + 内部分隔线
-  segments.forEach(({ d, left, width, yearStart, yearEnd }) => {
-    if (!d.children || !d.children.length) return;
-    const laid = packChildren(d.children, left, width, yearStart, yearEnd);
-    laid.forEach((it, ci) => {
-      const cdiv = document.createElement('div');
-      cdiv.className = 'dynasty-bg-child';
-      cdiv.style.left = it.left + 'px';
-      cdiv.style.width = it.width + 'px';
-      cdiv.style.backgroundColor = dynastyColors[it.c.name] || '#6A5A4A';
-      cdiv.title = `${it.c.name} (${it.c.start}—${it.c.end}年)`;
-      dynastyBackgrounds.appendChild(cdiv);
-      if (ci > 0) {
-        const sep = document.createElement('div');
-        sep.className = 'dynasty-separator';
-        sep.style.left = (it.left - 1) + 'px';
-        dynastyBackgrounds.appendChild(sep);
-      }
-    });
-  });
+  // 南北朝 背景统一为单色（与父段同色），不再叠加子朝代小带（小名称仅在朝代条上竖排标注）
 }
 
 // ===== Render Dynasty Bar =====
@@ -1490,27 +1442,24 @@ function renderDynastyBar(totalWidth, timelineMin, timelineMax) {
       item.appendChild(yearEl);
     }
     dynastyBar.appendChild(item);
-    // 子朝代（南北朝→刘宋…北周）：按 南/北 分两行，年份置于名称下方，名称白色
+    // 子朝代（南北朝→刘宋…北周）：保留“南北朝”大名称，其下方一行竖排小名称 + 年份（名称白色）
     if (hasChildren) {
-      const groups = { '南': [], '北': [] };
-      d.children.forEach(c => (groups[c.group || '南']).push(c));
-      ['南', '北'].forEach(g => {
-        const list = groups[g];
-        const n = list.length;
-        if (!n) return;
-        const slot = width / n;   // 每个子朝代在父带内均分一格（避免并行朝代重叠碰撞）
-        list.forEach((c, i) => {
-          const cLeftBase = left + slot * i;
-          const cEl = document.createElement('div');
-          cEl.className = 'dynasty-bar-child';
-          cEl.dataset.group = g;
-          cEl.dataset.baseLeft = cLeftBase;
-          cEl.dataset.baseWidth = slot;
-          cEl.style.left = (cLeftBase * zoom) + 'px';
-          cEl.style.width = (slot * zoom) + 'px';
-          cEl.innerHTML = `<span class="cb-name">${c.name}</span><span class="cb-year">${formatYearRange(c.start, c.end)}</span>`;
-          dynastyBar.appendChild(cEl);
-        });
+      const list = d.children.slice().sort((a, b) => a.start - b.start); // 按时间顺序排成单行
+      const n = list.length;
+      const padL = 6;   // 与大名称顶部居中对齐，不再左侧预留（标题已移到顶部）
+      const padR = 6;
+      const innerW = Math.max(0, width - padL - padR);
+      const slot = innerW / n;   // 每个子朝代在父带内均分一格
+      list.forEach((c, i) => {
+        const cLeftBase = left + padL + slot * i;
+        const cEl = document.createElement('div');
+        cEl.className = 'dynasty-bar-child';
+        cEl.dataset.baseLeft = cLeftBase;
+        cEl.dataset.baseWidth = slot;
+        cEl.style.left = (cLeftBase * zoom) + 'px';
+        cEl.style.width = (slot * zoom) + 'px';
+        cEl.innerHTML = `<span class="cb-name">${c.name}</span><span class="cb-year">${formatYearRange(c.start, c.end)}</span>`;
+        dynastyBar.appendChild(cEl);
       });
     }
   });
@@ -1539,16 +1488,20 @@ function updateDynastyBarLabels() {
     const fs = Math.max(5, Math.min(15, availNameH / (nChars * 1.12), visualW * 0.82));
     nameEl.style.fontSize = fs + 'px';
   });
-  // 子朝代小名称：名称（白）+ 年份（金）分两行；字号按各子带屏幕宽度自适应，不超出子带
+  // 子朝代小名称：竖排白色名称 + 横排金色年份；名称字号受栏高约束（下方预留年份行），年份字号受子带宽约束
+  const barH2 = dynastyBar.clientHeight || 64;
   dynastyBar.querySelectorAll('.dynasty-bar-child').forEach(cEl => {
     const baseWidth = parseFloat(cEl.dataset.baseWidth) || 0;
     const visualW = baseWidth * zoom;
     const nameEl = cEl.querySelector('.cb-name');
     const nChars = (nameEl ? nameEl.textContent : '').length || 1;
-    const fs = Math.max(7, Math.min(13, (visualW * 0.9) / nChars));
-    if (nameEl) nameEl.style.fontSize = fs + 'px';
+    // 竖排名称高度 ≈ nChars*fs*1.12，须 <= (栏高 − 顶部“南北朝”标题区 − 年份行高 − 安全余量)
+    const yearH = 10;
+    const availNameH = Math.max(10, barH2 - 18 - yearH - 6);
+    const nameFs = Math.max(7, Math.min(14, availNameH / (nChars * 1.12)));
+    if (nameEl) nameEl.style.fontSize = nameFs + 'px';
     const yearEl = cEl.querySelector('.cb-year');
-    if (yearEl) yearEl.style.fontSize = Math.max(6, Math.min(8, visualW * 0.13)) + 'px';
+    if (yearEl) yearEl.style.fontSize = Math.max(6, Math.min(8, visualW * 0.14)) + 'px';
   });
 }
 
@@ -2095,6 +2048,9 @@ function applyZoom(newZoom, pivotX) {
   dynastyBar.querySelectorAll('.dynasty-bar-item').forEach(item => {
     const baseCenterX = parseFloat(item.dataset.baseCenterX);
     if (!isNaN(baseCenterX)) item.style.left = (baseCenterX * zoom) + 'px';
+    // 含子朝代的 item 用 transform:none + 显式宽度，缩放时必须同步宽度，否则盒子过宽导致“南北朝”标题 text-align:center 偏离真实带中心
+    const baseW = parseFloat(item.dataset.baseWidth);
+    if (!isNaN(baseW)) item.style.width = (baseW * zoom) + 'px';
   });
   dynastyBar.querySelectorAll('.dynasty-bar-child').forEach(cEl => {
     const baseLeft = parseFloat(cEl.dataset.baseLeft);
