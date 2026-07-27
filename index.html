@@ -18,7 +18,7 @@
   --accent2: #C53D43;  /* 朱砂红 */
   --card-bg: #F5F0E6;
   --shadow: rgba(0,0,0,0.5);
-  --serif: "STKaiti", "KaiTi", "Noto Serif SC", "SimSun", serif;
+  --base-font: "SimSun", "Songti SC", "STSong", "Noto Serif SC", serif;
   --radius: 6px;
   --zoom: 1;
 }
@@ -28,7 +28,7 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--base-font);
   background:
     radial-gradient(ellipse at 50% -20%, rgba(242, 190, 69, 0.06), transparent 60%),
     radial-gradient(ellipse at 85% 115%, rgba(197, 61, 67, 0.05), transparent 55%),
@@ -70,7 +70,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--accent2);
@@ -178,7 +178,7 @@ html, body {
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
-  font-family: var(--serif);
+  font-family: var(--base-font);
 }
 .btn:hover {
   background: var(--accent);
@@ -221,7 +221,7 @@ html, body {
 .legend-title {
   font-size: 0.75rem;
   color: var(--accent);
-  font-family: var(--serif);
+  font-family: var(--base-font);
   white-space: nowrap;
   letter-spacing: 0.1em;
 }
@@ -361,7 +361,7 @@ html, body {
   overflow: visible;
 }
 .dynasty-bar-name {
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 1rem;
   font-weight: bold;
   color: rgba(255, 252, 244, 0.98);
@@ -371,7 +371,7 @@ html, body {
   white-space: nowrap;
 }
 .dynasty-bar-year {
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--base-font);
   font-size: 0.75rem;
   color: rgba(242, 190, 69, 0.85);
   letter-spacing: 0.04em;
@@ -388,7 +388,7 @@ html, body {
   right: 0;
   top: 2px;
   text-align: center;
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-weight: bold;
   font-size: 13px;
   color: rgba(255, 252, 244, 0.98);
@@ -412,7 +412,7 @@ html, body {
   overflow: hidden;
 }
 .dynasty-bar-child .cb-name {
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-weight: bold;
   color: #FFFFFF;
   letter-spacing: 0;
@@ -421,7 +421,7 @@ html, body {
   white-space: nowrap;
 }
 .dynasty-bar-child .cb-year {
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--base-font);
   color: rgba(242, 190, 69, 0.9);
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -477,18 +477,18 @@ html, body {
   filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
 }
 .node-circle {
-  width: 22px;
-  height: 22px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 0.48rem;
   font-weight: bold;
   color: inherit;
   background: radial-gradient(circle at 35% 30%, #FFFFFF, #F3EBDC);
-  border: 1.5px solid currentColor;
+  border: 2.5px solid currentColor;
   position: relative;
   overflow: hidden;
   /* 平时不显示彩色光晕，仅保留中性投影做立体感；悬停光晕见 .person-node:hover .node-circle */
@@ -527,7 +527,7 @@ html, body {
   cursor: pointer;
   z-index: 30;
   line-height: 1;
-  font-family: Arial, sans-serif;
+  font-family: var(--base-font);
   opacity: 0;
   transition: opacity 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.4);
@@ -585,7 +585,7 @@ html, body {
   margin-bottom: 1rem;
 }
 .detail-title {
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 1.6rem;
   color: var(--bg2);
   letter-spacing: 0.08em;
@@ -643,11 +643,11 @@ html, body {
   font-size: 2.4rem;
   color: var(--accent2);
   opacity: 0.25;
-  font-family: var(--serif);
+  font-family: var(--base-font);
   line-height: 1;
 }
 .detail-quote-text {
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 1.1rem;
   color: var(--bg2);
   line-height: 1.7;
@@ -669,7 +669,7 @@ html, body {
   font-size: 0.9rem;
   color: var(--accent2);
   margin-bottom: 0.5rem;
-  font-family: var(--serif);
+  font-family: var(--base-font);
   letter-spacing: 0.08em;
 }
 .connection-item {
@@ -692,7 +692,7 @@ html, body {
   writing-mode: vertical-rl; text-orientation: upright;
   border: 2px solid currentColor;
   background: #FFFFFF;
-  font-family: "STKaiti", "KaiTi", serif;
+  font-family: var(--base-font);
   letter-spacing: 0.05em;
   line-height: 1.05;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -703,7 +703,7 @@ html, body {
 .connection-type-tag {
   font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px;
   background: var(--bg); color: #8B6D3F; white-space: nowrap;
-  font-family: "STKaiti", "KaiTi", serif;
+  font-family: var(--base-font);
 }
 
 /* ===== Custom Person Modal ===== */
@@ -740,7 +740,7 @@ html, body {
 .custom-modal::-webkit-scrollbar { width: 8px; }
 .custom-modal::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
 .custom-modal h3 {
-  font-family: var(--serif);
+  font-family: var(--base-font);
   font-size: 1.3rem;
   color: var(--accent2);
   margin-bottom: 1rem;
@@ -757,7 +757,7 @@ html, body {
   font-size: 0.8rem;
   color: #6B5B4F;
   margin-bottom: 0.25rem;
-  font-family: var(--serif);
+  font-family: var(--base-font);
 }
 .form-group input,
 .form-group select,
@@ -815,7 +815,7 @@ html, body {
   align-items: center;
   gap: 0.75rem;
 }
-.mini-label { font-size: 0.75rem; color: var(--accent); white-space: nowrap; font-family: var(--serif); letter-spacing: 0.1em; }
+.mini-label { font-size: 0.75rem; color: var(--accent); white-space: nowrap; font-family: var(--base-font); letter-spacing: 0.1em; }
 .mini-track {
   flex: 1; height: 6px;
   background: rgba(0, 0, 0, 0.45); border-radius: 3px;
@@ -999,7 +999,7 @@ html, body {
         <div class="form-group">
           <label>身份</label>
           <select id="customClass">
-            <option value="皇帝">皇帝</option>
+            <option value="帝王">帝王</option>
             <option value="贵族">贵族</option>
             <option value="文人">文人</option>
             <option value="武将">武将</option>
@@ -1126,7 +1126,7 @@ const dynastyColors = {
 
 // 职业颜色（传统中国色 · 纯色）
 const classColors = {
-  "皇帝": "#6A0DAD",
+  "帝王": "#6A0DAD",
   "贵族": "#8C4356",
   "文人": "#1685A9",
   "武将": "#B87333",
@@ -1134,9 +1134,9 @@ const classColors = {
   "农":   "#789262",
   "工":   "#CA6924",
   "商":   "#F2BE45",
-  "道士": "#2E8B57",
+  "道士": "#1d6377",
   "僧侣": "#F0C239",
-  "郎中": "#C25160",
+  "郎中": "#598A78",
   "其它": "#75878A"
 };
 
@@ -1520,8 +1520,11 @@ function fitNodeName(circle, nameSpan) {
     if (setFs(mid) > avail) hi = mid; else lo = mid;
   }
   const fs = Math.max(1, Math.round(lo * 2) / 2);
-  setFs(fs);
-  return fs;
+  // 名字稍小一点点：在「恰好填满」的最大字号上乘缩放系数，留出内边距（0.9 ≈ 缩小 10%）
+  const NAME_FONT_SCALE = 0.9;
+  const scaledFs = Math.max(1, Math.round(fs * NAME_FONT_SCALE * 2) / 2);
+  setFs(scaledFs);
+  return scaledFs;
 }
 
 // 内部字号恒为 baseFontSize：CSS zoom 同比例缩放圆形与文字，是否溢出与 zoom 无关，
@@ -1617,8 +1620,10 @@ function renderTimeline(hisIds) {
   };
   globalPositions = {};
   const positions = globalPositions;
-  const NODE_RADIUS = 15;
-  const usableTop = dynastyBarH + 30;
+  const NODE_RADIUS = 17.5;
+  // 上边界需让节点避开朝代条（dynastyBarH）；原本 +30 的安全余量过大，使节点顶部比底部（约 5px）多留了 ~25px，
+  // 导致“向上拖”比“向下拖”更早停住、上下边界不对称。改为 +5 与底部对齐。
+  const usableTop = dynastyBarH + 5;
   const usableBottom = contentHeight - 30;
   // 全局变量，供拖拽函数使用
   verticalContentTop = usableTop;
@@ -1627,7 +1632,7 @@ function renderTimeline(hisIds) {
   //   水平 x：由出生年份决定（左→右 = 早→晚）
   //   垂直 y：由职业等级决定（帝王最上 → 文人 → 武将 → 僧道最下）
   //         同职业内按出生年顺序在职业带内垂直分布（避免重叠）
-  const CLASS_RANK = { "皇帝": 0, "贵族": 1, "文人": 2, "武将": 3, "士": 4, "农": 5, "工": 6, "商": 7, "道士": 8, "僧侣": 9, "郎中": 10, "其它": 11 };
+  const CLASS_RANK = { "帝王": 0, "贵族": 1, "文人": 2, "武将": 3, "士": 4, "农": 5, "工": 6, "商": 7, "道士": 8, "僧侣": 9, "郎中": 10, "其它": 11 };
   const rankList = [...new Set(persons.map(p => CLASS_RANK[p.class] ?? 99))].sort((a, b) => a - b);
   const numBands = rankList.length;
   const bandH = (usableBottom - usableTop) / Math.max(1, numBands);
@@ -2558,7 +2563,7 @@ function showToast(msg) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'saveToast';
-    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(160deg,#D24C52,#A52F35);color:#fff;padding:0.5rem 1.5rem;border-radius:6px;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;font-family:var(--serif);box-shadow:0 4px 16px rgba(0,0,0,0.5);white-space:nowrap;max-width:90vw;text-align:center;';
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(160deg,#D24C52,#A52F35);color:#fff;padding:0.5rem 1.5rem;border-radius:6px;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;font-family:var(--base-font);box-shadow:0 4px 16px rgba(0,0,0,0.5);white-space:nowrap;max-width:90vw;text-align:center;';
     document.body.appendChild(toast);
   }
   toast.textContent = msg;

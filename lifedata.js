@@ -629,13 +629,13 @@ const hisData = [
       "next": {
         "id": "sunzi",
         "type": "其他",
-        "description": "道家自然无为思想，下启孙子兵家之学。"
+        "description": "道家自然无为思想，下启孙武兵家之学。"
       }
     }
   },
   {
     "id": "sunzi",
-    "name": "孙子",
+    "name": "孙武",
     "birthYear": -545,
     "deathYear": -470,
     "dynasty": "春秋",
@@ -922,7 +922,7 @@ const hisData = [
     "birthYear": -259,
     "deathYear": -210,
     "dynasty": "秦",
-    "class": "皇帝",
+    "class": "帝王",
     "classColor": "#8C4356",
     "quote": "天下共苦战斗不休，以有侯王。",
     "quoteSource": "《史记·秦始皇本纪》",
@@ -1162,7 +1162,7 @@ const hisData = [
     "birthYear": -91,
     "deathYear": -49,
     "dynasty": "西汉",
-    "class": "皇帝",
+    "class": "帝王",
     "classColor": "#8C4356",
     "quote": "汉家自有制度，本以霸王道杂之。",
     "quoteSource": "《汉书·元帝纪》",
@@ -1186,7 +1186,7 @@ const hisData = [
     "birthYear": -51,
     "deathYear": 8,
     "dynasty": "西汉",
-    "class": "皇帝",
+    "class": "帝王",
     "classColor": "#8C4356",
     "quote": "汉道行于天下，后世其有以见我。",
     "quoteSource": "《汉书·成帝纪》",
@@ -1210,7 +1210,7 @@ const hisData = [
     "birthYear": -45,
     "deathYear": 23,
     "dynasty": "新朝",
-    "class": "皇帝",
+    "class": "帝王",
     "classColor": "#8C4356",
     "quote": "予本无言，诸生其无妄言。",
     "quoteSource": "《汉书·王莽传》",
@@ -1642,7 +1642,7 @@ const hisData = [
     "birthYear": 937,
     "deathYear": 978,
     "dynasty": "五代十国",
-    "class": "皇帝",
+    "class": "帝王",
     "classColor": "#8C4356",
     "quote": "问君能有几多愁？恰似一江春水向东流。",
     "quoteSource": "《虞美人》",
