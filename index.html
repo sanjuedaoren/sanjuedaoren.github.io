@@ -948,6 +948,7 @@ html, body {
       <button class="btn" id="randomBtn">随机探索</button>
       <button class="btn" id="importBtn" title="从 lifedata.js 文件导入数据">导入</button>
       <button class="btn" id="exportBtn" title="导出人物位置和自定义人物到 lifedata.js 文件">导出</button>
+      <button class="btn" id="resetBtn" title="清除浏览器缓存，恢复初始布局与人物">重置</button>
       <button class="btn btn-primary" id="shareBtn">分享</button>
     </div>
   </nav>
@@ -2425,6 +2426,8 @@ customSubmitBtn.addEventListener('click', () => {
 // ===== 导出 / 导入 / 自动加载位置 =====
 const SAVE_JSON = 'lifedata.js';
 let loadedPositions = null;
+// 备份原始人物数据（页面加载时、尚未混入自定义人物），供“重置为默认”恢复初始状态
+const originalHisData = JSON.parse(JSON.stringify(hisData));
 
 function collectCurrentState() {
   const allNodes = document.querySelectorAll('.person-node[data-id]');
@@ -2624,6 +2627,24 @@ function applyLoadedPositions() {
   refreshNodePositions();
 }
 
+// 重置为默认布局：清除浏览器缓存，恢复 lifedata.js 初始人物与坐标
+function resetToDefault() {
+  if (!window.confirm('确定要重置为默认布局吗？\n这将清除你保存的位置和所有自定义人物，恢复到初始状态。')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  loadedPositions = null;
+  savedCustomPersons = [];
+  // 恢复原始 184 人（移除所有自定义人物）
+  hisData.length = 0;
+  originalHisData.forEach(p => hisData.push(JSON.parse(JSON.stringify(p))));
+  currentHis = hisData.map(p => p.id);
+  currentPath = [];
+  document.querySelectorAll('.person-node.show-delete').forEach(n => n.classList.remove('show-delete'));
+  renderLegends();
+  renderTimeline(currentHis);
+  applyLoadedPositions();
+  showToast('已重置为默认布局');
+}
+
 function showToast(msg) {
   let toast = document.getElementById('saveToast');
   if (!toast) {
@@ -2639,6 +2660,7 @@ function showToast(msg) {
 
 document.getElementById('importBtn').addEventListener('click', importData);
 document.getElementById('exportBtn').addEventListener('click', exportData);
+document.getElementById('resetBtn').addEventListener('click', resetToDefault);
 
 // ===== Initialization =====
 async function init() {
