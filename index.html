@@ -659,52 +659,54 @@ html, body {
   margin-top: 0.5rem;
   text-align: right;
 }
-.detail-connections {
-  background: #F9F5ED;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgba(139, 109, 63, 0.15);
-}
-.detail-connections h4 {
-  font-size: 0.9rem;
-  color: var(--accent2);
-  margin-bottom: 0.5rem;
-  font-family: var(--base-font);
-  letter-spacing: 0.08em;
-}
-.connection-item {
+/* 关系横向成行布局：每条关系一行，有几条就排几行 */
+.detail-relations {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.4rem;
-  border-radius: 6px;
-  border-bottom: 1px solid rgba(139, 109, 63, 0.2);
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.relation-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: #F9F5ED;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  box-shadow: inset 0 0 0 1px rgba(139, 109, 63, 0.15);
+  border-left: 3px solid var(--person-color, var(--accent2));
+}
+/* 名称前的人物图标（用相关人物的职业色） */
+.relation-icon {
+  width: 24px; height: 24px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  fill: currentColor;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
 }
-.connection-item:hover { background: rgba(197, 61, 67, 0.08); transform: translateX(3px); }
-.connection-item:last-child { border-bottom: none; }
-.connection-avatar {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.5rem; color: inherit; flex-shrink: 0;
-  writing-mode: vertical-rl; text-orientation: upright;
-  border: 2px solid currentColor;
-  background: #FFFFFF;
+.relation-text {
+  flex: 1;
+  min-width: 0;
   font-family: var(--base-font);
-  letter-spacing: 0.05em;
-  line-height: 1.05;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--bg2);
+  text-align: justify;
 }
-.connection-info { flex: 1; min-width: 0; }
-.connection-name { font-size: 0.85rem; font-weight: 600; color: var(--bg2); }
-.connection-desc { font-size: 0.75rem; color: #8B6D3F; line-height: 1.4; margin-top: 2px; }
-.connection-type-tag {
-  font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px;
-  background: var(--bg); color: #8B6D3F; white-space: nowrap;
-  font-family: var(--base-font);
+.relation-type {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--person-color, var(--accent2));
 }
+.relation-name {
+  font-weight: 600;
+  color: var(--bg2);
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(139, 109, 63, 0.5);
+  transition: color 0.2s;
+}
+.relation-name:hover { color: var(--person-color, var(--accent)); }
+.relation-desc { color: #8B6D3F; }
 
 /* ===== Custom Person Modal ===== */
 .custom-modal-overlay {
@@ -796,6 +798,57 @@ html, body {
   color: #8B6D3F;
  text-align: center;
   margin-top: 0.5rem;
+}
+/* 添加人物：多条关联条目 */
+.relation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.relation-item .rel-person {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+.relation-item .rel-type {
+  flex: 0 0 4.5rem;
+  width: auto;
+}
+.relation-item .rel-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(139, 109, 63, 0.55);
+  border-radius: var(--radius);
+  background: #FFF;
+  color: var(--bg2);
+  font-size: 0.82rem;
+  outline: none;
+  font-family: inherit;
+}
+.relation-item .rel-desc:focus {
+  border-color: var(--accent2);
+  box-shadow: 0 0 0 3px rgba(197, 61, 67, 0.12);
+}
+.relation-item .rel-remove {
+  flex: 0 0 auto;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: none;
+  border-radius: 50%;
+  background: #E7D9C3;
+  color: #8B4B3F;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.relation-item .rel-remove:hover { background: #D8C2A4; }
+#addRelationBtn {
+  margin-top: 0.2rem;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
 }
 
 /* ===== Bottom Status Bar ===== */
@@ -1040,23 +1093,9 @@ html, body {
         <input type="text" id="customSource" placeholder="如：《日知录》">
       </div>
       <div class="form-group">
-        <label>关联人物（至少选择一位）</label>
-        <select id="customRelation"></select>
-      </div>
-      <div class="form-group">
-        <label>关联类型</label>
-        <select id="customRelationType">
-          <option value="其他">其他</option>
-          <option value="师徒">师徒</option>
-          <option value="同僚">同僚</option>
-          <option value="君臣">君臣</option>
-          <option value="亲友">亲友</option>
-          <option value="家族">家族</option>
-          <option value="对手">对手</option>
-          <option value="敌对">敌对</option>
-          <option value="忘年交">忘年交</option>
-          <option value="知己">知己</option>
-        </select>
+        <label>关联人物（至少选择一位，可添加多位）</label>
+        <div id="relationList"></div>
+        <button type="button" class="btn btn-sm" id="addRelationBtn">+ 添加关联人物</button>
       </div>
       <div class="form-hint">朝代由生卒年中间值所属朝代自动判定，如200-240年取220年对应朝代</div>
       <div class="form-actions">
@@ -1245,13 +1284,13 @@ const customDeathInput = document.getElementById('customDeath');
 const customDynastyInput = document.getElementById('customDynasty');
 const customQuoteInput = document.getElementById('customQuote');
 const customSourceInput = document.getElementById('customSource');
-const customRelationSelect = document.getElementById('customRelation');
-const customRelationTypeSelect = document.getElementById('customRelationType');
+const relationList = document.getElementById('relationList');
+const addRelationBtn = document.getElementById('addRelationBtn');
 const customSubmitBtn = document.getElementById('customSubmit');
 const customCancelBtn = document.getElementById('customCancel');
 
 // ===== Utility Functions =====
-function getPersonById(id) { return hisData.find(p => p.id === id); }
+function getPersonById(id) { return hisData.find(p => String(p.id) === String(id)); }
 function getPersonIndex(id) { return hisData.findIndex(p => p.id === id); }
 function yearToX(year, minYear, maxYear, width) { return ((year - minYear) / (maxYear - minYear)) * width; }
 function getTotalWidth() { return BASE_WIDTH; }
@@ -2146,20 +2185,45 @@ function openDetail(person) {
   detailTitle.textContent = person.name;
   detailSubtitle.textContent = `${person.dynasty} · ${person.class} · ${formatYearRange(person.birthYear, person.deathYear)}`;
   let html = `<div class="detail-quote-box"><div class="detail-quote-text">「${person.quote}」</div><div class="detail-quote-source">—— ${person.quoteSource}</div></div>`;
-  if (person.relationships?.previous) {
-    const prev = getPersonById(person.relationships.previous.id);
-    if (prev) {
-      html += `<div class="detail-connections"><h4>← 前一位</h4><div class="connection-item" data-id="${prev.id}"><div class="connection-avatar" style="color:${getColor(prev)}">${prev.name}</div><div class="connection-info"><div class="connection-name">${prev.name}</div><div class="connection-desc">${person.relationships.previous.description}</div></div></div></div>`;
-    }
-  }
-  if (person.relationships?.next) {
-    const next = getPersonById(person.relationships.next.id);
-    if (next) {
-      html += `<div class="detail-connections"><h4>后一位 →</h4><div class="connection-item" data-id="${next.id}"><div class="connection-avatar" style="color:${getColor(next)}">${next.name}</div><div class="connection-info"><div class="connection-name">${next.name}</div><div class="connection-desc">${person.relationships.next.description}</div></div></div></div>`;
-    }
+  // 收集该人物所有关系（previous / next / 任意 key 都算一列），每条关系对应一列
+  const relEntries = [];
+  const relObj = person.relationships || {};
+  Object.keys(relObj).forEach(key => {
+    const r = relObj[key];
+    if (r && r.id != null) relEntries.push(r);
+  });
+  // 动态补充：扫描所有自定义人物，凡是把当前人物当作其关联对象的，
+  // 也在信息栏中作为一列显示。这样即便关联人物是内置历史人物（刷新后会重置，
+  // 不会保留反向写入），也能在它的信息栏里看到这个自定义人物。
+  hisData.forEach(p => {
+    if (!String(p.id).startsWith('custom_')) return;
+    const rels = p.relationships || {};
+    Object.keys(rels).forEach(k => {
+      const r = rels[k];
+      if (r && r.id != null && String(r.id) === String(person.id)) {
+        relEntries.push({ id: p.id, type: r.type || '其他', description: r.description || '' });
+      }
+    });
+  });
+  if (relEntries.length > 0) {
+    html += `<div class="detail-relations">`;
+    relEntries.forEach(r => {
+      const other = getPersonById(r.id);
+      if (!other) return;
+      const raw = r.description || '';
+      const desc = /[。.!?！？]$/.test(raw) ? raw : raw + '。';
+      const ocolor = getColor(other);
+      const personIcon = `<svg class="relation-icon" data-id="${other.id}" viewBox="0 0 24 24" style="color:${ocolor}"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>`;
+      html += `<div class="relation-row">`
+        + personIcon
+        + `<span class="relation-text"><span class="relation-type">${r.type || '其他'}</span> `
+        + `<span class="relation-name" data-id="${other.id}">${other.name}</span>`
+        + `<span class="relation-desc"> ${desc}</span></span></div>`;
+    });
+    html += `</div>`;
   }
   detailBody.innerHTML = html;
-  detailBody.querySelectorAll('.connection-item').forEach(item => {
+  detailBody.querySelectorAll('.relation-name, .relation-icon').forEach(item => {
     item.addEventListener('click', () => { const id = item.dataset.id; const p = getPersonById(id); if (p) openDetail(p); });
   });
   const pc = getColor(person);
@@ -2187,10 +2251,12 @@ function deletePerson(id) {
     ? `确认删除自定义人物「${person.name}」？`
     : `确认删除「${person.name}」？该人物为内置数据，删除后将无法恢复（刷新页面可恢复）。`;
   if (!confirm(msg)) return;
-  // Clean up relationships pointing to this person
+  // Clean up relationships pointing to this person (任意键，含 previous/next 与自定义 rel_<id>)
   hisData.forEach(p => {
-    if (p.relationships?.previous?.id === id) delete p.relationships.previous;
-    if (p.relationships?.next?.id === id) delete p.relationships.next;
+    if (!p.relationships) return;
+    Object.keys(p.relationships).forEach(k => {
+      if (p.relationships[k] && String(p.relationships[k].id) === String(id)) delete p.relationships[k];
+    });
   });
   const idx = hisData.findIndex(p => p.id === id);
   if (idx > -1) hisData.splice(idx, 1);
@@ -2345,23 +2411,61 @@ customBtn.addEventListener('click', () => {
   customQuoteInput.value = '';
   customSourceInput.value = '';
   customClassSelect.value = '文人';
-  customRelationTypeSelect.value = '其他';
-  // Populate relation selector with all existing persons (by time)
-  populateRelationSelect();
+  // 清空关联列表并添加一个默认关联条目
+  relationList.innerHTML = '';
+  addRelationItem();
   customModalOverlay.classList.add('active');
   setTimeout(() => customNameInput.focus(), 100);
 });
 
-function populateRelationSelect() {
+// 关系类型选项模板
+const RELATION_TYPE_OPTIONS = ['其他','师徒','同僚','君臣','亲友','家族','对手','敌对','忘年交','知己'];
+
+// 填充人物下拉（按出生年排序）
+function fillPersonOptions(selectEl) {
   const sorted = [...hisData].sort((a, b) => a.birthYear - b.birthYear);
-  customRelationSelect.innerHTML = '';
+  selectEl.innerHTML = '';
   sorted.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p.id;
     opt.textContent = `${p.name}（${p.dynasty} · ${formatYear(p.birthYear)}–${formatYear(p.deathYear)}）`;
-    customRelationSelect.appendChild(opt);
+    selectEl.appendChild(opt);
   });
 }
+
+// 新增一条关联条目（人物 + 类型 + 自定义关联语 + 移除按钮）
+function addRelationItem() {
+  const item = document.createElement('div');
+  item.className = 'relation-item';
+  const sel = document.createElement('select');
+  sel.className = 'rel-person';
+  fillPersonOptions(sel);
+  const typeSel = document.createElement('select');
+  typeSel.className = 'rel-type';
+  RELATION_TYPE_OPTIONS.forEach(t => {
+    const o = document.createElement('option');
+    o.value = t; o.textContent = t;
+    typeSel.appendChild(o);
+  });
+  const desc = document.createElement('input');
+  desc.type = 'text';
+  desc.className = 'rel-desc';
+  desc.placeholder = '关系佐证语（留空自动生成）';
+  const rm = document.createElement('button');
+  rm.type = 'button';
+  rm.className = 'rel-remove';
+  rm.textContent = '×';
+  rm.title = '移除该关联';
+  rm.addEventListener('click', () => {
+    if (relationList.children.length > 1) item.remove();
+  });
+  item.appendChild(sel);
+  item.appendChild(typeSel);
+  item.appendChild(desc);
+  item.appendChild(rm);
+  relationList.appendChild(item);
+}
+addRelationBtn.addEventListener('click', addRelationItem);
 
 customCancelBtn.addEventListener('click', closeCustomModal);
 customModalOverlay.addEventListener('click', (e) => { if (e.target === customModalOverlay) closeCustomModal(); });
@@ -2371,23 +2475,32 @@ function closeCustomModal() { customModalOverlay.classList.remove('active'); }
 customSubmitBtn.addEventListener('click', () => {
   const name = customNameInput.value.trim();
   const className = customClassSelect.value;
-  const birthYear = parseInt(customBirthInput.value);
-  const deathYear = parseInt(customDeathInput.value);
+  const birthYear = parseInt(customBirthInput.value, 10);
+  const deathYear = parseInt(customDeathInput.value, 10);
   const quote = customQuoteInput.value.trim() || '暂无记载。';
   const quoteSource = customSourceInput.value.trim() || '佚名';
-  const relId = customRelationSelect.value;
-  const relType = customRelationTypeSelect.value || '其他';
   if (!name || isNaN(birthYear) || isNaN(deathYear) || birthYear >= deathYear) {
     alert('请填写正确的姓名和生卒年（出生年需小于去世年）');
     return;
   }
-  if (!relId) {
+  // 收集所有关联条目（同一关联人物重复选择时仅保留最后一次设置）
+  const items = relationList.querySelectorAll('.relation-item');
+  const seen = new Set();
+  const relations = [];
+  items.forEach(it => {
+    const pid = it.querySelector('.rel-person').value;
+    if (!pid) return;
+    const ptype = it.querySelector('.rel-type').value || '其他';
+    const pdesc = it.querySelector('.rel-desc').value.trim();
+    if (seen.has(String(pid))) {
+      const idx = relations.findIndex(r => String(r.pid) === String(pid));
+      if (idx > -1) relations.splice(idx, 1);
+    }
+    seen.add(String(pid));
+    relations.push({ pid, ptype, pdesc });
+  });
+  if (relations.length === 0) {
     alert('请至少选择一位关联人物');
-    return;
-  }
-  const relPerson = getPersonById(relId);
-  if (!relPerson) {
-    alert('关联人物无效，请重新选择');
     return;
   }
   const dynasty = detectDynasty(birthYear, deathYear);
@@ -2397,21 +2510,14 @@ customSubmitBtn.addEventListener('click', () => {
     class: className, classColor: classColors[className] || '#75878A',
     quote, quoteSource, isKeyFigure: false, relationships: {}
   };
-  // Determine direction based on time relative to the selected related person
-  const relDesc = `${name}与${relPerson.name}之间的历史关联。`;
-  if (birthYear >= relPerson.birthYear) {
-    // related person is earlier -> set as previous
-    newPerson.relationships.previous = { id: relPerson.id, type: relType, description: relDesc };
-    if (!relPerson.relationships.next) {
-      relPerson.relationships.next = { id, type: relType, description: relDesc };
-    }
-  } else {
-    // related person is later -> set as next
-    newPerson.relationships.next = { id: relPerson.id, type: relType, description: relDesc };
-    if (!relPerson.relationships.previous) {
-      relPerson.relationships.previous = { id, type: relType, description: relDesc };
-    }
-  }
+  // 每个关联人物写入一条关系（键名 rel_<对方id>，避免与历史人物的 previous/next 链关系冲突）；
+  // 关联语留空时自动生成。关联人物的信息栏中显示本自定义人物由 openDetail 动态扫描实现。
+  relations.forEach(r => {
+    const rp = getPersonById(r.pid);
+    if (!rp) return;
+    const desc = r.pdesc || `${name}与${rp.name}之间的历史关联。`;
+    newPerson.relationships['rel_' + r.pid] = { id: rp.id, type: r.ptype, description: desc };
+  });
   hisData.push(newPerson);
   // Rebuild predefined his to include new person
   predefinedHis[0] = hisData.map(p => p.id);
@@ -2627,27 +2733,60 @@ function applyLoadedPositions() {
   refreshNodePositions();
 }
 
-// 重置为默认布局：清除浏览器缓存，恢复 lifedata.js 文件定义的初始人物与坐标
-async function resetToDefault() {
-  if (!window.confirm('确定要重置为默认布局吗？\n这将清除你保存的位置和所有自定义人物，恢复到 lifedata.js 初始状态。')) return;
-  // 优先：从 lifedata.js 文件重新读取（忠实“默认 = lifedata”，不受中间导入/自定义影响）
-  let fresh = null;
+// 从 lifedata.js 文件解析出 hisData 与 historyChainSave（含默认位置数据），真正读取文件内容
+function parseLifedata(text) {
   try {
-    const res = await fetch('lifedata.js', { cache: 'no-store' });
-    if (res.ok) {
-      const txt = await res.text();
-      fresh = new Function(txt + '\n; return hisData;')();
-    }
+    return new Function(text + '\n; return { hisData: hisData, historyChainSave: (typeof historyChainSave !== "undefined" ? historyChainSave : null) };')();
   } catch (e) {
-    // file:// 直接打开时 fetch 受限，回退到页面加载时的 lifedata 快照
-    fresh = null;
+    return null;
   }
-  if (!fresh || !Array.isArray(fresh) || fresh.length === 0) {
-    fresh = originalHisData; // 页面初次加载时的 lifedata 内容
+}
+// 重新从 lifedata.js 文件读取最新数据：fetch（http/https）→ XHR 同步（file:// 直接打开）
+function readLifedataFile() {
+  return new Promise(resolve => {
+    fetch('lifedata.js', { cache: 'no-store' })
+      .then(r => r.ok ? r.text() : Promise.reject())
+      .then(txt => resolve(parseLifedata(txt)))
+      .catch(() => {
+        // file:// 直接打开时 fetch 受限，尝试用 XHR 同步读取同目录文件
+        try {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'lifedata.js', false);
+          xhr.send();
+          if (xhr.status === 0 || xhr.status === 200) {
+            return resolve(parseLifedata(xhr.responseText));
+          }
+        } catch (e) {}
+        resolve(null);
+      });
+  });
+}
+
+// 重置：清除浏览器缓存，从 lifedata.js 文件重新读取数据与默认位置（与刷新等价）
+async function resetToDefault() {
+  if (!window.confirm('确定要重置为默认布局吗？\n这将清除你保存的位置和所有自定义人物，重新从 lifedata.js 读取数据与默认位置。')) return;
+  // 主路径：真正从 lifedata.js 文件读取（反映文件最新内容与默认位置）
+  const parsed = await readLifedataFile();
+  let fromFile = true;
+  let fresh, defPositions = null;
+  if (parsed && Array.isArray(parsed.hisData) && parsed.hisData.length > 0) {
+    fresh = parsed.hisData;
+    // 采用 lifedata 内嵌的默认位置（与刷新 init→loadPositionsFromJSON 一致）
+    if (parsed.historyChainSave && parsed.historyChainSave.positions) {
+      defPositions = parsed.historyChainSave.positions;
+    }
+  } else {
+    // 文件读取失败（多为 file:// 直接打开且浏览器禁止本地读取）：回退到页面加载时的 lifedata 副本
+    fresh = originalHisData;
+    fromFile = false;
+    if (typeof historyChainSave !== 'undefined' && historyChainSave.positions) {
+      defPositions = historyChainSave.positions;
+    }
   }
-  loadedPositions = null;
+  // loadedPositions 设为 lifedata 默认位置，使 applyLoadedPositions 与刷新行为完全一致
+  loadedPositions = defPositions;
   savedCustomPersons = [];
-  // 恢复 lifedata.js 原始人物（移除所有自定义人物）
+  // 恢复 lifedata.js 人物（移除所有自定义人物）
   hisData.length = 0;
   fresh.forEach(p => hisData.push(JSON.parse(JSON.stringify(p))));
   currentHis = hisData.map(p => p.id);
@@ -2657,7 +2796,7 @@ async function resetToDefault() {
   renderLegends();
   renderTimeline(currentHis);
   applyLoadedPositions();
-  showToast('已重置为 lifedata.js 默认状态');
+  showToast(fromFile ? '已重置：重新读取 lifedata.js 文件与默认位置' : '已重置（页面加载时的 lifedata 副本；用 http 打开可从文件读取）');
 }
 
 function showToast(msg) {

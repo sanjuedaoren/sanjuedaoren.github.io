@@ -1,4 +1,4 @@
-/* lifedata.js — 合并数据文件 */
+/* lifedata.js — 由 人物参考.json 转换（中国历代人物关系链，前259年—现代，共 184 人）；previous.description 已修正为前一人 relationDesc */
 const hisData = [
   {
     "id": 1,
@@ -34,7 +34,7 @@ const hisData = [
       "previous": {
         "id": 1,
         "type": "同僚",
-        "description": "沙丘之变，李斯与赵高合谋矫诏，赐扶苏、蒙恬死，立胡亥为二世，同朝共事。"
+        "description": "李斯为秦丞相，佐始皇并六国、定郡县、书同文，君臣共定一统之制。"
       },
       "next": {
         "id": 3,
@@ -58,7 +58,7 @@ const hisData = [
       "previous": {
         "id": 2,
         "type": "其他",
-        "description": "赵高弑二世后立子婴，子婴与其子谋，诱赵高入斋宫刺杀之，二人当面交锋。"
+        "description": "沙丘之变，李斯与赵高合谋矫诏，赐扶苏、蒙恬死，立胡亥为二世，同朝共事。"
       },
       "next": {
         "id": 4,
@@ -82,7 +82,7 @@ const hisData = [
       "previous": {
         "id": 3,
         "type": "对手",
-        "description": "沛公入武关，秦王子婴素车白马、系颈以组，封皇帝玺符节，降轵道旁，与刘邦当面受降。"
+        "description": "赵高弑二世后立子婴，子婴与其子谋，诱赵高入斋宫刺杀之，二人当面交锋。"
       },
       "next": {
         "id": 5,
@@ -106,7 +106,7 @@ const hisData = [
       "previous": {
         "id": 4,
         "type": "君臣",
-        "description": "萧何为主吏掾，从刘邦起兵入秦，镇关中、荐韩信，开国第一功臣。"
+        "description": "沛公入武关，秦王子婴素车白马、系颈以组，封皇帝玺符节，降轵道旁，与刘邦当面受降。"
       },
       "next": {
         "id": 6,
@@ -130,7 +130,7 @@ const hisData = [
       "previous": {
         "id": 5,
         "type": "同僚",
-        "description": "萧何月下追韩信，荐于汉王曰'必欲争天下，非信无可与计事者'，登坛拜大将。"
+        "description": "萧何为主吏掾，从刘邦起兵入秦，镇关中、荐韩信，开国第一功臣。"
       },
       "next": {
         "id": 7,
@@ -154,7 +154,7 @@ const hisData = [
       "previous": {
         "id": 6,
         "type": "同僚",
-        "description": "汉初三杰同佐刘邦，张良画策、萧何镇国、韩信将兵，共定天下。"
+        "description": "萧何月下追韩信，荐于汉王曰'必欲争天下，非信无可与计事者'，登坛拜大将。"
       },
       "next": {
         "id": 8,
@@ -178,7 +178,7 @@ const hisData = [
       "previous": {
         "id": 7,
         "type": "师徒",
-        "description": "张良为太子少傅，定计迎商山四皓以安刘盈太子位，与惠帝有师徒辅佐之谊。"
+        "description": "汉初三杰同佐刘邦，张良画策、萧何镇国、韩信将兵，共定天下。"
       },
       "next": {
         "id": 9,
@@ -202,7 +202,7 @@ const hisData = [
       "previous": {
         "id": 8,
         "type": "亲友",
-        "description": "刘盈为刘恒之兄，皆刘邦之子，少时同处汉宫为王子，手足相见。"
+        "description": "张良为太子少傅，定计迎商山四皓以安刘盈太子位，与惠帝有师徒辅佐之谊。"
       },
       "next": {
         "id": 10,
@@ -226,7 +226,7 @@ const hisData = [
       "previous": {
         "id": 9,
         "type": "亲友",
-        "description": "汉文帝立刘启为太子，父子同朝，景帝继统。"
+        "description": "刘盈为刘恒之兄，皆刘邦之子，少时同处汉宫为王子，手足相见。"
       },
       "next": {
         "id": 11,
@@ -250,7 +250,7 @@ const hisData = [
       "previous": {
         "id": 10,
         "type": "亲友",
-        "description": "景帝立刘彻为太子，后即位为汉武帝，父子相继。"
+        "description": "汉文帝立刘启为太子，父子同朝，景帝继统。"
       },
       "next": {
         "id": 12,
@@ -274,7 +274,7 @@ const hisData = [
       "previous": {
         "id": 11,
         "type": "君臣",
-        "description": "卫青为大将军，姊卫子夫为皇后，出入禁中，与武帝君臣相得，北击匈奴。"
+        "description": "景帝立刘彻为太子，后即位为汉武帝，父子相继。"
       },
       "next": {
         "id": 13,
@@ -298,7 +298,7 @@ const hisData = [
       "previous": {
         "id": 12,
         "type": "亲友",
-        "description": "霍去病为卫青姊子（外甥），舅甥同掌汉军，并出征匈奴。"
+        "description": "卫青为大将军，姊卫子夫为皇后，出入禁中，与武帝君臣相得，北击匈奴。"
       },
       "next": {
         "id": 14,
@@ -322,7 +322,7 @@ const hisData = [
       "previous": {
         "id": 13,
         "type": "亲友",
-        "description": "霍光为霍去病异母弟，去病携其见武帝，兄弟相继为汉重臣。"
+        "description": "霍去病为卫青姊子（外甥），舅甥同掌汉军，并出征匈奴。"
       },
       "next": {
         "id": 15,
@@ -346,7 +346,7 @@ const hisData = [
       "previous": {
         "id": 14,
         "type": "君臣",
-        "description": "霍光受武帝托孤，立刘询为宣帝，宣帝朝会霍光，'芒刺在背'。"
+        "description": "霍光为霍去病异母弟，去病携其见武帝，兄弟相继为汉重臣。"
       },
       "next": {
         "id": 16,
@@ -370,7 +370,7 @@ const hisData = [
       "previous": {
         "id": 15,
         "type": "亲友",
-        "description": "汉宣帝立刘奭为太子，即元帝，父子相继。"
+        "description": "霍光受武帝托孤，立刘询为宣帝，宣帝朝会霍光，'芒刺在背'。"
       },
       "next": {
         "id": 17,
@@ -394,7 +394,7 @@ const hisData = [
       "previous": {
         "id": 16,
         "type": "亲友",
-        "description": "汉元帝立刘骜为太子，即成帝，父子相继。"
+        "description": "汉宣帝立刘奭为太子，即元帝，父子相继。"
       },
       "next": {
         "id": 18,
@@ -418,7 +418,7 @@ const hisData = [
       "previous": {
         "id": 17,
         "type": "亲友",
-        "description": "王莽为元帝王皇后之侄，成帝朝为大司马，外戚辅政，君臣共事。"
+        "description": "汉元帝立刘骜为太子，即成帝，父子相继。"
       },
       "next": {
         "id": 19,
@@ -442,7 +442,7 @@ const hisData = [
       "previous": {
         "id": 18,
         "type": "同僚",
-        "description": "桓谭仕于新朝为掌乐大夫，与王莽同朝共事于长安。"
+        "description": "王莽为元帝王皇后之侄，成帝朝为大司马，外戚辅政，君臣共事。"
       },
       "next": {
         "id": 20,
@@ -466,7 +466,7 @@ const hisData = [
       "previous": {
         "id": 19,
         "type": "君臣",
-        "description": "光武帝即位征桓谭为议郎，引见论政，帝令鼓琴，君臣当面论治。"
+        "description": "桓谭仕于新朝为掌乐大夫，与王莽同朝共事于长安。"
       },
       "next": {
         "id": 21,
@@ -490,7 +490,7 @@ const hisData = [
       "previous": {
         "id": 20,
         "type": "君臣",
-        "description": "邓禹追光武于邺，定计佐命，为中兴首功，君臣当面定策。"
+        "description": "光武帝即位征桓谭为议郎，引见论政，帝令鼓琴，君臣当面论治。"
       },
       "next": {
         "id": 22,
@@ -514,7 +514,7 @@ const hisData = [
       "previous": {
         "id": 21,
         "type": "君臣",
-        "description": "光武召见马援，援遂为汉将；其女后为明帝后，故马援与明帝有翁婿之亲。"
+        "description": "邓禹追光武于邺，定计佐命，为中兴首功，君臣当面定策。"
       },
       "next": {
         "id": 23,
@@ -538,7 +538,7 @@ const hisData = [
       "previous": {
         "id": 22,
         "type": "亲友",
-        "description": "明德马皇后为马援之女、明帝之妻，翁婿姻亲；班固为明帝朝兰台令史。"
+        "description": "光武召见马援，援遂为汉将；其女后为明帝后，故马援与明帝有翁婿之亲。"
       },
       "next": {
         "id": 24,
@@ -562,7 +562,7 @@ const hisData = [
       "previous": {
         "id": 23,
         "type": "亲友",
-        "description": "班超为班固之弟，兄弟同母，班超投笔从戎，班固续《汉书》。"
+        "description": "明德马皇后为马援之女、明帝之妻，翁婿姻亲；班固为明帝朝兰台令史。"
       },
       "next": {
         "id": 25,
@@ -586,7 +586,7 @@ const hisData = [
       "previous": {
         "id": 24,
         "type": "亲友",
-        "description": "班昭为班超、班固之妹，续成《汉书》，兄妹同以文史名世。"
+        "description": "班超为班固之弟，兄弟同母，班超投笔从戎，班固续《汉书》。"
       },
       "next": {
         "id": 26,
@@ -610,7 +610,7 @@ const hisData = [
       "previous": {
         "id": 25,
         "type": "同僚",
-        "description": "蔡邕后世续补《汉书》于东观，承班昭之业；二人先后同司汉史于东观，前后相承。"
+        "description": "班昭为班超、班固之妹，续成《汉书》，兄妹同以文史名世。"
       },
       "next": {
         "id": 27,
@@ -634,7 +634,7 @@ const hisData = [
       "previous": {
         "id": 26,
         "type": "同僚",
-        "description": "王粲少时谒蔡邕，邕倒屣迎之，叹'此王公孙也，有异才，吾不如也'，当面激赏。"
+        "description": "蔡邕后世续补《汉书》于东观，承班昭之业；二人先后同司汉史于东观，前后相承。"
       },
       "next": {
         "id": 28,
@@ -658,7 +658,7 @@ const hisData = [
       "previous": {
         "id": 27,
         "type": "君臣",
-        "description": "王粲归曹操，辟为丞相掾，赐爵关内侯，君臣共事于邺下。"
+        "description": "王粲少时谒蔡邕，邕倒屣迎之，叹'此王公孙也，有异才，吾不如也'，当面激赏。"
       },
       "next": {
         "id": 29,
@@ -682,7 +682,7 @@ const hisData = [
       "previous": {
         "id": 28,
         "type": "对手",
-        "description": "曹操煮酒论英雄，与刘备当面对坐，言'天下英雄唯使君与操'，对手相知。"
+        "description": "王粲归曹操，辟为丞相掾，赐爵关内侯，君臣共事于邺下。"
       },
       "next": {
         "id": 30,
@@ -706,7 +706,7 @@ const hisData = [
       "previous": {
         "id": 29,
         "type": "君臣",
-        "description": "刘备三顾茅庐，诸葛亮隆中对定三分，君臣鱼水。"
+        "description": "曹操煮酒论英雄，与刘备当面对坐，言'天下英雄唯使君与操'，对手相知。"
       },
       "next": {
         "id": 31,
@@ -730,7 +730,7 @@ const hisData = [
       "previous": {
         "id": 30,
         "type": "对手",
-        "description": "诸葛亮与司马懿祁山对峙，对阵交锋；懿使千里请战，亮遗巾帼妇人之服以辱之，战场相交。"
+        "description": "刘备三顾茅庐，诸葛亮隆中对定三分，君臣鱼水。"
       },
       "next": {
         "id": 32,
@@ -754,7 +754,7 @@ const hisData = [
       "previous": {
         "id": 31,
         "type": "亲友",
-        "description": "司马懿与司马昭为父子，昭为懿次子，继掌魏政。"
+        "description": "诸葛亮与司马懿祁山对峙，对阵交锋；懿使千里请战，亮遗巾帼妇人之服以辱之，战场相交。"
       },
       "next": {
         "id": 33,
@@ -778,7 +778,7 @@ const hisData = [
       "previous": {
         "id": 32,
         "type": "亲友",
-        "description": "司马炎为司马昭之子，昭受魏禅前夕崩，炎继晋王位，旋代魏称帝。"
+        "description": "司马懿与司马昭为父子，昭为懿次子，继掌魏政。"
       },
       "next": {
         "id": 34,
@@ -802,7 +802,7 @@ const hisData = [
       "previous": {
         "id": 33,
         "type": "君臣",
-        "description": "羊祜为晋尚书左仆射、都督荆州，筹划灭吴，与武帝君臣定策。"
+        "description": "司马炎为司马昭之子，昭受魏禅前夕崩，炎继晋王位，旋代魏称帝。"
       },
       "next": {
         "id": 35,
@@ -826,7 +826,7 @@ const hisData = [
       "previous": {
         "id": 34,
         "type": "对手",
-        "description": "羊祜与陆抗各镇荆州对峙，祜赠药、抗服之，边境对手而相重，当面交谊。"
+        "description": "羊祜为晋尚书左仆射、都督荆州，筹划灭吴，与武帝君臣定策。"
       },
       "next": {
         "id": 36,
@@ -850,7 +850,7 @@ const hisData = [
       "previous": {
         "id": 35,
         "type": "亲友",
-        "description": "陆机为陆抗之子，抗卒后机领父兵，兄弟并以才名重于洛阳。"
+        "description": "羊祜与陆抗各镇荆州对峙，祜赠药、抗服之，边境对手而相重，当面交谊。"
       },
       "next": {
         "id": 37,
@@ -874,7 +874,7 @@ const hisData = [
       "previous": {
         "id": 36,
         "type": "同僚",
-        "description": "陆机与潘岳同列贾谧二十四友，洛阳文人同游共事。"
+        "description": "陆机为陆抗之子，抗卒后机领父兵，兄弟并以才名重于洛阳。"
       },
       "next": {
         "id": 38,
@@ -898,7 +898,7 @@ const hisData = [
       "previous": {
         "id": 37,
         "type": "同僚",
-        "description": "潘岳与石崇同列金谷二十四友，金谷园宴集唱和，同僚交好。"
+        "description": "陆机与潘岳同列贾谧二十四友，洛阳文人同游共事。"
       },
       "next": {
         "id": 39,
@@ -922,7 +922,7 @@ const hisData = [
       "previous": {
         "id": 38,
         "type": "同僚",
-        "description": "王导为西晋末琅邪王司马睿司马，与石崇等并游于洛下士林，同朝共事。"
+        "description": "潘岳与石崇同列金谷二十四友，金谷园宴集唱和，同僚交好。"
       },
       "next": {
         "id": 40,
@@ -946,7 +946,7 @@ const hisData = [
       "previous": {
         "id": 39,
         "type": "君臣",
-        "description": "王导与司马睿素相亲善，佐其镇建康、开东晋，'王与马共天下'。"
+        "description": "王导为西晋末琅邪王司马睿司马，与石崇等并游于洛下士林，同朝共事。"
       },
       "next": {
         "id": 41,
@@ -970,7 +970,7 @@ const hisData = [
       "previous": {
         "id": 40,
         "type": "亲友",
-        "description": "王羲之出王导之族，导为其从叔祖，羲之初仕即在建康王氏门第，亲族同朝。"
+        "description": "王导与司马睿素相亲善，佐其镇建康、开东晋，'王与马共天下'。"
       },
       "next": {
         "id": 42,
@@ -994,7 +994,7 @@ const hisData = [
       "previous": {
         "id": 41,
         "type": "同僚",
-        "description": "王羲之与谢安同游东山、共预兰亭之会（353年），文人名士当面唱和。"
+        "description": "王羲之出王导之族，导为其从叔祖，羲之初仕即在建康王氏门第，亲族同朝。"
       },
       "next": {
         "id": 43,
@@ -1018,7 +1018,7 @@ const hisData = [
       "previous": {
         "id": 42,
         "type": "亲友",
-        "description": "谢玄为谢安之侄，安自幼教之，淝水之战玄以北府兵破苻坚，叔侄共济。"
+        "description": "王羲之与谢安同游东山、共预兰亭之会（353年），文人名士当面唱和。"
       },
       "next": {
         "id": 44,
@@ -1042,7 +1042,7 @@ const hisData = [
       "previous": {
         "id": 43,
         "type": "君臣",
-        "description": "北府兵为谢玄所创，刘裕即出于北府体系，先后为东晋将领，同掌军旅之任。"
+        "description": "谢玄为谢安之侄，安自幼教之，淝水之战玄以北府兵破苻坚，叔侄共济。"
       },
       "next": {
         "id": 45,
@@ -1066,7 +1066,7 @@ const hisData = [
       "previous": {
         "id": 44,
         "type": "亲友",
-        "description": "刘义隆为刘裕之子，裕践祚后立为太子，即宋文帝，父子相继。"
+        "description": "北府兵为谢玄所创，刘裕即出于北府体系，先后为东晋将领，同掌军旅之任。"
       },
       "next": {
         "id": 46,
@@ -1090,7 +1090,7 @@ const hisData = [
       "previous": {
         "id": 45,
         "type": "同僚",
-        "description": "谢灵运为宋文帝朝秘书监，帝赏其诗；义隆与沈约同朝，约为后起文宗。"
+        "description": "刘义隆为刘裕之子，裕践祚后立为太子，即宋文帝，父子相继。"
       },
       "next": {
         "id": 47,
@@ -1114,7 +1114,7 @@ const hisData = [
       "previous": {
         "id": 46,
         "type": "同僚",
-        "description": "沈约与谢朓同列竟陵王萧子良西邸'竟陵八友'，文酒唱和，同朝共事。"
+        "description": "谢灵运为宋文帝朝秘书监，帝赏其诗；义隆与沈约同朝，约为后起文宗。"
       },
       "next": {
         "id": 48,
@@ -1138,7 +1138,7 @@ const hisData = [
       "previous": {
         "id": 47,
         "type": "亲友",
-        "description": "萧衍为竟陵八友之一，与萧子良交好，子良待之如宾友，同游西邸。"
+        "description": "沈约与谢朓同列竟陵王萧子良西邸'竟陵八友'，文酒唱和，同朝共事。"
       },
       "next": {
         "id": 49,
@@ -1162,7 +1162,7 @@ const hisData = [
       "previous": {
         "id": 48,
         "type": "亲友",
-        "description": "萧统为萧衍长子，立为太子，编《文选》，父子情深。"
+        "description": "萧衍为竟陵八友之一，与萧子良交好，子良待之如宾友，同游西邸。"
       },
       "next": {
         "id": 50,
@@ -1186,7 +1186,7 @@ const hisData = [
       "previous": {
         "id": 49,
         "type": "亲友",
-        "description": "萧绎为萧衍之子、萧统之弟，兄弟同朝，绎继统为梁元帝。"
+        "description": "萧统为萧衍长子，立为太子，编《文选》，父子情深。"
       },
       "next": {
         "id": 51,
@@ -1210,7 +1210,7 @@ const hisData = [
       "previous": {
         "id": 50,
         "type": "君臣",
-        "description": "王僧辩为萧绎（梁元帝）都督，讨侯景、复建康，君臣共举大事。"
+        "description": "萧绎为萧衍之子、萧统之弟，兄弟同朝，绎继统为梁元帝。"
       },
       "next": {
         "id": 52,
@@ -1234,7 +1234,7 @@ const hisData = [
       "previous": {
         "id": 51,
         "type": "同僚",
-        "description": "陈霸先与王僧辩共讨侯景、会师建康，后霸先袭杀僧辩而代梁建陈，同朝对手。"
+        "description": "王僧辩为萧绎（梁元帝）都督，讨侯景、复建康，君臣共举大事。"
       },
       "next": {
         "id": 53,
@@ -1258,7 +1258,7 @@ const hisData = [
       "previous": {
         "id": 52,
         "type": "亲友",
-        "description": "陈顼为陈霸先之侄，宗室相继；顼立子叔宝为太子，即陈后主。"
+        "description": "陈霸先与王僧辩共讨侯景、会师建康，后霸先袭杀僧辩而代梁建陈，同朝对手。"
       },
       "next": {
         "id": 54,
@@ -1282,7 +1282,7 @@ const hisData = [
       "previous": {
         "id": 53,
         "type": "亲友",
-        "description": "陈叔宝为陈顼之子，父子相继为陈末帝。"
+        "description": "陈顼为陈霸先之侄，宗室相继；顼立子叔宝为太子，即陈后主。"
       },
       "next": {
         "id": 55,
@@ -1306,7 +1306,7 @@ const hisData = [
       "previous": {
         "id": 54,
         "type": "对手",
-        "description": "隋灭陈，陈叔宝被俘送长安，隋文帝杨坚当面接见，谓'全无心肝'，对手相见。"
+        "description": "陈叔宝为陈顼之子，父子相继为陈末帝。"
       },
       "next": {
         "id": 56,
@@ -1330,7 +1330,7 @@ const hisData = [
       "previous": {
         "id": 55,
         "type": "亲友",
-        "description": "杨广为杨坚次子，弑父（仁寿宫变）而继位，父子相继。"
+        "description": "隋灭陈，陈叔宝被俘送长安，隋文帝杨坚当面接见，谓'全无心肝'，对手相见。"
       },
       "next": {
         "id": 57,
@@ -1354,7 +1354,7 @@ const hisData = [
       "previous": {
         "id": 56,
         "type": "亲友",
-        "description": "李渊为杨广表兄（独孤皇后侄），炀帝朝为太原留守，外戚宗亲同朝。"
+        "description": "杨广为杨坚次子，弑父（仁寿宫变）而继位，父子相继。"
       },
       "next": {
         "id": 58,
@@ -1378,7 +1378,7 @@ const hisData = [
       "previous": {
         "id": 57,
         "type": "亲友",
-        "description": "李世民为李渊次子，晋阳起兵建唐，立为太子，即太宗，父子相继。"
+        "description": "李渊为杨广表兄（独孤皇后侄），炀帝朝为太原留守，外戚宗亲同朝。"
       },
       "next": {
         "id": 59,
@@ -1402,7 +1402,7 @@ const hisData = [
       "previous": {
         "id": 58,
         "type": "君臣",
-        "description": "魏徵原太子建成洗马，太宗即位任谏议大夫，'以人为镜'，君臣当面论政。"
+        "description": "李世民为李渊次子，晋阳起兵建唐，立为太子，即太宗，父子相继。"
       },
       "next": {
         "id": 60,
@@ -1426,7 +1426,7 @@ const hisData = [
       "previous": {
         "id": 59,
         "type": "同僚",
-        "description": "房玄龄与魏徵同为贞观名臣，同在中书门下，共辅太宗，同朝论政。"
+        "description": "魏徵原太子建成洗马，太宗即位任谏议大夫，'以人为镜'，君臣当面论政。"
       },
       "next": {
         "id": 61,
@@ -1450,7 +1450,7 @@ const hisData = [
       "previous": {
         "id": 60,
         "type": "同僚",
-        "description": "'房谋杜断'，二人同为中书令，共掌机务，当面定策。"
+        "description": "房玄龄与魏徵同为贞观名臣，同在中书门下，共辅太宗，同朝论政。"
       },
       "next": {
         "id": 62,
@@ -1474,7 +1474,7 @@ const hisData = [
       "previous": {
         "id": 61,
         "type": "同僚",
-        "description": "李靖为唐初名将，与杜如晦同朝于太宗贞观，俱为凌烟阁功臣，同朝共事。"
+        "description": "'房谋杜断'，二人同为中书令，共掌机务，当面定策。"
       },
       "next": {
         "id": 63,
@@ -1498,7 +1498,7 @@ const hisData = [
       "previous": {
         "id": 62,
         "type": "同僚",
-        "description": "李勣与李靖同为唐初军功之冠，灭突厥、征高丽，同朝同列，将相当面。"
+        "description": "李靖为唐初名将，与杜如晦同朝于太宗贞观，俱为凌烟阁功臣，同朝共事。"
       },
       "next": {
         "id": 64,
@@ -1522,7 +1522,7 @@ const hisData = [
       "previous": {
         "id": 63,
         "type": "君臣",
-        "description": "李勣为高宗托孤，赞立武昭仪为后，武后当国，君臣相得。"
+        "description": "李勣与李靖同为唐初军功之冠，灭突厥、征高丽，同朝同列，将相当面。"
       },
       "next": {
         "id": 65,
@@ -1546,7 +1546,7 @@ const hisData = [
       "previous": {
         "id": 64,
         "type": "君臣",
-        "description": "狄仁杰为武则天朝宰相，女皇谓'国老'，君臣当面论治、受重托。"
+        "description": "李勣为高宗托孤，赞立武昭仪为后，武后当国，君臣相得。"
       },
       "next": {
         "id": 66,
@@ -1570,7 +1570,7 @@ const hisData = [
       "previous": {
         "id": 65,
         "type": "君臣",
-        "description": "狄仁杰荐张柬之，则天召见授相，柬之受仁杰举荐，二人当面论荐。"
+        "description": "狄仁杰为武则天朝宰相，女皇谓'国老'，君臣当面论治、受重托。"
       },
       "next": {
         "id": 67,
@@ -1594,7 +1594,7 @@ const hisData = [
       "previous": {
         "id": 66,
         "type": "同僚",
-        "description": "姚崇与张柬之同预神龙政变，逼武则天退位，同列议定策之功，同朝共事。"
+        "description": "狄仁杰荐张柬之，则天召见授相，柬之受仁杰举荐，二人当面论荐。"
       },
       "next": {
         "id": 68,
@@ -1618,7 +1618,7 @@ const hisData = [
       "previous": {
         "id": 67,
         "type": "同僚",
-        "description": "宋璟与姚崇同为开元名相，姚崇荐宋璟自代，二人当面交接相位，同朝共济。"
+        "description": "姚崇与张柬之同预神龙政变，逼武则天退位，同列议定策之功，同朝共事。"
       },
       "next": {
         "id": 69,
@@ -1642,7 +1642,7 @@ const hisData = [
       "previous": {
         "id": 68,
         "type": "同僚",
-        "description": "张九龄与宋璟同朝于玄宗，璟为前相、九龄为后继，同列台阁，朝野相推。"
+        "description": "宋璟与姚崇同为开元名相，姚崇荐宋璟自代，二人当面交接相位，同朝共济。"
       },
       "next": {
         "id": 70,
@@ -1666,7 +1666,7 @@ const hisData = [
       "previous": {
         "id": 69,
         "type": "同僚",
-        "description": "贺知章与张九龄同朝于玄宗，并为文酒之友，同列长安。"
+        "description": "张九龄与宋璟同朝于玄宗，璟为前相、九龄为后继，同列台阁，朝野相推。"
       },
       "next": {
         "id": 71,
@@ -1690,7 +1690,7 @@ const hisData = [
       "previous": {
         "id": 70,
         "type": "忘年交",
-        "description": "贺知章读李白《蜀道难》，呼为'谪仙人'，解金龟换酒，忘年相交。"
+        "description": "贺知章与张九龄同朝于玄宗，并为文酒之友，同列长安。"
       },
       "next": {
         "id": 72,
@@ -1714,7 +1714,7 @@ const hisData = [
       "previous": {
         "id": 71,
         "type": "忘年交",
-        "description": "李杜同游梁宋，'醉眠秋共被，携手日同行'，诗仙诗圣当面唱和。"
+        "description": "贺知章读李白《蜀道难》，呼为'谪仙人'，解金龟换酒，忘年相交。"
       },
       "next": {
         "id": 73,
@@ -1738,7 +1738,7 @@ const hisData = [
       "previous": {
         "id": 72,
         "type": "同僚",
-        "description": "高适与杜甫、李白同游梁宋，杜甫诗中'与高李'即高适、李白，三人当面共游。"
+        "description": "李杜同游梁宋，'醉眠秋共被，携手日同行'，诗仙诗圣当面唱和。"
       },
       "next": {
         "id": 74,
@@ -1762,7 +1762,7 @@ const hisData = [
       "previous": {
         "id": 73,
         "type": "同僚",
-        "description": "颜真卿与高适同朝于肃宗、代宗，并主讨安史、守节拒叛，同朝共事。"
+        "description": "高适与杜甫、李白同游梁宋，杜甫诗中'与高李'即高适、李白，三人当面共游。"
       },
       "next": {
         "id": 75,
@@ -1786,7 +1786,7 @@ const hisData = [
       "previous": {
         "id": 74,
         "type": "同僚",
-        "description": "颜真卿刺湖州，陆羽居苕溪，二人唱和往来，同撰《韵海镜源》，当面论学。"
+        "description": "颜真卿与高适同朝于肃宗、代宗，并主讨安史、守节拒叛，同朝共事。"
       },
       "next": {
         "id": 76,
@@ -1810,7 +1810,7 @@ const hisData = [
       "previous": {
         "id": 75,
         "type": "亲友",
-        "description": "皎然为诗僧，与陆羽同居湖州，论茶论诗，方外之交，朝夕相见。"
+        "description": "颜真卿刺湖州，陆羽居苕溪，二人唱和往来，同撰《韵海镜源》，当面论学。"
       },
       "next": {
         "id": 77,
@@ -1834,7 +1834,7 @@ const hisData = [
       "previous": {
         "id": 76,
         "type": "同僚",
-        "description": "孟郊与韩愈为'韩孟'诗派挚友，郊客湖州从皎然游，后与韩愈长安论诗，当面唱和。"
+        "description": "皎然为诗僧，与陆羽同居湖州，论茶论诗，方外之交，朝夕相见。"
       },
       "next": {
         "id": 78,
@@ -1858,7 +1858,7 @@ const hisData = [
       "previous": {
         "id": 77,
         "type": "同僚",
-        "description": "韩愈与白居易同在中唐朝堂，俱为文章巨公，同列长安，文章相知。"
+        "description": "孟郊与韩愈为'韩孟'诗派挚友，郊客湖州从皎然游，后与韩愈长安论诗，当面唱和。"
       },
       "next": {
         "id": 79,
@@ -1882,7 +1882,7 @@ const hisData = [
       "previous": {
         "id": 78,
         "type": "忘年交",
-        "description": "元稹与白居易并称'元白'，唱和数百首，'垂老休无倦'，挚友当面论诗。"
+        "description": "韩愈与白居易同在中唐朝堂，俱为文章巨公，同列长安，文章相知。"
       },
       "next": {
         "id": 80,
@@ -1906,7 +1906,7 @@ const hisData = [
       "previous": {
         "id": 79,
         "type": "同僚",
-        "description": "李绅与元稹、白居易同倡新乐府，号为'三俊'，同朝唱和。"
+        "description": "元稹与白居易并称'元白'，唱和数百首，'垂老休无倦'，挚友当面论诗。"
       },
       "next": {
         "id": 81,
@@ -1930,7 +1930,7 @@ const hisData = [
       "previous": {
         "id": 80,
         "type": "同僚",
-        "description": "杜牧为李绅淮南幕僚，二人同朝共事，当面论政论文。"
+        "description": "李绅与元稹、白居易同倡新乐府，号为'三俊'，同朝唱和。"
       },
       "next": {
         "id": 82,
@@ -1954,7 +1954,7 @@ const hisData = [
       "previous": {
         "id": 81,
         "type": "同僚",
-        "description": "李商隐与杜牧并称'小李杜'，同在晚唐朝廷，文酒相闻，同列长安。"
+        "description": "杜牧为李绅淮南幕僚，二人同朝共事，当面论政论文。"
       },
       "next": {
         "id": 83,
@@ -1978,7 +1978,7 @@ const hisData = [
       "previous": {
         "id": 82,
         "type": "同僚",
-        "description": "温庭筠与李商隐并称'温李'，同以秾丽诗风名于晚唐，同朝交好。"
+        "description": "李商隐与杜牧并称'小李杜'，同在晚唐朝廷，文酒相闻，同列长安。"
       },
       "next": {
         "id": 84,
@@ -2002,7 +2002,7 @@ const hisData = [
       "previous": {
         "id": 83,
         "type": "同僚",
-        "description": "韦庄与温庭筠并称'温韦'，同为花间词魁，先后仕于西蜀，词坛相承。"
+        "description": "温庭筠与李商隐并称'温李'，同以秾丽诗风名于晚唐，同朝交好。"
       },
       "next": {
         "id": 85,
@@ -2026,7 +2026,7 @@ const hisData = [
       "previous": {
         "id": 84,
         "type": "君臣",
-        "description": "韦庄为唐昭宗朝进士，君臣同朝；后入前蜀为王建掌书记。"
+        "description": "韦庄与温庭筠并称'温韦'，同为花间词魁，先后仕于西蜀，词坛相承。"
       },
       "next": {
         "id": 86,
@@ -2050,7 +2050,7 @@ const hisData = [
       "previous": {
         "id": 85,
         "type": "对手",
-        "description": "朱温挟持并弑杀唐昭宗，迁都洛阳，控制朝政，君臣而实为对手，当面相逼。"
+        "description": "韦庄为唐昭宗朝进士，君臣同朝；后入前蜀为王建掌书记。"
       },
       "next": {
         "id": 87,
@@ -2074,7 +2074,7 @@ const hisData = [
       "previous": {
         "id": 86,
         "type": "对手",
-        "description": "朱温与李克用同讨黄巢，上源驿夜宴后朱温袭之，二人当面结怨、战场为敌。"
+        "description": "朱温挟持并弑杀唐昭宗，迁都洛阳，控制朝政，君臣而实为对手，当面相逼。"
       },
       "next": {
         "id": 88,
@@ -2098,7 +2098,7 @@ const hisData = [
       "previous": {
         "id": 87,
         "type": "亲友",
-        "description": "李存勖为李克用之子，克用临卒付三矢嘱报仇，父子相继为晋王。"
+        "description": "朱温与李克用同讨黄巢，上源驿夜宴后朱温袭之，二人当面结怨、战场为敌。"
       },
       "next": {
         "id": 89,
@@ -2122,7 +2122,7 @@ const hisData = [
       "previous": {
         "id": 88,
         "type": "君臣",
-        "description": "冯道仕后唐庄宗为翰林学士，君臣同朝，后历五朝为元老。"
+        "description": "李存勖为李克用之子，克用临卒付三矢嘱报仇，父子相继为晋王。"
       },
       "next": {
         "id": 90,
@@ -2146,7 +2146,7 @@ const hisData = [
       "previous": {
         "id": 89,
         "type": "君臣",
-        "description": "石敬瑭建后晋，冯道仍为宰相，君臣同朝共事。"
+        "description": "冯道仕后唐庄宗为翰林学士，君臣同朝，后历五朝为元老。"
       },
       "next": {
         "id": 91,
@@ -2170,7 +2170,7 @@ const hisData = [
       "previous": {
         "id": 90,
         "type": "同僚",
-        "description": "刘知远与石敬瑭同隶后唐明宗帐下为将，敬瑭称帝后知远为其佐命，同朝共事。"
+        "description": "石敬瑭建后晋，冯道仍为宰相，君臣同朝共事。"
       },
       "next": {
         "id": 92,
@@ -2194,7 +2194,7 @@ const hisData = [
       "previous": {
         "id": 91,
         "type": "君臣",
-        "description": "郭威为刘知远佐命，知远称帝后威掌枢机，君臣同定后汉。"
+        "description": "刘知远与石敬瑭同隶后唐明宗帐下为将，敬瑭称帝后知远为其佐命，同朝共事。"
       },
       "next": {
         "id": 93,
@@ -2218,7 +2218,7 @@ const hisData = [
       "previous": {
         "id": 92,
         "type": "亲友",
-        "description": "柴荣为郭威养子，威妻以侄女，朝夕相见，继为后周世宗。"
+        "description": "郭威为刘知远佐命，知远称帝后威掌枢机，君臣同定后汉。"
       },
       "next": {
         "id": 94,
@@ -2242,7 +2242,7 @@ const hisData = [
       "previous": {
         "id": 93,
         "type": "君臣",
-        "description": "赵匡胤为柴荣殿前都点检，随征淮南、北伐契丹，君臣同袍共事。"
+        "description": "柴荣为郭威养子，威妻以侄女，朝夕相见，继为后周世宗。"
       },
       "next": {
         "id": 95,
@@ -2266,7 +2266,7 @@ const hisData = [
       "previous": {
         "id": 94,
         "type": "亲友",
-        "description": "赵光义为赵匡胤之弟，陈桥兵变同谋，'斧声烛影'继统，兄弟相继。"
+        "description": "赵匡胤为柴荣殿前都点检，随征淮南、北伐契丹，君臣同袍共事。"
       },
       "next": {
         "id": 96,
@@ -2290,7 +2290,7 @@ const hisData = [
       "previous": {
         "id": 95,
         "type": "君臣",
-        "description": "寇准为太宗、真宗朝宰相，澶渊之盟主战，君臣同朝决大事。"
+        "description": "赵光义为赵匡胤之弟，陈桥兵变同谋，'斧声烛影'继统，兄弟相继。"
       },
       "next": {
         "id": 97,
@@ -2314,7 +2314,7 @@ const hisData = [
       "previous": {
         "id": 96,
         "type": "同僚",
-        "description": "范仲淹与寇准同朝于真宗、仁宗之际，皆为社稷名臣，朝堂相知。"
+        "description": "寇准为太宗、真宗朝宰相，澶渊之盟主战，君臣同朝决大事。"
       },
       "next": {
         "id": 98,
@@ -2338,7 +2338,7 @@ const hisData = [
       "previous": {
         "id": 97,
         "type": "同僚",
-        "description": "欧阳修与范仲淹同主庆历新政，欧为范鸣不平，同朝共改革。"
+        "description": "范仲淹与寇准同朝于真宗、仁宗之际，皆为社稷名臣，朝堂相知。"
       },
       "next": {
         "id": 99,
@@ -2362,7 +2362,7 @@ const hisData = [
       "previous": {
         "id": 98,
         "type": "师徒",
-        "description": "欧阳修主嘉祐贡举，拔苏轼，读其文'不觉汗出'，叹'当避此人出一头地'，师徒相得。"
+        "description": "欧阳修与范仲淹同主庆历新政，欧为范鸣不平，同朝共改革。"
       },
       "next": {
         "id": 100,
@@ -2386,7 +2386,7 @@ const hisData = [
       "previous": {
         "id": 99,
         "type": "亲友",
-        "description": "苏辙为苏轼之弟，'三苏'同列，手足唱和，同贬同归。"
+        "description": "欧阳修主嘉祐贡举，拔苏轼，读其文'不觉汗出'，叹'当避此人出一头地'，师徒相得。"
       },
       "next": {
         "id": 101,
@@ -2410,7 +2410,7 @@ const hisData = [
       "previous": {
         "id": 100,
         "type": "同僚",
-        "description": "苏辙与司马光同属旧党，光执政引辙为谏官，同朝共政。"
+        "description": "苏辙为苏轼之弟，'三苏'同列，手足唱和，同贬同归。"
       },
       "next": {
         "id": 102,
@@ -2434,7 +2434,7 @@ const hisData = [
       "previous": {
         "id": 101,
         "type": "对手",
-        "description": "司马光与王安石同朝，御前争辩新法，新旧党争对手，当面论政。"
+        "description": "苏辙与司马光同属旧党，光执政引辙为谏官，同朝共政。"
       },
       "next": {
         "id": 103,
@@ -2458,7 +2458,7 @@ const hisData = [
       "previous": {
         "id": 102,
         "type": "师徒",
-        "description": "黄庭坚出自苏轼门下（苏门四学士），与王安石同出欧阳之后，文章相承，同朝文坛。"
+        "description": "司马光与王安石同朝，御前争辩新法，新旧党争对手，当面论政。"
       },
       "next": {
         "id": 104,
@@ -2482,7 +2482,7 @@ const hisData = [
       "previous": {
         "id": 103,
         "type": "同僚",
-        "description": "米芾与黄庭坚同列'宋四家'，论书相善，同朝唱和于京师。"
+        "description": "黄庭坚出自苏轼门下（苏门四学士），与王安石同出欧阳之后，文章相承，同朝文坛。"
       },
       "next": {
         "id": 105,
@@ -2506,7 +2506,7 @@ const hisData = [
       "previous": {
         "id": 104,
         "type": "君臣",
-        "description": "米芾为宋徽宗书画学博士，帝召对便殿论书赐砚，君臣当面论艺。"
+        "description": "米芾与黄庭坚同列'宋四家'，论书相善，同朝唱和于京师。"
       },
       "next": {
         "id": 106,
@@ -2530,7 +2530,7 @@ const hisData = [
       "previous": {
         "id": 105,
         "type": "君臣",
-        "description": "李纲为徽宗、钦宗朝抗金宰相，汴京保卫战主帅，君臣同国难。"
+        "description": "米芾为宋徽宗书画学博士，帝召对便殿论书赐砚，君臣当面论艺。"
       },
       "next": {
         "id": 107,
@@ -2554,7 +2554,7 @@ const hisData = [
       "previous": {
         "id": 106,
         "type": "同僚",
-        "description": "宗泽与李纲同主抗金，泽为东京留守，纲为相，同朝共谋恢复。"
+        "description": "李纲为徽宗、钦宗朝抗金宰相，汴京保卫战主帅，君臣同国难。"
       },
       "next": {
         "id": 108,
@@ -2578,7 +2578,7 @@ const hisData = [
       "previous": {
         "id": 107,
         "type": "君臣",
-        "description": "宗泽识岳飞于行伍，授以阵图、付以兵，君臣当面托以恢复之任。"
+        "description": "宗泽与李纲同主抗金，泽为东京留守，纲为相，同朝共谋恢复。"
       },
       "next": {
         "id": 109,
@@ -2602,7 +2602,7 @@ const hisData = [
       "previous": {
         "id": 108,
         "type": "同僚",
-        "description": "韩世忠与岳飞同为中兴抗金名将，岳飞下狱时世忠面诘秦桧'莫须有'，同朝共事。"
+        "description": "宗泽识岳飞于行伍，授以阵图、付以兵，君臣当面托以恢复之任。"
       },
       "next": {
         "id": 110,
@@ -2626,7 +2626,7 @@ const hisData = [
       "previous": {
         "id": 109,
         "type": "同僚",
-        "description": "吕本中与韩世忠等同在南宋初主战朝堂，本中掌士大夫清议，同朝共主恢复。"
+        "description": "韩世忠与岳飞同为中兴抗金名将，岳飞下狱时世忠面诘秦桧'莫须有'，同朝共事。"
       },
       "next": {
         "id": 111,
@@ -2650,7 +2650,7 @@ const hisData = [
       "previous": {
         "id": 110,
         "type": "师徒",
-        "description": "曾几受学于吕本中，传江西诗派，师徒当面论诗。"
+        "description": "吕本中与韩世忠等同在南宋初主战朝堂，本中掌士大夫清议，同朝共主恢复。"
       },
       "next": {
         "id": 112,
@@ -2674,7 +2674,7 @@ const hisData = [
       "previous": {
         "id": 111,
         "type": "师徒",
-        "description": "陆游少从曾几学诗，承江西诗派，师徒当面授受。"
+        "description": "曾几受学于吕本中，传江西诗派，师徒当面论诗。"
       },
       "next": {
         "id": 113,
@@ -2698,7 +2698,7 @@ const hisData = [
       "previous": {
         "id": 112,
         "type": "忘年交",
-        "description": "陆游晚年，辛弃疾持节绍兴访之于鉴湖，极论恢复大计，忘年相交，当面唱和。"
+        "description": "陆游少从曾几学诗，承江西诗派，师徒当面授受。"
       },
       "next": {
         "id": 114,
@@ -2722,7 +2722,7 @@ const hisData = [
       "previous": {
         "id": 113,
         "type": "忘年交",
-        "description": "辛弃疾与陈亮鹅湖之会，纵论恢复，酒后泣下，挚友当面论天下。"
+        "description": "陆游晚年，辛弃疾持节绍兴访之于鉴湖，极论恢复大计，忘年相交，当面唱和。"
       },
       "next": {
         "id": 115,
@@ -2746,7 +2746,7 @@ const hisData = [
       "previous": {
         "id": 114,
         "type": "同僚",
-        "description": "叶适与陈亮同为主张事功之学的浙东学派，同朝论学，学术相承。"
+        "description": "辛弃疾与陈亮鹅湖之会，纵论恢复，酒后泣下，挚友当面论天下。"
       },
       "next": {
         "id": 116,
@@ -2770,7 +2770,7 @@ const hisData = [
       "previous": {
         "id": 115,
         "type": "同僚",
-        "description": "真德秀与叶适同在南渡后理学—事功并兴之朝，德秀承朱学、为世儒宗，同朝相推。"
+        "description": "叶适与陈亮同为主张事功之学的浙东学派，同朝论学，学术相承。"
       },
       "next": {
         "id": 117,
@@ -2794,7 +2794,7 @@ const hisData = [
       "previous": {
         "id": 116,
         "type": "同僚",
-        "description": "文天祥为南宋末状元，真德秀开朱学之绪，祥继其正学遗风，同朝为士大夫领袖（德秀殁年祥方弱冠，以学统相承）。"
+        "description": "真德秀与叶适同在南渡后理学—事功并兴之朝，德秀承朱学、为世儒宗，同朝相推。"
       },
       "next": {
         "id": 118,
@@ -2818,7 +2818,7 @@ const hisData = [
       "previous": {
         "id": 117,
         "type": "对手",
-        "description": "文天祥兵败被俘送大都，元世祖忽必烈亲自召见劝降，君臣而实对手，当面相质。"
+        "description": "文天祥为南宋末状元，真德秀开朱学之绪，祥继其正学遗风，同朝为士大夫领袖（德秀殁年祥方弱冠，以学统相承）。"
       },
       "next": {
         "id": 119,
@@ -2842,7 +2842,7 @@ const hisData = [
       "previous": {
         "id": 118,
         "type": "君臣",
-        "description": "刘秉忠为忽必烈潜邸旧臣，定开国制度、筑大都，君臣谋议于左右。"
+        "description": "文天祥兵败被俘送大都，元世祖忽必烈亲自召见劝降，君臣而实对手，当面相质。"
       },
       "next": {
         "id": 120,
@@ -2866,7 +2866,7 @@ const hisData = [
       "previous": {
         "id": 119,
         "type": "同僚",
-        "description": "郭守敬受刘秉忠举荐于忽必烈，同修《授时历》、治水仪象，同朝共事。"
+        "description": "刘秉忠为忽必烈潜邸旧臣，定开国制度、筑大都，君臣谋议于左右。"
       },
       "next": {
         "id": 121,
@@ -2890,7 +2890,7 @@ const hisData = [
       "previous": {
         "id": 120,
         "type": "同僚",
-        "description": "赵孟頫为元翰林学士，与郭守敬同仕世祖、成宗朝于大都，同列文苑科技。"
+        "description": "郭守敬受刘秉忠举荐于忽必烈，同修《授时历》、治水仪象，同朝共事。"
       },
       "next": {
         "id": 122,
@@ -2914,7 +2914,7 @@ const hisData = [
       "previous": {
         "id": 121,
         "type": "师徒",
-        "description": "黄公望少从赵孟頫学画，承元人笔墨，师徒当面授受。"
+        "description": "赵孟頫为元翰林学士，与郭守敬同仕世祖、成宗朝于大都，同列文苑科技。"
       },
       "next": {
         "id": 123,
@@ -2938,7 +2938,7 @@ const hisData = [
       "previous": {
         "id": 122,
         "type": "亲友",
-        "description": "王蒙为赵孟頫外孙，与黄公望同列元四家，公望曾教蒙画，亲友兼同门。"
+        "description": "黄公望少从赵孟頫学画，承元人笔墨，师徒当面授受。"
       },
       "next": {
         "id": 124,
@@ -2962,7 +2962,7 @@ const hisData = [
       "previous": {
         "id": 123,
         "type": "同僚",
-        "description": "倪瓒与王蒙同列元四家，瓒为题蒙画、诗札往来，同朝文人交好。"
+        "description": "王蒙为赵孟頫外孙，与黄公望同列元四家，公望曾教蒙画，亲友兼同门。"
       },
       "next": {
         "id": 125,
@@ -2986,7 +2986,7 @@ const hisData = [
       "previous": {
         "id": 124,
         "type": "同僚",
-        "description": "杨维桢为元末诗坛盟主（铁崖体），与倪瓒唱和无间，同游江湖，文酒相善。"
+        "description": "倪瓒与王蒙同列元四家，瓒为题蒙画、诗札往来，同朝文人交好。"
       },
       "next": {
         "id": 126,
@@ -3010,7 +3010,7 @@ const hisData = [
       "previous": {
         "id": 125,
         "type": "同僚",
-        "description": "刘基（刘伯温）元末官浙东，与杨维桢同处文坛宦海，同朝相闻。"
+        "description": "杨维桢为元末诗坛盟主（铁崖体），与倪瓒唱和无间，同游江湖，文酒相善。"
       },
       "next": {
         "id": 127,
@@ -3034,7 +3034,7 @@ const hisData = [
       "previous": {
         "id": 126,
         "type": "君臣",
-        "description": "朱元璋礼聘刘基，基陈时务十八策，君臣定鼎谋议。"
+        "description": "刘基（刘伯温）元末官浙东，与杨维桢同处文坛宦海，同朝相闻。"
       },
       "next": {
         "id": 128,
@@ -3058,7 +3058,7 @@ const hisData = [
       "previous": {
         "id": 127,
         "type": "君臣",
-        "description": "宋濂为明开国文臣之首，总裁《元史》，为太子师，君臣同朝共典文翰。"
+        "description": "朱元璋礼聘刘基，基陈时务十八策，君臣定鼎谋议。"
       },
       "next": {
         "id": 129,
@@ -3082,7 +3082,7 @@ const hisData = [
       "previous": {
         "id": 128,
         "type": "师徒",
-        "description": "方孝孺为宋濂弟子，尽传其学，师徒当面授受，名动天下。"
+        "description": "宋濂为明开国文臣之首，总裁《元史》，为太子师，君臣同朝共典文翰。"
       },
       "next": {
         "id": 130,
@@ -3106,7 +3106,7 @@ const hisData = [
       "previous": {
         "id": 129,
         "type": "对手",
-        "description": "靖难之役，朱棣入南京召方孝孺草诏，孺拒命，被诛十族，君臣而实对手，御前相质。"
+        "description": "方孝孺为宋濂弟子，尽传其学，师徒当面授受，名动天下。"
       },
       "next": {
         "id": 131,
@@ -3130,7 +3130,7 @@ const hisData = [
       "previous": {
         "id": 130,
         "type": "君臣",
-        "description": "郑和奉成祖命七下西洋，君臣当面受命，开海上丝路。"
+        "description": "靖难之役，朱棣入南京召方孝孺草诏，孺拒命，被诛十族，君臣而实对手，御前相质。"
       },
       "next": {
         "id": 132,
@@ -3154,7 +3154,7 @@ const hisData = [
       "previous": {
         "id": 131,
         "type": "同僚",
-        "description": "杨士奇为永乐、洪熙、宣德三朝首辅，与郑和同朝于成祖之世，同典国家大事。"
+        "description": "郑和奉成祖命七下西洋，君臣当面受命，开海上丝路。"
       },
       "next": {
         "id": 133,
@@ -3178,7 +3178,7 @@ const hisData = [
       "previous": {
         "id": 132,
         "type": "同僚",
-        "description": "于谦为杨士奇所荐，同朝于宣德、正统，士奇引谦入台，同列共政。"
+        "description": "杨士奇为永乐、洪熙、宣德三朝首辅，与郑和同朝于成祖之世，同典国家大事。"
       },
       "next": {
         "id": 134,
@@ -3202,7 +3202,7 @@ const hisData = [
       "previous": {
         "id": 133,
         "type": "君臣",
-        "description": "于谦北京保卫战拥立景泰、拒守京师，英宗复辟后杀谦，君臣而终为对手，御前相决。"
+        "description": "于谦为杨士奇所荐，同朝于宣德、正统，士奇引谦入台，同列共政。"
       },
       "next": {
         "id": 135,
@@ -3226,7 +3226,7 @@ const hisData = [
       "previous": {
         "id": 134,
         "type": "亲友",
-        "description": "朱见深为朱祁镇之子，父子相继，宪宗继统。"
+        "description": "于谦北京保卫战拥立景泰、拒守京师，英宗复辟后杀谦，君臣而终为对手，御前相决。"
       },
       "next": {
         "id": 136,
@@ -3250,7 +3250,7 @@ const hisData = [
       "previous": {
         "id": 135,
         "type": "亲友",
-        "description": "朱祐樘为朱见深之子，父子相继，弘治中兴。"
+        "description": "朱见深为朱祁镇之子，父子相继，宪宗继统。"
       },
       "next": {
         "id": 137,
@@ -3274,7 +3274,7 @@ const hisData = [
       "previous": {
         "id": 136,
         "type": "亲友",
-        "description": "朱厚照为朱祐樘之子，父子相继，即正德帝。"
+        "description": "朱祐樘为朱见深之子，父子相继，弘治中兴。"
       },
       "next": {
         "id": 138,
@@ -3298,7 +3298,7 @@ const hisData = [
       "previous": {
         "id": 137,
         "type": "君臣",
-        "description": "王守仁平宁王宸濠之乱，武宗南巡受俘，君臣同定叛乱。"
+        "description": "朱厚照为朱祐樘之子，父子相继，即正德帝。"
       },
       "next": {
         "id": 139,
@@ -3322,7 +3322,7 @@ const hisData = [
       "previous": {
         "id": 138,
         "type": "同僚",
-        "description": "徐阶承王守仁再传之学（聂豹弟子），同主心学于嘉靖朝，学术相承、同朝。"
+        "description": "王守仁平宁王宸濠之乱，武宗南巡受俘，君臣同定叛乱。"
       },
       "next": {
         "id": 140,
@@ -3346,7 +3346,7 @@ const hisData = [
       "previous": {
         "id": 139,
         "type": "师徒",
-        "description": "张居正为徐阶所引拔，阶以国士待之，师徒相承共辅嘉靖、隆庆。"
+        "description": "徐阶承王守仁再传之学（聂豹弟子），同主心学于嘉靖朝，学术相承、同朝。"
       },
       "next": {
         "id": 141,
@@ -3370,7 +3370,7 @@ const hisData = [
       "previous": {
         "id": 140,
         "type": "同僚",
-        "description": "张居正为内阁首辅，力排众议用戚继光镇蓟州，君臣同僚共固边防。"
+        "description": "张居正为徐阶所引拔，阶以国士待之，师徒相承共辅嘉靖、隆庆。"
       },
       "next": {
         "id": 142,
@@ -3394,7 +3394,7 @@ const hisData = [
       "previous": {
         "id": 141,
         "type": "同僚",
-        "description": "俞大猷与戚继光同抗倭、同镇东南，'俞龙戚虎'，同朝并肩破贼。"
+        "description": "张居正为内阁首辅，力排众议用戚继光镇蓟州，君臣同僚共固边防。"
       },
       "next": {
         "id": 143,
@@ -3418,7 +3418,7 @@ const hisData = [
       "previous": {
         "id": 142,
         "type": "同僚",
-        "description": "（桥梁）戚继光—袁宏道同处万历文治之世，宏道为公安派领袖，与前后七子、汤显祖并世论文；此处以万历朝堂文苑相承接。"
+        "description": "俞大猷与戚继光同抗倭、同镇东南，'俞龙戚虎'，同朝并肩破贼。"
       },
       "next": {
         "id": 144,
@@ -3442,7 +3442,7 @@ const hisData = [
       "previous": {
         "id": 143,
         "type": "同僚",
-        "description": "（桥梁）袁宏道与刘宗周同万历—天启文苑，宗周为晚明大儒，宏道后起并世；以明末清流学统相承。"
+        "description": "（桥梁）戚继光—袁宏道同处万历文治之世，宏道为公安派领袖，与前后七子、汤显祖并世论文；此处以万历朝堂文苑相承接。"
       },
       "next": {
         "id": 145,
@@ -3466,7 +3466,7 @@ const hisData = [
       "previous": {
         "id": 144,
         "type": "同僚",
-        "description": "张溥主复社，奉东林遗绪，与刘宗周同主清议，同朝共张正气。"
+        "description": "（桥梁）袁宏道与刘宗周同万历—天启文苑，宗周为晚明大儒，宏道后起并世；以明末清流学统相承。"
       },
       "next": {
         "id": 146,
@@ -3490,7 +3490,7 @@ const hisData = [
       "previous": {
         "id": 145,
         "type": "对手",
-        "description": "（桥梁校正）张溥复社攻阉党，魏忠贤为阉党魁；杨涟与魏忠贤同朝，涟疏劾其二十四罪，朝堂当面相抗。"
+        "description": "张溥主复社，奉东林遗绪，与刘宗周同主清议，同朝共张正气。"
       },
       "next": {
         "id": 147,
@@ -3514,7 +3514,7 @@ const hisData = [
       "previous": {
         "id": 146,
         "type": "对手",
-        "description": "崇祯即位即铲除魏忠贤，忠贤谪凤阳途中自尽，君臣而实对手，御前决断。"
+        "description": "（桥梁校正）张溥复社攻阉党，魏忠贤为阉党魁；杨涟与魏忠贤同朝，涟疏劾其二十四罪，朝堂当面相抗。"
       },
       "next": {
         "id": 148,
@@ -3538,7 +3538,7 @@ const hisData = [
       "previous": {
         "id": 147,
         "type": "君臣",
-        "description": "崇祯平台召对袁崇焕，崇焕请五年平辽，君臣当面定边策。"
+        "description": "崇祯即位即铲除魏忠贤，忠贤谪凤阳途中自尽，君臣而实对手，御前决断。"
       },
       "next": {
         "id": 149,
@@ -3562,7 +3562,7 @@ const hisData = [
       "previous": {
         "id": 148,
         "type": "对手",
-        "description": "宁远之战，袁崇焕凭坚城红夷炮重伤努尔哈赤，后金汗退军身死，战场交锋对手。"
+        "description": "崇祯平台召对袁崇焕，崇焕请五年平辽，君臣当面定边策。"
       },
       "next": {
         "id": 150,
@@ -3586,7 +3586,7 @@ const hisData = [
       "previous": {
         "id": 149,
         "type": "亲友",
-        "description": "皇太极继承努尔哈赤汗位，父子相继，改国号为清。"
+        "description": "宁远之战，袁崇焕凭坚城红夷炮重伤努尔哈赤，后金汗退军身死，战场交锋对手。"
       },
       "next": {
         "id": 151,
@@ -3610,7 +3610,7 @@ const hisData = [
       "previous": {
         "id": 150,
         "type": "亲友",
-        "description": "多尔衮为皇太极之弟，太宗崩后辅幼主顺治，摄政叔侄共定入关。"
+        "description": "皇太极继承努尔哈赤汗位，父子相继，改国号为清。"
       },
       "next": {
         "id": 152,
@@ -3634,7 +3634,7 @@ const hisData = [
       "previous": {
         "id": 151,
         "type": "亲友",
-        "description": "顺治为皇太极第九子，多尔衮拥立并摄政，叔侄君臣同朝。"
+        "description": "多尔衮为皇太极之弟，太宗崩后辅幼主顺治，摄政叔侄共定入关。"
       },
       "next": {
         "id": 153,
@@ -3658,7 +3658,7 @@ const hisData = [
       "previous": {
         "id": 152,
         "type": "亲友",
-        "description": "康熙为顺治之子，父子相继，幼年嗣位。"
+        "description": "顺治为皇太极第九子，多尔衮拥立并摄政，叔侄君臣同朝。"
       },
       "next": {
         "id": 154,
@@ -3682,7 +3682,7 @@ const hisData = [
       "previous": {
         "id": 153,
         "type": "君臣",
-        "description": "纳兰性德为康熙御前侍卫，日夜扈从，君臣当面论词。"
+        "description": "康熙为顺治之子，父子相继，幼年嗣位。"
       },
       "next": {
         "id": 155,
@@ -3706,7 +3706,7 @@ const hisData = [
       "previous": {
         "id": 154,
         "type": "同僚",
-        "description": "朱彝尊与纳兰性德同值康熙朝翰林、侍从，禁中唱和，同僚交好。"
+        "description": "纳兰性德为康熙御前侍卫，日夜扈从，君臣当面论词。"
       },
       "next": {
         "id": 156,
@@ -3730,7 +3730,7 @@ const hisData = [
       "previous": {
         "id": 155,
         "type": "师徒",
-        "description": "查慎行为朱彝尊表侄兼诗弟子，从游得法，师徒当面授受。"
+        "description": "朱彝尊与纳兰性德同值康熙朝翰林、侍从，禁中唱和，同僚交好。"
       },
       "next": {
         "id": 157,
@@ -3754,7 +3754,7 @@ const hisData = [
       "previous": {
         "id": 156,
         "type": "亲友",
-        "description": "雍正为康熙第四子，父子相继，嗣位承统。"
+        "description": "查慎行为朱彝尊表侄兼诗弟子，从游得法，师徒当面授受。"
       },
       "next": {
         "id": 158,
@@ -3778,7 +3778,7 @@ const hisData = [
       "previous": {
         "id": 157,
         "type": "亲友",
-        "description": "乾隆为雍正之子，父子相继，在位六十载。"
+        "description": "雍正为康熙第四子，父子相继，嗣位承统。"
       },
       "next": {
         "id": 159,
@@ -3802,7 +3802,7 @@ const hisData = [
       "previous": {
         "id": 158,
         "type": "君臣",
-        "description": "纪昀总纂《四库全书》，乾隆亲命之，君臣当面论学。"
+        "description": "乾隆为雍正之子，父子相继，在位六十载。"
       },
       "next": {
         "id": 160,
@@ -3826,7 +3826,7 @@ const hisData = [
       "previous": {
         "id": 159,
         "type": "同僚",
-        "description": "刘墉与纪昀同朝乾隆，并为词臣，同列论学，朝堂相知。"
+        "description": "纪昀总纂《四库全书》，乾隆亲命之，君臣当面论学。"
       },
       "next": {
         "id": 161,
@@ -3850,7 +3850,7 @@ const hisData = [
       "previous": {
         "id": 160,
         "type": "同僚",
-        "description": "和珅与刘墉同朝乾隆末年，一权相一清臣，同列相持。"
+        "description": "刘墉与纪昀同朝乾隆，并为词臣，同列论学，朝堂相知。"
       },
       "next": {
         "id": 162,
@@ -3874,7 +3874,7 @@ const hisData = [
       "previous": {
         "id": 161,
         "type": "对手",
-        "description": "嘉庆即位即赐死和珅，抄没家产，君臣而实对手，御前决断。"
+        "description": "和珅与刘墉同朝乾隆末年，一权相一清臣，同列相持。"
       },
       "next": {
         "id": 163,
@@ -3898,7 +3898,7 @@ const hisData = [
       "previous": {
         "id": 162,
         "type": "亲友",
-        "description": "道光为嘉庆之子，父子相继，嗣位承统。"
+        "description": "嘉庆即位即赐死和珅，抄没家产，君臣而实对手，御前决断。"
       },
       "next": {
         "id": 164,
@@ -3922,7 +3922,7 @@ const hisData = [
       "previous": {
         "id": 163,
         "type": "君臣",
-        "description": "林则徐为道光朝禁烟大臣，虎门销烟，君臣当面受命。"
+        "description": "道光为嘉庆之子，父子相继，嗣位承统。"
       },
       "next": {
         "id": 165,
@@ -3946,7 +3946,7 @@ const hisData = [
       "previous": {
         "id": 164,
         "type": "师徒",
-        "description": "林则徐遣戍途经镇江，以《四洲志》托魏源编《海国图志》，二人当面交接遗稿。"
+        "description": "林则徐为道光朝禁烟大臣，虎门销烟，君臣当面受命。"
       },
       "next": {
         "id": 166,
@@ -3970,7 +3970,7 @@ const hisData = [
       "previous": {
         "id": 165,
         "type": "同僚",
-        "description": "（桥梁）曾国藩道光末居京，承林则徐、魏源经世之志，同朝士大夫相推；曾上疏言事，与魏源同主实务。"
+        "description": "林则徐遣戍途经镇江，以《四洲志》托魏源编《海国图志》，二人当面交接遗稿。"
       },
       "next": {
         "id": 167,
@@ -3994,7 +3994,7 @@ const hisData = [
       "previous": {
         "id": 166,
         "type": "师徒",
-        "description": "李鸿章为曾国藩弟子，入湘军幕，国藩荐其独领一军，师徒相承。"
+        "description": "（桥梁）曾国藩道光末居京，承林则徐、魏源经世之志，同朝士大夫相推；曾上疏言事，与魏源同主实务。"
       },
       "next": {
         "id": 168,
@@ -4018,7 +4018,7 @@ const hisData = [
       "previous": {
         "id": 167,
         "type": "同僚",
-        "description": "左宗棠与李鸿章同为中兴名臣，同朝共事、同办洋务，虽时有龃龉而共国立功。"
+        "description": "李鸿章为曾国藩弟子，入湘军幕，国藩荐其独领一军，师徒相承。"
       },
       "next": {
         "id": 169,
@@ -4042,7 +4042,7 @@ const hisData = [
       "previous": {
         "id": 168,
         "type": "同僚",
-        "description": "张之洞与李鸿章同为洋务殿军，同朝倡新政、练新军，南北相呼应。"
+        "description": "左宗棠与李鸿章同为中兴名臣，同朝共事、同办洋务，虽时有龃龉而共国立功。"
       },
       "next": {
         "id": 170,
@@ -4066,7 +4066,7 @@ const hisData = [
       "previous": {
         "id": 169,
         "type": "对手",
-        "description": "康有为与张之洞同处维新思潮，之洞《劝学篇》暗驳康说，同朝论政相左。"
+        "description": "张之洞与李鸿章同为洋务殿军，同朝倡新政、练新军，南北相呼应。"
       },
       "next": {
         "id": 171,
@@ -4090,7 +4090,7 @@ const hisData = [
       "previous": {
         "id": 170,
         "type": "师徒",
-        "description": "梁启超为康有为万木草堂弟子，师徒倡公羊改制、维新变法。"
+        "description": "康有为与张之洞同处维新思潮，之洞《劝学篇》暗驳康说，同朝论政相左。"
       },
       "next": {
         "id": 172,
@@ -4114,7 +4114,7 @@ const hisData = [
       "previous": {
         "id": 171,
         "type": "同僚",
-        "description": "谭嗣同与梁启超同倡维新，同列军机四卿，变法相见，朝夕共谋。"
+        "description": "梁启超为康有为万木草堂弟子，师徒倡公羊改制、维新变法。"
       },
       "next": {
         "id": 173,
@@ -4138,7 +4138,7 @@ const hisData = [
       "previous": {
         "id": 172,
         "type": "对手",
-        "description": "戊戌政变前谭嗣同夜访袁世凯说兵变，袁佯允而告密，二人当面交涉，对手决裂。"
+        "description": "谭嗣同与梁启超同倡维新，同列军机四卿，变法相见，朝夕共谋。"
       },
       "next": {
         "id": 174,
@@ -4162,7 +4162,7 @@ const hisData = [
       "previous": {
         "id": 173,
         "type": "对手",
-        "description": "袁世凯逼清帝退位，南北议和，孙中山让位，二人当面交接政权（伍廷芳—唐绍仪议和，孙袁通电）。"
+        "description": "戊戌政变前谭嗣同夜访袁世凯说兵变，袁佯允而告密，二人当面交涉，对手决裂。"
       },
       "next": {
         "id": 175,
@@ -4186,7 +4186,7 @@ const hisData = [
       "previous": {
         "id": 174,
         "type": "亲友",
-        "description": "黄兴与孙中山同创同盟会，辛亥革命并肩，'孙黄'并称，挚友同志。"
+        "description": "袁世凯逼清帝退位，南北议和，孙中山让位，二人当面交接政权（伍廷芳—唐绍仪议和，孙袁通电）。"
       },
       "next": {
         "id": 176,
@@ -4210,7 +4210,7 @@ const hisData = [
       "previous": {
         "id": 175,
         "type": "同僚",
-        "description": "宋教仁与黄兴同为同盟会、国民党骨干，共组政党，同朝共事。"
+        "description": "黄兴与孙中山同创同盟会，辛亥革命并肩，'孙黄'并称，挚友同志。"
       },
       "next": {
         "id": 177,
@@ -4234,7 +4234,7 @@ const hisData = [
       "previous": {
         "id": 176,
         "type": "师徒",
-        "description": "蒋介石经陈其美引见孙中山，受知于孙，师徒相承革命衣钵。"
+        "description": "宋教仁与黄兴同为同盟会、国民党骨干，共组政党，同朝共事。"
       },
       "next": {
         "id": 178,
@@ -4258,7 +4258,7 @@ const hisData = [
       "previous": {
         "id": 177,
         "type": "对手",
-        "description": "1945年重庆谈判，毛泽东与蒋介石面对面会谈43天，签订《双十协定》，对手相见。"
+        "description": "蒋介石经陈其美引见孙中山，受知于孙，师徒相承革命衣钵。"
       },
       "next": {
         "id": 179,
@@ -4282,7 +4282,7 @@ const hisData = [
       "previous": {
         "id": 178,
         "type": "同僚",
-        "description": "朱德与毛泽东在井冈山会师，'朱毛'并肩，同创红军，战友共事。"
+        "description": "1945年重庆谈判，毛泽东与蒋介石面对面会谈43天，签订《双十协定》，对手相见。"
       },
       "next": {
         "id": 180,
@@ -4306,7 +4306,7 @@ const hisData = [
       "previous": {
         "id": 179,
         "type": "同僚",
-        "description": "周恩来与毛泽东自长征、延安至建国长期共事，总理辅元首，同僚相依。"
+        "description": "朱德与毛泽东在井冈山会师，'朱毛'并肩，同创红军，战友共事。"
       },
       "next": {
         "id": 181,
@@ -4330,7 +4330,7 @@ const hisData = [
       "previous": {
         "id": 180,
         "type": "同僚",
-        "description": "邓小平与周恩来同在中央，周赏识并倚重邓，同僚共理国政。"
+        "description": "周恩来与毛泽东自长征、延安至建国长期共事，总理辅元首，同僚相依。"
       },
       "next": {
         "id": 182,
@@ -4354,7 +4354,7 @@ const hisData = [
       "previous": {
         "id": 181,
         "type": "同僚",
-        "description": "邓小平亲自选定江泽民为接班人，确立第三代领导集体，同僚相承。"
+        "description": "邓小平与周恩来同在中央，周赏识并倚重邓，同僚共理国政。"
       },
       "next": {
         "id": 183,
@@ -4378,7 +4378,7 @@ const hisData = [
       "previous": {
         "id": 182,
         "type": "同僚",
-        "description": "胡锦涛继江泽民为总书记，权力平稳交接，同僚相承。"
+        "description": "邓小平亲自选定江泽民为接班人，确立第三代领导集体，同僚相承。"
       },
       "next": {
         "id": 184,
@@ -4402,939 +4402,14 @@ const hisData = [
       "previous": {
         "id": 183,
         "type": "同僚",
-        "description": "习近平继胡锦涛为总书记，权力平稳交接，同僚相承，链条至此贯通古今。"
+        "description": "胡锦涛继江泽民为总书记，权力平稳交接，同僚相承。"
       }
     }
   }
 ];
 
-const predefinedHis = [
-  [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
-    51,
-    52,
-    53,
-    54,
-    55,
-    56,
-    57,
-    58,
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-    65,
-    66,
-    67,
-    68,
-    69,
-    70,
-    71,
-    72,
-    73,
-    74,
-    75,
-    76,
-    77,
-    78,
-    79,
-    80,
-    81,
-    82,
-    83,
-    84,
-    85,
-    86,
-    87,
-    88,
-    89,
-    90,
-    91,
-    92,
-    93,
-    94,
-    95,
-    96,
-    97,
-    98,
-    99,
-    100,
-    101,
-    102,
-    103,
-    104,
-    105,
-    106,
-    107,
-    108,
-    109,
-    110,
-    111,
-    112,
-    113,
-    114,
-    115,
-    116,
-    117,
-    118,
-    119,
-    120,
-    121,
-    122,
-    123,
-    124,
-    125,
-    126,
-    127,
-    128,
-    129,
-    130,
-    131,
-    132,
-    133,
-    134,
-    135,
-    136,
-    137,
-    138,
-    139,
-    140,
-    141,
-    142,
-    143,
-    144,
-    145,
-    146,
-    147,
-    148,
-    149,
-    150,
-    151,
-    152,
-    153,
-    154,
-    155,
-    156,
-    157,
-    158,
-    159,
-    160,
-    161,
-    162,
-    163,
-    164,
-    165,
-    166,
-    167,
-    168,
-    169,
-    170,
-    171,
-    172,
-    173,
-    174,
-    175,
-    176,
-    177,
-    178,
-    179,
-    180,
-    181,
-    182,
-    183,
-    184
-  ]
-];
+// 预设历史链：整条人物参考链作为一个连续链
+const predefinedHis = [ hisData.map(p => p.id) ];
 
-var historyChainSave = {
-  "positions": {
-    "1": {
-      "x": 1575.4060335831516,
-      "y": 91
-    },
-    "2": {
-      "x": 1513.3903228210932,
-      "y": 136.88909370199693
-    },
-    "3": {
-      "x": 1608.6109477279197,
-      "y": 140.8888888888888
-    },
-    "4": {
-      "x": 1629.5494023337446,
-      "y": 197.55
-    },
-    "5": {
-      "x": 1679.5207760174558,
-      "y": 91
-    },
-    "6": {
-      "x": 1686.3158618726877,
-      "y": 162.28870967741938
-    },
-    "7": {
-      "x": 1780.893629636657,
-      "y": 368.18529411764706
-    },
-    "8": {
-      "x": 1779.6669275527308,
-      "y": 311.83118279569896
-    },
-    "9": {
-      "x": 1779.863501063076,
-      "y": 151.81657754010698
-    },
-    "10": {
-      "x": 1817.1133224861505,
-      "y": 92.39909090909092
-    },
-    "11": {
-      "x": 1868.4542282961102,
-      "y": 112.83454545454546
-    },
-    "12": {
-      "x": 1928.6620130045897,
-      "y": 91
-    },
-    "13": {
-      "x": 1944.7659053588295,
-      "y": 189.00588235294117
-    },
-    "14": {
-      "x": 2042.2659053588295,
-      "y": 255.4098039215686
-    },
-    "15": {
-      "x": 2165.432572025496,
-      "y": 254.79032258064518
-    },
-    "16": {
-      "x": 2062.5840756936886,
-      "y": 90.20545454545454
-    },
-    "17": {
-      "x": 2122.1944613200685,
-      "y": 92.39090909090909
-    },
-    "18": {
-      "x": 2202.843806579288,
-      "y": 94.57636363636364
-    },
-    "19": {
-      "x": 2438.327210656572,
-      "y": 97.8729292929293
-    },
-    "20": {
-      "x": 2487.914507088096,
-      "y": 113.305017921147
-    },
-    "21": {
-      "x": 2556.586941542171,
-      "y": 100.6139393939394
-    },
-    "22": {
-      "x": 2616.361835426245,
-      "y": 137.2581699346405
-    },
-    "23": {
-      "x": 2681.1959884804646,
-      "y": 124.4660606060606
-    },
-    "24": {
-      "x": 2734.333072680136,
-      "y": 146.70860215053767
-    },
-    "25": {
-      "x": 2694.333072680136,
-      "y": 209.2176470588235
-    },
-    "26": {
-      "x": 2763.917485217956,
-      "y": 220.0010752688172
-    },
-    "27": {
-      "x": 2815.4888931662745,
-      "y": 188.2935483870968
-    },
-    "28": {
-      "x": 2827.7745971404333,
-      "y": 111.58602150537638
-    },
-    "29": {
-      "x": 2947.6317451533537,
-      "y": 103.31818181818181
-    },
-    "30": {
-      "x": 3095.6707047861937,
-      "y": 92.50363636363636
-    },
-    "31": {
-      "x": 3103.8005702289934,
-      "y": 258.1709677419355
-    },
-    "32": {
-      "x": 3186.7875836847134,
-      "y": 311.8784946236559
-    },
-    "33": {
-      "x": 3434.9953683931926,
-      "y": 99.68909090909091
-    },
-    "34": {
-      "x": 3653.9302469321447,
-      "y": 98.87454545454545
-    },
-    "35": {
-      "x": 3376.452335285558,
-      "y": 199.4634408602151
-    },
-    "36": {
-      "x": 3429.944972501087,
-      "y": 259.2882352941176
-    },
-    "37": {
-      "x": 3497.3934330097886,
-      "y": 230.3408602150538
-    },
-    "38": {
-      "x": 3540.814048806308,
-      "y": 266.7559139784946
-    },
-    "39": {
-      "x": 3558.6111036925195,
-      "y": 342.0483870967742
-    },
-    "40": {
-      "x": 3769.9743361093665,
-      "y": 263.6333333333334
-    },
-    "41": {
-      "x": 3922.9743361093665,
-      "y": 144.06
-    },
-    "42": {
-      "x": 4090.669192457837,
-      "y": 277.9258064516129
-    },
-    "43": {
-      "x": 4188.808227417909,
-      "y": 388.2182795698925
-    },
-    "44": {
-      "x": 4280.457572677128,
-      "y": 314.3588235294117
-    },
-    "45": {
-      "x": 4292.587438119928,
-      "y": 182.24545454545455
-    },
-    "46": {
-      "x": 4421.8731420940885,
-      "y": 154.4309090909091
-    },
-    "47": {
-      "x": 4552.093913346848,
-      "y": 460.5107526881721
-    },
-    "48": {
-      "x": 4632.743258606068,
-      "y": 461.8032258064516
-    },
-    "49": {
-      "x": 4653.743258606068,
-      "y": 228.61636363636364
-    },
-    "50": {
-      "x": 4762.483509675247,
-      "y": 463.0956989247312
-    },
-    "51": {
-      "x": 4761.028962580227,
-      "y": 244.98727272727274
-    },
-    "52": {
-      "x": 4737.912083681707,
-      "y": 165.42941176470583
-    },
-    "53": {
-      "x": 4814.496496219527,
-      "y": 151.8018181818182
-    },
-    "54": {
-      "x": 4867.171814567307,
-      "y": 139.1727272727273
-    },
-    "55": {
-      "x": 4944.821159826526,
-      "y": 129.54363636363638
-    },
-    "56": {
-      "x": 5040.743240560846,
-      "y": 91
-    },
-    "57": {
-      "x": 5000.925052180765,
-      "y": 133.91454545454545
-    },
-    "58": {
-      "x": 5215.405572364346,
-      "y": 94.72909090909093
-    },
-    "59": {
-      "x": 5346.34520524651,
-      "y": 96.1
-    },
-    "60": {
-      "x": 5389.496478174306,
-      "y": 274.68064516129033
-    },
-    "61": {
-      "x": 5351.989984902166,
-      "y": 381.3881720430108
-    },
-    "62": {
-      "x": 5451.965849987637,
-      "y": 366.9731182795699
-    },
-    "63": {
-      "x": 5525.938038725046,
-      "y": 326.5
-    },
-    "64": {
-      "x": 5549.3823267053185,
-      "y": 221.5705882352941
-    },
-    "65": {
-      "x": 5620.198557585309,
-      "y": 91
-    },
-    "66": {
-      "x": 5787.237517218149,
-      "y": 164.55806451612904
-    },
-    "67": {
-      "x": 5751.705050857449,
-      "y": 256.2655913978495
-    },
-    "68": {
-      "x": 5677.367382660948,
-      "y": 306.8505376344086
-    },
-    "69": {
-      "x": 5558.951795198768,
-      "y": 396.43548387096774
-    },
-    "70": {
-      "x": 5570.5491942808685,
-      "y": 468.72795698924733
-    },
-    "71": {
-      "x": 5758.925822110208,
-      "y": 330.1430107526882
-    },
-    "72": {
-      "x": 5829.198539540088,
-      "y": 369.0204301075269
-    },
-    "73": {
-      "x": 5725.769965533627,
-      "y": 445.8978494623656
-    },
-    "74": {
-      "x": 5839.718019356507,
-      "y": 470.31290322580645
-    },
-    "75": {
-      "x": 5653.250485717208,
-      "y": 509.60537634408604
-    },
-    "76": {
-      "x": 5714.406324248567,
-      "y": 538.8166666666666
-    },
-    "77": {
-      "x": 5790.523203147087,
-      "y": 554.1903225806452
-    },
-    "78": {
-      "x": 5851.133588773467,
-      "y": 538.4827956989247
-    },
-    "79": {
-      "x": 5958.159561862027,
-      "y": 526.7752688172043
-    },
-    "80": {
-      "x": 5950.705014767006,
-      "y": 442.36021505376345
-    },
-    "81": {
-      "x": 5920.159561862027,
-      "y": 380.0677419354839
-    },
-    "82": {
-      "x": 5922.860853298366,
-      "y": 312.65268817204304
-    },
-    "83": {
-      "x": 5996.925786019766,
-      "y": 276.23763440860216
-    },
-    "84": {
-      "x": 6077.419292747626,
-      "y": 284.94516129032263
-    },
-    "85": {
-      "x": 6060.575131278985,
-      "y": 212.53010752688175
-    },
-    "86": {
-      "x": 6040.276422715325,
-      "y": 101
-    },
-    "87": {
-      "x": 6093.679023633225,
-      "y": 91
-    },
-    "88": {
-      "x": 6100.704996721785,
-      "y": 156.64117647058822
-    },
-    "89": {
-      "x": 6168.393301613844,
-      "y": 91
-    },
-    "90": {
-      "x": 6125.873821797425,
-      "y": 209.82258064516134
-    },
-    "91": {
-      "x": 6184.938754518825,
-      "y": 149.02727272727273
-    },
-    "92": {
-      "x": 6246.458234335245,
-      "y": 163.21272727272728
-    },
-    "93": {
-      "x": 6233.016673784505,
-      "y": 91
-    },
-    "94": {
-      "x": 6320.837131095809,
-      "y": 98.58363636363637
-    },
-    "95": {
-      "x": 6406.823264307903,
-      "y": 95
-    },
-    "96": {
-      "x": 6628.79553073209,
-      "y": 91
-    },
-    "97": {
-      "x": 6464.753490246558,
-      "y": 310.11505376344087
-    },
-    "98": {
-      "x": 6605.935301866478,
-      "y": 310.40752688172046
-    },
-    "99": {
-      "x": 6649.0521807649975,
-      "y": 359.70000000000005
-    },
-    "100": {
-      "x": 6674.246978929196,
-      "y": 300.57741935483875
-    },
-    "101": {
-      "x": 6715.259965473477,
-      "y": 284.8698924731183
-    },
-    "102": {
-      "x": 6730.130100030677,
-      "y": 338.9924731182796
-    },
-    "103": {
-      "x": 6727.143086574957,
-      "y": 388.28494623655916
-    },
-    "104": {
-      "x": 6796.298925106316,
-      "y": 323.1623655913979
-    },
-    "105": {
-      "x": 6793.337884739157,
-      "y": 190.45483870967746
-    },
-    "106": {
-      "x": 6876.039176175496,
-      "y": 102.13999999999999
-    },
-    "107": {
-      "x": 6946.545669447636,
-      "y": 177.03978494623658
-    },
-    "108": {
-      "x": 7005.896324188417,
-      "y": 244.747311827957
-    },
-    "109": {
-      "x": 7075.675534890435,
-      "y": 255.78235294117644
-    },
-    "110": {
-      "x": 7017.584629080476,
-      "y": 328.71176470588233
-    },
-    "111": {
-      "x": 7086.052162719776,
-      "y": 340.33225806451617
-    },
-    "112": {
-      "x": 7074.558655991916,
-      "y": 401.6247311827957
-    },
-    "113": {
-      "x": 7165.818386877515,
-      "y": 321.91720430107534
-    },
-    "114": {
-      "x": 7220.415785959615,
-      "y": 345.2096774193549
-    },
-    "115": {
-      "x": 7188.9352657760355,
-      "y": 428.5021505376344
-    },
-    "116": {
-      "x": 7242.480718681015,
-      "y": 446.79462365591394
-    },
-    "117": {
-      "x": 7282.662530300934,
-      "y": 351.0870967741936
-    },
-    "118": {
-      "x": 7385.039140085053,
-      "y": 223.67204301075276
-    },
-    "119": {
-      "x": 7489.402781370113,
-      "y": 91
-    },
-    "120": {
-      "x": 7524.909274642254,
-      "y": 244.3795698924731
-    },
-    "121": {
-      "x": 7561.506673724353,
-      "y": 264.4944444444444
-    },
-    "122": {
-      "x": 7530.156018983573,
-      "y": 376.9645161290323
-    },
-    "123": {
-      "x": 7518.753418065672,
-      "y": 448.2569892473118
-    },
-    "124": {
-      "x": 7593.506655679133,
-      "y": 407.13440860215053
-    },
-    "125": {
-      "x": 7603.961202774152,
-      "y": 449.841935483871
-    },
-    "126": {
-      "x": 7621.4287364134525,
-      "y": 498.54946236559147
-    },
-    "127": {
-      "x": 7649.026135495553,
-      "y": 458.7193548387097
-    },
-    "128": {
-      "x": 7807.636521121933,
-      "y": 91
-    },
-    "129": {
-      "x": 7851.519642223412,
-      "y": 179.42688172043017
-    },
-    "130": {
-      "x": 7928.324826013992,
-      "y": 173.01182795698924
-    },
-    "131": {
-      "x": 7917.844305830412,
-      "y": 91
-    },
-    "132": {
-      "x": 7981.415731823952,
-      "y": 180.17222222222222
-    },
-    "133": {
-      "x": 7959.883265463252,
-      "y": 237.30430107526888
-    },
-    "134": {
-      "x": 8121.091050171732,
-      "y": 198.5967741935484
-    },
-    "135": {
-      "x": 8107.779355063791,
-      "y": 107.88181818181818
-    },
-    "136": {
-      "x": 8172.90922050659,
-      "y": 115.06727272727272
-    },
-    "137": {
-      "x": 8233.55856576581,
-      "y": 101.25272727272727
-    },
-    "138": {
-      "x": 8299.19492448075,
-      "y": 136.43818181818182
-    },
-    "139": {
-      "x": 8301.57155231009,
-      "y": 209.88924731182794
-    },
-    "140": {
-      "x": 8307.272843746428,
-      "y": 332.1817204301076
-    },
-    "141": {
-      "x": 8353.415695733507,
-      "y": 336.4741935483871
-    },
-    "142": {
-      "x": 8418.935175549928,
-      "y": 334.85294117647055
-    },
-    "143": {
-      "x": 8486.194906435527,
-      "y": 308.76666666666665
-    },
-    "144": {
-      "x": 8481.259839156926,
-      "y": 422.0591397849463
-    },
-    "145": {
-      "x": 8554.415677688286,
-      "y": 385.3516129032258
-    },
-    "146": {
-      "x": 8549.194906435527,
-      "y": 262.8499999999999
-    },
-    "147": {
-      "x": 8546.974117137546,
-      "y": 126.99454545454546
-    },
-    "148": {
-      "x": 8626.298798789767,
-      "y": 182.92352941176466
-    },
-    "149": {
-      "x": 8626.636466986267,
-      "y": 91
-    },
-    "150": {
-      "x": 8736.688395118164,
-      "y": 91
-    },
-    "151": {
-      "x": 8691.480610409686,
-      "y": 141.52777777777771
-    },
-    "152": {
-      "x": 8849.649435485326,
-      "y": 91
-    },
-    "153": {
-      "x": 8919.753327839564,
-      "y": 108.36545454545455
-    },
-    "154": {
-      "x": 8861.259821111704,
-      "y": 204.22903225806454
-    },
-    "155": {
-      "x": 8931.090996036066,
-      "y": 248.64408602150536
-    },
-    "156": {
-      "x": 9001.727354751005,
-      "y": 251.936559139785
-    },
-    "157": {
-      "x": 8987.909166370924,
-      "y": 118.5509090909091
-    },
-    "158": {
-      "x": 9092.623444351544,
-      "y": 97.73636363636365
-    },
-    "159": {
-      "x": 9101.207856889363,
-      "y": 323.8139784946237
-    },
-    "160": {
-      "x": 9152.675390528664,
-      "y": 324.52150537634407
-    },
-    "161": {
-      "x": 9201.376681965003,
-      "y": 325.2055555555555
-    },
-    "162": {
-      "x": 9259.441614686402,
-      "y": 126.9218181818182
-    },
-    "163": {
-      "x": 9398.584466673483,
-      "y": 113.10727272727274
-    },
-    "164": {
-      "x": 9451.103946489902,
-      "y": 147.10645161290324
-    },
-    "165": {
-      "x": 9515.662385939162,
-      "y": 171.39892473118277
-    },
-    "166": {
-      "x": 9524.272771565542,
-      "y": 227.69139784946242
-    },
-    "167": {
-      "x": 9482.350690831223,
-      "y": 316.98387096774195
-    },
-    "168": {
-      "x": 9525.779264837682,
-      "y": 391.99411764705883
-    },
-    "169": {
-      "x": 9499.441596641182,
-      "y": 452.2763440860215
-    },
-    "170": {
-      "x": 9552.077955356122,
-      "y": 474.5688172043011
-    },
-    "171": {
-      "x": 9619.67535443822,
-      "y": 374.1537634408602
-    },
-    "172": {
-      "x": 9633.6234082611,
-      "y": 279.86129032258066
-    },
-    "173": {
-      "x": 9621.584448628262,
-      "y": 95.88333333333333
-    },
-    "174": {
-      "x": 9704.12990153324,
-      "y": 91
-    },
-    "175": {
-      "x": 9718.18184771036,
-      "y": 150.23888888888882
-    },
-    "176": {
-      "x": 9752.23379388748,
-      "y": 179.91666666666663
-    },
-    "177": {
-      "x": 9759.766260248181,
-      "y": 91
-    },
-    "178": {
-      "x": 9825.805219881022,
-      "y": 91
-    },
-    "179": {
-      "x": 9832.259766976042,
-      "y": 149.06470588235288
-    },
-    "180": {
-      "x": 9864.33768624172,
-      "y": 126.94999999999993
-    },
-    "181": {
-      "x": 9852.376645874561,
-      "y": 189.62777777777774
-    },
-    "182": {
-      "x": 9893.519497861642,
-      "y": 190.30555555555554
-    },
-    "183": {
-      "x": 9922.623390215882,
-      "y": 206.98333333333335
-    },
-    "184": {
-      "x": 9967.194816209421,
-      "y": 217.66111111111104
-    }
-  },
-  "customPersons": []
-};
+// 位置/自定义人物存档（默认含导出覆盖的位置数据）
+var historyChainSave = {"positions":{"1":{"x":1575.4060335831516,"y":91},"2":{"x":1513.3903228210932,"y":136.88909370199693},"3":{"x":1608.6109477279197,"y":140.8888888888888},"4":{"x":1629.5494023337446,"y":197.55},"5":{"x":1679.5207760174558,"y":91},"6":{"x":1686.3158618726877,"y":162.28870967741938},"7":{"x":1780.893629636657,"y":368.18529411764706},"8":{"x":1779.6669275527308,"y":311.83118279569896},"9":{"x":1779.863501063076,"y":151.81657754010698},"10":{"x":1817.1133224861505,"y":92.39909090909092},"11":{"x":1868.4542282961102,"y":112.83454545454546},"12":{"x":1928.6620130045897,"y":91},"13":{"x":1944.7659053588295,"y":189.00588235294117},"14":{"x":2042.2659053588295,"y":255.4098039215686},"15":{"x":2165.432572025496,"y":254.79032258064518},"16":{"x":2062.5840756936886,"y":90.20545454545454},"17":{"x":2122.1944613200685,"y":92.39090909090909},"18":{"x":2202.843806579288,"y":94.57636363636364},"19":{"x":2438.327210656572,"y":97.8729292929293},"20":{"x":2487.914507088096,"y":113.305017921147},"21":{"x":2556.586941542171,"y":100.6139393939394},"22":{"x":2616.361835426245,"y":137.2581699346405},"23":{"x":2681.1959884804646,"y":124.4660606060606},"24":{"x":2734.333072680136,"y":146.70860215053767},"25":{"x":2694.333072680136,"y":209.2176470588235},"26":{"x":2763.917485217956,"y":220.0010752688172},"27":{"x":2815.4888931662745,"y":188.2935483870968},"28":{"x":2827.7745971404333,"y":111.58602150537638},"29":{"x":2947.6317451533537,"y":103.31818181818181},"30":{"x":3095.6707047861937,"y":92.50363636363636},"31":{"x":3103.8005702289934,"y":258.1709677419355},"32":{"x":3186.7875836847134,"y":311.8784946236559},"33":{"x":3434.9953683931926,"y":99.68909090909091},"34":{"x":3653.9302469321447,"y":98.87454545454545},"35":{"x":3376.452335285558,"y":199.4634408602151},"36":{"x":3429.944972501087,"y":259.2882352941176},"37":{"x":3497.3934330097886,"y":230.3408602150538},"38":{"x":3540.814048806308,"y":266.7559139784946},"39":{"x":3558.6111036925195,"y":342.0483870967742},"40":{"x":3769.9743361093665,"y":263.6333333333334},"41":{"x":3922.9743361093665,"y":144.06},"42":{"x":4090.669192457837,"y":277.9258064516129},"43":{"x":4188.808227417909,"y":388.2182795698925},"44":{"x":4280.457572677128,"y":314.3588235294117},"45":{"x":4292.587438119928,"y":182.24545454545455},"46":{"x":4421.8731420940885,"y":154.4309090909091},"47":{"x":4552.093913346848,"y":460.5107526881721},"48":{"x":4632.743258606068,"y":461.8032258064516},"49":{"x":4653.743258606068,"y":228.61636363636364},"50":{"x":4762.483509675247,"y":463.0956989247312},"51":{"x":4761.028962580227,"y":244.98727272727274},"52":{"x":4737.912083681707,"y":165.42941176470583},"53":{"x":4814.496496219527,"y":151.8018181818182},"54":{"x":4867.171814567307,"y":139.1727272727273},"55":{"x":4944.821159826526,"y":129.54363636363638},"56":{"x":5040.743240560846,"y":91},"57":{"x":5000.925052180765,"y":133.91454545454545},"58":{"x":5215.405572364346,"y":94.72909090909093},"59":{"x":5346.34520524651,"y":96.1},"60":{"x":5389.496478174306,"y":274.68064516129033},"61":{"x":5351.989984902166,"y":381.3881720430108},"62":{"x":5451.965849987637,"y":366.9731182795699},"63":{"x":5525.938038725046,"y":326.5},"64":{"x":5549.3823267053185,"y":221.5705882352941},"65":{"x":5620.198557585309,"y":91},"66":{"x":5787.237517218149,"y":164.55806451612904},"67":{"x":5751.705050857449,"y":256.2655913978495},"68":{"x":5677.367382660948,"y":306.8505376344086},"69":{"x":5558.951795198768,"y":396.43548387096774},"70":{"x":5570.5491942808685,"y":468.72795698924733},"71":{"x":5758.925822110208,"y":330.1430107526882},"72":{"x":5829.198539540088,"y":369.0204301075269},"73":{"x":5725.769965533627,"y":445.8978494623656},"74":{"x":5839.718019356507,"y":470.31290322580645},"75":{"x":5653.250485717208,"y":509.60537634408604},"76":{"x":5714.406324248567,"y":538.8166666666666},"77":{"x":5790.523203147087,"y":554.1903225806452},"78":{"x":5851.133588773467,"y":538.4827956989247},"79":{"x":5958.159561862027,"y":526.7752688172043},"80":{"x":5950.705014767006,"y":442.36021505376345},"81":{"x":5920.159561862027,"y":380.0677419354839},"82":{"x":5922.860853298366,"y":312.65268817204304},"83":{"x":5996.925786019766,"y":276.23763440860216},"84":{"x":6077.419292747626,"y":284.94516129032263},"85":{"x":6060.575131278985,"y":212.53010752688175},"86":{"x":6040.276422715325,"y":101},"87":{"x":6093.679023633225,"y":91},"88":{"x":6100.704996721785,"y":156.64117647058822},"89":{"x":6168.393301613844,"y":91},"90":{"x":6125.873821797425,"y":209.82258064516134},"91":{"x":6184.938754518825,"y":149.02727272727273},"92":{"x":6246.458234335245,"y":163.21272727272728},"93":{"x":6233.016673784505,"y":91},"94":{"x":6320.837131095809,"y":98.58363636363637},"95":{"x":6406.823264307903,"y":95},"96":{"x":6628.79553073209,"y":91},"97":{"x":6464.753490246558,"y":310.11505376344087},"98":{"x":6605.935301866478,"y":310.40752688172046},"99":{"x":6649.0521807649975,"y":359.70000000000005},"100":{"x":6674.246978929196,"y":300.57741935483875},"101":{"x":6715.259965473477,"y":284.8698924731183},"102":{"x":6730.130100030677,"y":338.9924731182796},"103":{"x":6727.143086574957,"y":388.28494623655916},"104":{"x":6796.298925106316,"y":323.1623655913979},"105":{"x":6793.337884739157,"y":190.45483870967746},"106":{"x":6876.039176175496,"y":102.13999999999999},"107":{"x":6946.545669447636,"y":177.03978494623658},"108":{"x":7005.896324188417,"y":244.747311827957},"109":{"x":7075.675534890435,"y":255.78235294117644},"110":{"x":7017.584629080476,"y":328.71176470588233},"111":{"x":7086.052162719776,"y":340.33225806451617},"112":{"x":7074.558655991916,"y":401.6247311827957},"113":{"x":7165.818386877515,"y":321.91720430107534},"114":{"x":7220.415785959615,"y":345.2096774193549},"115":{"x":7188.9352657760355,"y":428.5021505376344},"116":{"x":7242.480718681015,"y":446.79462365591394},"117":{"x":7282.662530300934,"y":351.0870967741936},"118":{"x":7385.039140085053,"y":223.67204301075276},"119":{"x":7489.402781370113,"y":91},"120":{"x":7524.909274642254,"y":244.3795698924731},"121":{"x":7561.506673724353,"y":264.4944444444444},"122":{"x":7530.156018983573,"y":376.9645161290323},"123":{"x":7518.753418065672,"y":448.2569892473118},"124":{"x":7593.506655679133,"y":407.13440860215053},"125":{"x":7603.961202774152,"y":449.841935483871},"126":{"x":7621.4287364134525,"y":498.54946236559147},"127":{"x":7649.026135495553,"y":458.7193548387097},"128":{"x":7807.636521121933,"y":91},"129":{"x":7851.519642223412,"y":179.42688172043017},"130":{"x":7928.324826013992,"y":173.01182795698924},"131":{"x":7917.844305830412,"y":91},"132":{"x":7981.415731823952,"y":180.17222222222222},"133":{"x":7959.883265463252,"y":237.30430107526888},"134":{"x":8121.091050171732,"y":198.5967741935484},"135":{"x":8107.779355063791,"y":107.88181818181818},"136":{"x":8172.90922050659,"y":115.06727272727272},"137":{"x":8233.55856576581,"y":101.25272727272727},"138":{"x":8299.19492448075,"y":136.43818181818182},"139":{"x":8301.57155231009,"y":209.88924731182794},"140":{"x":8307.272843746428,"y":332.1817204301076},"141":{"x":8353.415695733507,"y":336.4741935483871},"142":{"x":8418.935175549928,"y":334.85294117647055},"143":{"x":8486.194906435527,"y":308.76666666666665},"144":{"x":8481.259839156926,"y":422.0591397849463},"145":{"x":8554.415677688286,"y":385.3516129032258},"146":{"x":8549.194906435527,"y":262.8499999999999},"147":{"x":8546.974117137546,"y":126.99454545454546},"148":{"x":8626.298798789767,"y":182.92352941176466},"149":{"x":8626.636466986267,"y":91},"150":{"x":8736.688395118164,"y":91},"151":{"x":8691.480610409686,"y":141.52777777777771},"152":{"x":8849.649435485326,"y":91},"153":{"x":8919.753327839564,"y":108.36545454545455},"154":{"x":8861.259821111704,"y":204.22903225806454},"155":{"x":8931.090996036066,"y":248.64408602150536},"156":{"x":9001.727354751005,"y":251.936559139785},"157":{"x":8987.909166370924,"y":118.5509090909091},"158":{"x":9092.623444351544,"y":97.73636363636365},"159":{"x":9101.207856889363,"y":323.8139784946237},"160":{"x":9152.675390528664,"y":324.52150537634407},"161":{"x":9201.376681965003,"y":325.2055555555555},"162":{"x":9259.441614686402,"y":126.9218181818182},"163":{"x":9398.584466673483,"y":113.10727272727274},"164":{"x":9451.103946489902,"y":147.10645161290324},"165":{"x":9515.662385939162,"y":171.39892473118277},"166":{"x":9524.272771565542,"y":227.69139784946242},"167":{"x":9482.350690831223,"y":316.98387096774195},"168":{"x":9525.779264837682,"y":391.99411764705883},"169":{"x":9499.441596641182,"y":452.2763440860215},"170":{"x":9552.077955356122,"y":474.5688172043011},"171":{"x":9619.67535443822,"y":374.1537634408602},"172":{"x":9633.6234082611,"y":279.86129032258066},"173":{"x":9621.584448628262,"y":95.88333333333333},"174":{"x":9704.12990153324,"y":91},"175":{"x":9718.18184771036,"y":150.23888888888882},"176":{"x":9752.23379388748,"y":179.91666666666663},"177":{"x":9759.766260248181,"y":91},"178":{"x":9825.805219881022,"y":91},"179":{"x":9832.259766976042,"y":149.06470588235288},"180":{"x":9864.33768624172,"y":126.94999999999993},"181":{"x":9852.376645874561,"y":189.62777777777774},"182":{"x":9893.519497861642,"y":190.30555555555554},"183":{"x":9922.623390215882,"y":206.98333333333335},"184":{"x":9967.194816209421,"y":217.66111111111104}},"customPersons":[]};
