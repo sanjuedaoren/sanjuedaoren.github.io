@@ -560,8 +560,8 @@ html, body {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: linear-gradient(180deg, #FAF6EC, var(--card-bg));
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, var(--accent2), var(--accent) 50%, var(--accent2)) 1;
+  border-top: 3px solid var(--person-color, var(--accent));
+  border-image: linear-gradient(90deg, transparent, var(--person-color, var(--accent)) 50%, transparent) 1;
   border-radius: 14px 14px 0 0;
   padding: 1.5rem;
   z-index: 400;
@@ -587,7 +587,7 @@ html, body {
 .detail-title {
   font-family: var(--base-font);
   font-size: 1.6rem;
-  color: var(--bg2);
+  color: var(--person-color, var(--bg2));
   letter-spacing: 0.08em;
   position: relative;
   display: inline-block;
@@ -598,7 +598,7 @@ html, body {
   left: 0; right: 0; bottom: -3px;
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent2), transparent);
+  background: linear-gradient(90deg, var(--person-color, var(--accent2)), transparent);
   opacity: 0.6;
 }
 .detail-subtitle {
@@ -609,16 +609,16 @@ html, body {
 .detail-close {
   font-size: 1.5rem;
   cursor: pointer;
-  color: #8B6D3F;
+  color: var(--person-color, #8B6D3F);
   width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
-  border: 1px solid rgba(139, 109, 63, 0.35);
+  border: 1px solid var(--person-color, rgba(139, 109, 63, 0.35));
   transition: all 0.2s;
 }
 .detail-close:hover {
-  background: var(--accent2);
-  border-color: var(--accent2);
+  background: var(--person-color, var(--accent2));
+  border-color: var(--person-color, var(--accent2));
   color: #FFF;
   transform: rotate(90deg);
 }
@@ -632,7 +632,7 @@ html, body {
   background: linear-gradient(135deg, #FBF8F0, #F7F2E6);
   padding: 1rem 1.2rem;
   border-radius: 8px;
-  border-left: 4px solid var(--accent2);
+  border-left: 4px solid var(--person-color, var(--accent2));
   box-shadow: inset 0 0 0 1px rgba(139, 109, 63, 0.15), 0 2px 8px rgba(139, 109, 63, 0.1);
   position: relative;
 }
@@ -1007,10 +1007,12 @@ html, body {
             <option value="农">农</option>
             <option value="工">工</option>
             <option value="商">商</option>
-            <option value="道士">道士</option>
-            <option value="僧侣">僧侣</option>
+            <option value="道">道</option>
+            <option value="僧">僧</option>
             <option value="郎中">郎中</option>
             <option value="其它">其它</option>
+            <option value="其他">其他</option>
+            <option value="皇室">皇室</option>
           </select>
         </div>
       </div>
@@ -1121,12 +1123,13 @@ const dynastyColors = {
   "元":     "#7A5A3A",  // 暗琥珀
   "明":     "#6A3A3A",  // 暗绯褐
   "清":     "#3A4A5A",  // 暗藏青
-  "民国":   "#5A6A70"   // 暗苍青
+  "民国":   "#5A6A70",  // 暗苍青
+  "现代":   "#6A7A82"   // 当代冷灰
 };
 
 // 职业颜色（传统中国色 · 纯色）
 const classColors = {
-  "帝王": "#6A0DAD",
+  "帝王": "#2f1e1b",
   "贵族": "#8C4356",
   "文人": "#1685A9",
   "武将": "#B87333",
@@ -1134,10 +1137,12 @@ const classColors = {
   "农":   "#789262",
   "工":   "#CA6924",
   "商":   "#F2BE45",
-  "道士": "#1d6377",
-  "僧侣": "#F0C239",
+  "道": "#1d6377",
+  "僧": "#e4a243",
   "郎中": "#598A78",
-  "其它": "#75878A"
+  "其它": "#75878A",
+  "其他": "#75878A",
+  "皇室": "#8C4356"
 };
 
 // 关系颜色（鲜明传统色 · 纯色）
@@ -1186,7 +1191,8 @@ const dynasties = [
   { name: "元", start: 1271, end: 1368 },
   { name: "明", start: 1368, end: 1644 },
   { name: "清", start: 1644, end: 1912 },
-  { name: "民国", start: 1912, end: 1949 }
+  { name: "民国", start: 1912, end: 1949 },
+  { name: "现代", start: 1949, end: 2026 }
 ];
 
 // hisData、predefinedHis、historyChainSave 已移至 lifedata.js（在本脚本之前加载），此处直接使用其全局变量。
@@ -1632,7 +1638,7 @@ function renderTimeline(hisIds) {
   //   水平 x：由出生年份决定（左→右 = 早→晚）
   //   垂直 y：由职业等级决定（帝王最上 → 文人 → 武将 → 僧道最下）
   //         同职业内按出生年顺序在职业带内垂直分布（避免重叠）
-  const CLASS_RANK = { "帝王": 0, "贵族": 1, "文人": 2, "武将": 3, "士": 4, "农": 5, "工": 6, "商": 7, "道士": 8, "僧侣": 9, "郎中": 10, "其它": 11 };
+  const CLASS_RANK = { "帝王": 0, "贵族": 1, "皇室": 1, "文人": 2, "武将": 3, "士": 4, "农": 5, "工": 6, "商": 7, "道": 8, "僧": 9, "郎中": 10, "其它": 11, "其他": 11 };
   const rankList = [...new Set(persons.map(p => CLASS_RANK[p.class] ?? 99))].sort((a, b) => a - b);
   const numBands = rankList.length;
   const bandH = (usableBottom - usableTop) / Math.max(1, numBands);
@@ -1823,9 +1829,11 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
   function onMouseMove(e) {
     if (!isDragging) return;
     if (!hasMoved) { hasMoved = true; if (onDragStart) onDragStart(); }
-    // CSS zoom on timelineContent: visual delta / zoom = internal delta
+    // 横向：CSS zoom 缩放整块内容，屏幕位移 / zoom = 内部位移
     const dx = (e.clientX - startClientX) / zoom;
-    const dy = (e.clientY - startClientY) / zoom;
+    // 纵向：节点 style.top 已含 /vScale，再经 CSS zoom 缩放，净视觉系数 = zoom/vScale；
+    // 故纵向内部位移须乘 vScale/zoom 抵消，使“视觉位移 = 鼠标位移”（vScale = min(zoom,1)）
+    const dy = (e.clientY - startClientY) * Math.min(zoom, 1) / zoom;
     let newX = startBaseLeft + dx;
     let newY = startBaseTop + dy;
     newX = Math.max(bounds.left + RADIUS, Math.min(bounds.right - RADIUS, newX));
@@ -1844,7 +1852,7 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
     if (!hasMoved) { hasMoved = true; if (onDragStart) onDragStart(); }
     const t = e.touches[0];
     const dx = (t.clientX - startClientX) / zoom;
-    const dy = (t.clientY - startClientY) / zoom;
+    const dy = (t.clientY - startClientY) * Math.min(zoom, 1) / zoom;
     let newX = startBaseLeft + dx;
     let newY = startBaseTop + dy;
     newX = Math.max(bounds.left + RADIUS, Math.min(bounds.right - RADIUS, newX));
@@ -1856,8 +1864,8 @@ function makeNodeDraggable(node, person, positions, bounds, onDragStart) {
     positions[person.id] = { x: newX, y: newY };
     updateConnections();
   }
-  function onMouseUp() { if (isDragging) { isDragging = false; node.classList.remove('dragging'); } }
-  function onTouchEnd(e) { if (isDragging) { isDragging = false; node.classList.remove('dragging'); } }
+  function onMouseUp() { if (isDragging) { isDragging = false; node.classList.remove('dragging'); scheduleSave(); } }
+  function onTouchEnd(e) { if (isDragging) { isDragging = false; node.classList.remove('dragging'); scheduleSave(); } }
   node.addEventListener('mousedown', onMouseDown);
   node.addEventListener('touchstart', onTouchStart, { passive: false });
   document.addEventListener('mousemove', onMouseMove);
@@ -2153,6 +2161,8 @@ function openDetail(person) {
   detailBody.querySelectorAll('.connection-item').forEach(item => {
     item.addEventListener('click', () => { const id = item.dataset.id; const p = getPersonById(id); if (p) openDetail(p); });
   });
+  const pc = getColor(person);
+  detailCard.style.setProperty('--person-color', pc);
   detailOverlay.classList.add('active');
   detailCard.classList.add('active');
 }
@@ -2193,6 +2203,7 @@ function deletePerson(id) {
   closeDetail();
   renderLegends();
   renderTimeline(currentHis.length ? currentHis : hisData.map(p => p.id));
+  saveToStorage();
 }
 
 // ===== Scroll Sync =====
@@ -2407,6 +2418,7 @@ customSubmitBtn.addEventListener('click', () => {
   currentPath = [];
   renderLegends();
   renderTimeline(currentHis);
+  saveToStorage();
   closeCustomModal();
 });
 
@@ -2425,7 +2437,7 @@ function collectCurrentState() {
       posData[id] = { x: baseLeft, y: baseTop };
     }
   });
-  const customList = hisData.filter(p => p.id.startsWith('custom_'));
+  const customList = hisData.filter(p => String(p.id).startsWith('custom_'));
   return { positions: posData, customPersons: customList };
 }
 
@@ -2531,8 +2543,62 @@ function importData() {
   input.click();
 }
 
+// ===== 浏览器本地缓存（localStorage）：优先于 lifedata.js 默认 =====
+const STORAGE_KEY = 'hisToLink_save_v1';
+let _saveTimer = null;
+
+// 读取浏览器缓存；无缓存或损坏则返回 null
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== 'object') return null;
+    return data; // 期望结构 { positions:{}, customPersons:[] }
+  } catch (e) {
+    console.warn('读取本地缓存失败：', e);
+    return null;
+  }
+}
+
+// 将当前节点坐标 + 自定义人物写入浏览器缓存
+function saveToStorage() {
+  try {
+    const posData = {};
+    Object.keys(globalPositions).forEach(id => {
+      const p = globalPositions[id];
+      if (p && typeof p.x === 'number' && typeof p.y === 'number') {
+        posData[id] = { x: p.x, y: p.y };
+      }
+    });
+    const customList = hisData.filter(p => String(p.id).startsWith('custom_'));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ positions: posData, customPersons: customList }));
+  } catch (e) {
+    console.warn('写入本地缓存失败：', e);
+  }
+}
+
+// 防抖保存：拖拽过程中避免频繁写 localStorage
+function scheduleSave() {
+  if (_saveTimer) clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(saveToStorage, 400);
+}
+
 async function loadPositionsFromJSON() {
-  // lifedata.js 已通过 <script> 标签加载（在页面头部），直接使用全局变量
+  // 1) 优先：浏览器 localStorage 缓存（用户上次拖动/自定义后的状态）
+  const cached = loadFromStorage();
+  if (cached) {
+    if (cached.positions) loadedPositions = cached.positions;
+    if (Array.isArray(cached.customPersons) && cached.customPersons.length > 0) {
+      cached.customPersons.forEach(cp => {
+        if (!hisData.find(p => p.id === cp.id)) hisData.push(cp);
+      });
+      savedCustomPersons = cached.customPersons;
+      currentHis = hisData.map(p => p.id);
+    }
+    return;
+  }
+  // 2) 回退：lifedata.js 内嵌的 historyChainSave（通常为空，作为兜底默认值）
   if (typeof historyChainSave !== 'undefined' && historyChainSave) {
     if (historyChainSave.positions) {
       loadedPositions = historyChainSave.positions;
